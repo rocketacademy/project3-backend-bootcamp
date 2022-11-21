@@ -14,7 +14,7 @@ module.exports = (sequelize, DataTypes) => {
   note.init(
     {
       due_by: DataTypes.DATE,
-      cadet_id: DataTypes.INTEGER,
+      cadetId: DataTypes.INTEGER,
       input1: DataTypes.TEXT,
       input2: DataTypes.TEXT,
       input3: DataTypes.TEXT,

@@ -15,7 +15,7 @@ module.exports = {
       chapter_index: {
         type: Sequelize.FLOAT,
       },
-      module_id: {
+      moduleId: {
         type: Sequelize.INTEGER,
       },
       image_url: {

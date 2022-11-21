@@ -1,7 +1,5 @@
-'use strict';
-const {
-  Model
-} = require('sequelize');
+"use strict";
+const { Model } = require("sequelize");
 module.exports = (sequelize, DataTypes) => {
   class chapter_progress extends Model {
     /**
@@ -13,13 +11,16 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
     }
   }
-  chapter_progress.init({
-    cadet_id: DataTypes.INTEGER,
-    chapter_id: DataTypes.INTEGER,
-    completed: DataTypes.BOOLEAN
-  }, {
-    sequelize,
-    modelName: 'chapter_progress',
-  });
+  chapter_progress.init(
+    {
+      cadetId: DataTypes.INTEGER,
+      chapterId: DataTypes.INTEGER,
+      completed: DataTypes.BOOLEAN,
+    },
+    {
+      sequelize,
+      modelName: "chapter_progress",
+    }
+  );
   return chapter_progress;
 };

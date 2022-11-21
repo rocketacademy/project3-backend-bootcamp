@@ -12,7 +12,7 @@ module.exports = {
       due_by: {
         type: Sequelize.DATE,
       },
-      cadet_id: {
+      cadetId: {
         type: Sequelize.INTEGER,
       },
       input1: {

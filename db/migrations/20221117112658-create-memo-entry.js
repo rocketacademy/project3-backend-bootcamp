@@ -9,10 +9,10 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER,
       },
-      cadet_id: {
+      cadetId: {
         type: Sequelize.INTEGER,
       },
-      sl_id: {
+      slId: {
         type: Sequelize.INTEGER,
       },
       general_input: {

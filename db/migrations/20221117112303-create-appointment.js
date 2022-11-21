@@ -15,10 +15,10 @@ module.exports = {
       end_datetime: {
         type: Sequelize.DATE,
       },
-      sl_id: {
+      slId: {
         type: Sequelize.INTEGER,
       },
-      cadet_id: {
+      cadetId: {
         type: Sequelize.INTEGER,
       },
       current_sl: {

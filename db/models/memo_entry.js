@@ -13,8 +13,8 @@ module.exports = (sequelize, DataTypes) => {
   }
   memo_entry.init(
     {
-      cadet_id: DataTypes.INTEGER,
-      sl_id: DataTypes.INTEGER,
+      cadetId: DataTypes.INTEGER,
+      slId: DataTypes.INTEGER,
       general_input: DataTypes.TEXT,
     },
     {

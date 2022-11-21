@@ -15,8 +15,8 @@ module.exports = (sequelize, DataTypes) => {
     {
       start_datetime: DataTypes.DATE,
       end_datetime: DataTypes.DATE,
-      sl_id: DataTypes.INTEGER,
-      cadet_id: DataTypes.INTEGER,
+      slId: DataTypes.INTEGER,
+      cadetId: DataTypes.INTEGER,
       current_sl: DataTypes.BOOLEAN,
     },
     {

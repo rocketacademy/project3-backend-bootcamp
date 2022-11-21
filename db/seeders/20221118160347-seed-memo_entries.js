@@ -7,22 +7,22 @@ module.exports = {
       "memo_entries",
       [
         {
-          cadet_id: 1,
-          sl_id: 1,
+          cadetId: 1,
+          slId: 1,
           general_input: "why me",
           createdAt: new Date(),
           updatedAt: new Date(),
         },
         {
-          cadet_id: 2,
-          sl_id: 2,
+          cadetId: 2,
+          slId: 2,
           general_input: "yes you",
           createdAt: new Date(),
           updatedAt: new Date(),
         },
         {
-          cadet_id: 3,
-          sl_id: 3,
+          cadetId: 3,
+          slId: 3,
           general_input: "it cant be",
           createdAt: new Date(),
           updatedAt: new Date(),

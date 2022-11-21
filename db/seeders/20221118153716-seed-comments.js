@@ -8,25 +8,25 @@ module.exports = {
       [
         {
           content: "hello world",
-          chapter_id: "1",
+          chapterId: "1",
           createdAt: new Date(),
           updatedAt: new Date(),
         },
         {
           content: "daddy",
-          chapter_id: "1",
+          chapterId: "1",
           createdAt: new Date(),
           updatedAt: new Date(),
         },
         {
           content: "daddy who",
-          chapter_id: "1",
+          chapterId: "1",
           createdAt: new Date(),
           updatedAt: new Date(),
         },
         {
           content: "daddy Foong",
-          chapter_id: "1",
+          chapterId: "1",
           createdAt: new Date(),
           updatedAt: new Date(),
         },

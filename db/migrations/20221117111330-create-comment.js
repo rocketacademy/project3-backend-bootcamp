@@ -12,7 +12,7 @@ module.exports = {
       content: {
         type: Sequelize.TEXT,
       },
-      chapter_id: {
+      chapterId: {
         type: Sequelize.INTEGER,
       },
       createdAt: {

@@ -14,7 +14,7 @@ module.exports = (sequelize, DataTypes) => {
   comment.init(
     {
       content: DataTypes.TEXT,
-      chapter_id: DataTypes.INTEGER,
+      chapterId: DataTypes.INTEGER,
     },
     {
       sequelize,
