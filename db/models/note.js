@@ -9,12 +9,19 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      this.belongsTo(models.cadet);
     }
   }
   note.init(
     {
       due_by: DataTypes.DATE,
-      cadetId: DataTypes.INTEGER,
+      cadetId: {
+        type: DataTypes.INTEGER,
+        references: {
+          model: "cadet",
+          key: "id",
+        },
+      },
       input1: DataTypes.TEXT,
       input2: DataTypes.TEXT,
       input3: DataTypes.TEXT,

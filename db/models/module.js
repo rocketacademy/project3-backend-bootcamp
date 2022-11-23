@@ -9,6 +9,9 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      this.belongsToMany(models.cadet, { through: "cadet_modules" });
+      this.hasMany(models.cadet_module);
+      this.hasMany(models.chapter);
     }
   }
   module.init(

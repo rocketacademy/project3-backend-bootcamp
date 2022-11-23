@@ -9,12 +9,19 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      this.belongsTo(models.sl);
     }
   }
   blocked_date.init(
     {
       date: DataTypes.DATE,
-      slId: DataTypes.INTEGER,
+      slId: {
+        type: DataTypes.INTEGER,
+        references: {
+          model: "sl",
+          key: "id",
+        },
+      },
     },
     {
       sequelize,

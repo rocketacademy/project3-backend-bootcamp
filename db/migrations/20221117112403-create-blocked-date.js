@@ -14,6 +14,10 @@ module.exports = {
       },
       slId: {
         type: Sequelize.INTEGER,
+        references: {
+          model: "sls",
+          key: "id",
+        },
       },
       createdAt: {
         allowNull: false,

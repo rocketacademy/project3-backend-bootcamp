@@ -9,14 +9,28 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      this.belongsTo(models.cadet);
+      this.belongsTo(models.sl);
     }
   }
   appointment.init(
     {
       start_datetime: DataTypes.DATE,
       end_datetime: DataTypes.DATE,
-      slId: DataTypes.INTEGER,
-      cadetId: DataTypes.INTEGER,
+      slId: {
+        type: DataTypes.INTEGER,
+        references: {
+          model: "sl",
+          key: "id",
+        },
+      },
+      cadetId: {
+        type: DataTypes.INTEGER,
+        references: {
+          model: "cadet",
+          key: "id",
+        },
+      },
       current_sl: DataTypes.BOOLEAN,
     },
     {

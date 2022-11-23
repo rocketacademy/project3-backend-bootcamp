@@ -17,9 +17,17 @@ module.exports = {
       },
       slId: {
         type: Sequelize.INTEGER,
+        references: {
+          model: "sls",
+          key: "id",
+        },
       },
       cadetId: {
         type: Sequelize.INTEGER,
+        references: {
+          model: "cadets",
+          key: "id",
+        },
       },
       current_sl: {
         type: Sequelize.BOOLEAN,

@@ -14,6 +14,10 @@ module.exports = {
       },
       cadetId: {
         type: Sequelize.INTEGER,
+        references: {
+          model: "cadets",
+          key: "id",
+        },
       },
       input1: {
         type: Sequelize.TEXT,

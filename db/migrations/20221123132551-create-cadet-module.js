@@ -2,7 +2,7 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable("module_progresses", {
+    await queryInterface.createTable("cadet_modules", {
       id: {
         allowNull: false,
         autoIncrement: true,
@@ -18,6 +18,10 @@ module.exports = {
       },
       moduleId: {
         type: Sequelize.INTEGER,
+        references: {
+          model: "modules",
+          key: "id",
+        },
       },
       completed: {
         type: Sequelize.BOOLEAN,
@@ -33,6 +37,6 @@ module.exports = {
     });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable("module_progresses");
+    await queryInterface.dropTable("cadet_modules");
   },
 };

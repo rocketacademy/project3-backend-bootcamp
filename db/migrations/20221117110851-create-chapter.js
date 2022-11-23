@@ -17,6 +17,10 @@ module.exports = {
       },
       moduleId: {
         type: Sequelize.INTEGER,
+        references: {
+          model: "modules",
+          key: "id",
+        },
       },
       image_url: {
         type: Sequelize.STRING,

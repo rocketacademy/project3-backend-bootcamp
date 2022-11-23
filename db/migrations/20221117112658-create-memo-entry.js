@@ -11,9 +11,17 @@ module.exports = {
       },
       cadetId: {
         type: Sequelize.INTEGER,
+        references: {
+          model: "cadets",
+          key: "id",
+        },
       },
       slId: {
         type: Sequelize.INTEGER,
+        references: {
+          model: "sls",
+          key: "id",
+        },
       },
       general_input: {
         type: Sequelize.TEXT,

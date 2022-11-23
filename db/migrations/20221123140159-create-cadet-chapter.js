@@ -2,7 +2,7 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable("chapter_progresses", {
+    await queryInterface.createTable("cadet_chapters", {
       id: {
         allowNull: false,
         autoIncrement: true,
@@ -11,9 +11,17 @@ module.exports = {
       },
       cadetId: {
         type: Sequelize.INTEGER,
+        references: {
+          model: "cadets",
+          key: "id",
+        },
       },
       chapterId: {
         type: Sequelize.INTEGER,
+        references: {
+          model: "chapters",
+          key: "id",
+        },
       },
       completed: {
         type: Sequelize.BOOLEAN,
@@ -29,6 +37,6 @@ module.exports = {
     });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable("chapter_progresses");
+    await queryInterface.dropTable("cadet_chapters");
   },
 };

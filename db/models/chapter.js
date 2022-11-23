@@ -9,13 +9,23 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      this.belongsToMany(models.cadet, { through: "cadet_chapters" });
+      this.hasMany(models.cadet_chapter);
+      this.hasMany(models.comment);
+      this.belongsTo(models.module);
     }
   }
   chapter.init(
     {
       name: DataTypes.STRING,
       chapter_index: DataTypes.FLOAT,
-      moduleId: DataTypes.INTEGER,
+      moduleId: {
+        type: DataTypes.INTEGER,
+        references: {
+          model: "module",
+          key: "id",
+        },
+      },
       image_url: DataTypes.STRING,
     },
     {

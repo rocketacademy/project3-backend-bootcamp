@@ -14,6 +14,10 @@ module.exports = {
       },
       chapterId: {
         type: Sequelize.INTEGER,
+        references: {
+          model: "chapters",
+          key: "id",
+        },
       },
       createdAt: {
         allowNull: false,
