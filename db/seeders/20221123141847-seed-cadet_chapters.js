@@ -9,7 +9,7 @@ module.exports = {
         {
           cadetId: 1,
           chapterId: 1,
-          completed: false,
+          completed: true,
           createdAt: new Date(),
           updatedAt: new Date(),
         },
