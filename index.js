@@ -28,7 +28,7 @@ const {
 
 // initializing Controllers -> note the lowercase for the first word
 const chaptersController = new ChaptersController(chapter);
-const modulesController = new ModulesController(chapter);
+const modulesController = new ModulesController(module);
 
 // initializing Routers
 const chaptersRouter = new ChaptersRouter(chaptersController).routes();
