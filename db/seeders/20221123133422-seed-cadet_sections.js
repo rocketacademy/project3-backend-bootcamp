@@ -4,33 +4,33 @@
 module.exports = {
   async up(queryInterface, Sequelize) {
     await queryInterface.bulkInsert(
-      "cadet_modules",
+      "cadet_sections",
       [
         {
           cadetId: 1,
-          moduleId: 1,
+          sectionId: 1,
           completed: true,
           createdAt: new Date(),
           updatedAt: new Date(),
         },
         {
           cadetId: 1,
-          moduleId: 2,
+          sectionId: 2,
           completed: true,
           createdAt: new Date(),
           updatedAt: new Date(),
         },
         {
           cadetId: 2,
-          moduleId: 1,
+          sectionId: 1,
           completed: true,
           createdAt: new Date(),
           updatedAt: new Date(),
         },
         {
           cadetId: 3,
-          moduleId: 1,
-          completed: true,
+          sectionId: 1,
+          completed: false,
           createdAt: new Date(),
           updatedAt: new Date(),
         },
@@ -40,6 +40,6 @@ module.exports = {
   },
 
   async down(queryInterface, Sequelize) {
-    await queryInterface.bulkDelete("cadet_modules", null, {});
+    await queryInterface.bulkDelete("cadet_sections", null, {});
   },
 };

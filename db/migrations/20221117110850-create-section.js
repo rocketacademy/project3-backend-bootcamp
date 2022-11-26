@@ -2,29 +2,15 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable("cadet_modules", {
+    await queryInterface.createTable("sections", {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER,
       },
-      cadetId: {
-        type: Sequelize.INTEGER,
-        references: {
-          model: "cadets",
-          key: "id",
-        },
-      },
-      moduleId: {
-        type: Sequelize.INTEGER,
-        references: {
-          model: "modules",
-          key: "id",
-        },
-      },
-      completed: {
-        type: Sequelize.BOOLEAN,
+      name: {
+        type: Sequelize.STRING,
       },
       createdAt: {
         allowNull: false,
@@ -37,6 +23,6 @@ module.exports = {
     });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable("cadet_modules");
+    await queryInterface.dropTable("sections");
   },
 };

@@ -9,15 +9,22 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      this.belongsToMany(models.module, {
-        through: "cadet_modules",
+      this.belongsToMany(models.section, {
+        through: {
+          model: "cadet_sections",
+          unique: false,
+        },
+        constraints: false,
       });
       this.belongsToMany(models.chapter, {
-        through: "cadet_chapters",
+        through: {
+          model: "cadet_chapters",
+          unique: false,
+        },
+        constraints: false,
       });
-      this.hasMany(models.cadet_module);
-      this.hasMany(models.cadet_chapter);
-      // this.hasMany(models.chapter_progress);
+      // this.hasMany(models.cadet_section);
+      // this.hasMany(models.cadet_chapter);
       this.hasMany(models.note);
       this.hasMany(models.appointment);
       this.hasMany(models.memo_entry);

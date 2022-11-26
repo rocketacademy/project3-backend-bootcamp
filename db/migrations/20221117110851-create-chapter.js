@@ -15,10 +15,10 @@ module.exports = {
       chapter_index: {
         type: Sequelize.FLOAT,
       },
-      moduleId: {
+      sectionId: {
         type: Sequelize.INTEGER,
         references: {
-          model: "modules",
+          model: "sections",
           key: "id",
         },
       },
