@@ -32,7 +32,7 @@ module.exports = (sequelize, DataTypes) => {
           key: "id",
         },
       },
-      image_url: DataTypes.STRING,
+      markdown_url: DataTypes.STRING,
     },
     {
       sequelize,

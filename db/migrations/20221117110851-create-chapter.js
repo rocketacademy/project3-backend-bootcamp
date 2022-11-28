@@ -22,7 +22,7 @@ module.exports = {
           key: "id",
         },
       },
-      image_url: {
+      markdown_url: {
         type: Sequelize.STRING,
       },
       createdAt: {
