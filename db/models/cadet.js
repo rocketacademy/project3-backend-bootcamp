@@ -11,7 +11,7 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
       this.belongsToMany(models.section, {
         through: {
-          model: "cadet_sections",
+          model: "cadet_section",
           unique: false,
         },
         constraints: false,
@@ -23,11 +23,11 @@ module.exports = (sequelize, DataTypes) => {
         },
         constraints: false,
       });
-      // this.hasMany(models.cadet_section);
+      this.hasMany(models.cadet_section);
       // this.hasMany(models.cadet_chapter);
-      this.hasMany(models.note);
-      this.hasMany(models.appointment);
-      this.hasMany(models.memo_entry);
+      // this.hasMany(models.note);
+      // this.hasMany(models.appointment);
+      // this.hasMany(models.memo_entry);
     }
   }
   cadet.init(

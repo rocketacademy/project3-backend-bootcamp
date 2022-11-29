@@ -11,13 +11,13 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
       this.belongsToMany(models.cadet, {
         through: {
-          model: "cadet_sections",
+          model: "cadet_section",
           unique: false,
         },
         constraints: false,
       });
-      // this.hasMany(models.cadet_section);
-      this.hasMany(models.chapter);
+      this.hasMany(models.cadet_section);
+      // this.hasMany(models.chapter);
     }
   }
   section.init(

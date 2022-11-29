@@ -18,7 +18,7 @@ const {
   appointment,
   blocked_date,
   cadet_chapters,
-  cadet_sections,
+  cadet_section,
   cadet,
   chapter,
   comment,
@@ -35,7 +35,7 @@ const sectionsController = new SectionsController(section);
 // for cadets, get
 const cadetsController = new CadetsController(
   cadet,
-  cadet_sections,
+  cadet_section,
   cadet_chapters,
   section
 );
