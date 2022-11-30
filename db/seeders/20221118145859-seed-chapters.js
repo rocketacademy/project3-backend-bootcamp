@@ -92,7 +92,7 @@ module.exports = {
           chapter_index: 0,
           sectionId: 5,
           markdown_url:
-            "https://upload.wikimedia.org/wikipedia/en/a/af/Star_Wars_The_Rise_of_Skywalker_poster.jpg",
+            "https://raw.githubusercontent.com/weiyu95/capstone-markdownfiles/main/1_Frontend.md",
           createdAt: new Date(),
           updatedAt: new Date(),
         },
@@ -101,7 +101,7 @@ module.exports = {
           chapter_index: 1,
           sectionId: 5,
           markdown_url:
-            "https://upload.wikimedia.org/wikipedia/en/d/d4/Rogue_One%2C_A_Star_Wars_Story_poster.png",
+            "https://raw.githubusercontent.com/weiyu95/capstone-markdownfiles/main/1.1_HTML.md",
           createdAt: new Date(),
           updatedAt: new Date(),
         },
@@ -110,7 +110,7 @@ module.exports = {
           chapter_index: 2,
           sectionId: 5,
           markdown_url:
-            "https://upload.wikimedia.org/wikipedia/en/5/54/Solo_A_Star_Wars_Story_poster.jpg",
+            "https://raw.githubusercontent.com/weiyu95/capstone-markdownfiles/main/1.2_CSS.md",
           createdAt: new Date(),
           updatedAt: new Date(),
         },
@@ -119,7 +119,7 @@ module.exports = {
           chapter_index: 3,
           sectionId: 5,
           markdown_url:
-            "https://upload.wikimedia.org/wikipedia/en/7/72/Star_wars_the_clone_wars.jpg",
+            "https://raw.githubusercontent.com/weiyu95/capstone-markdownfiles/main/1.2.1_Layout.md",
           createdAt: new Date(),
           updatedAt: new Date(),
         },
@@ -128,7 +128,7 @@ module.exports = {
           chapter_index: 4,
           sectionId: 5,
           markdown_url:
-            "https://upload.wikimedia.org/wikipedia/en/2/23/StarWarsHS.jpg",
+            "https://raw.githubusercontent.com/weiyu95/capstone-markdownfiles/main/1.3_React.md",
           createdAt: new Date(),
           updatedAt: new Date(),
         },
@@ -137,7 +137,43 @@ module.exports = {
           chapter_index: 5,
           sectionId: 5,
           markdown_url:
-            "https://upload.wikimedia.org/wikipedia/en/e/ec/Caravan_bg.jpeg",
+            "https://raw.githubusercontent.com/weiyu95/capstone-markdownfiles/main/1.E.1_RecipeSite.md",
+          createdAt: new Date(),
+          updatedAt: new Date(),
+        },
+        {
+          name: "portfolio page",
+          chapter_index: 6,
+          sectionId: 5,
+          markdown_url:
+            "https://raw.githubusercontent.com/weiyu95/capstone-markdownfiles/main/1.E.2_PortfolioPage.md",
+          createdAt: new Date(),
+          updatedAt: new Date(),
+        },
+        {
+          name: "world clock",
+          chapter_index: 7,
+          sectionId: 5,
+          markdown_url:
+            "https://raw.githubusercontent.com/weiyu95/capstone-markdownfiles/main/1.E.3_WorldClock.md",
+          createdAt: new Date(),
+          updatedAt: new Date(),
+        },
+        {
+          name: "high card",
+          chapter_index: 8,
+          sectionId: 5,
+          markdown_url:
+            "https://raw.githubusercontent.com/weiyu95/capstone-markdownfiles/main/1.E.4_HighCard.md",
+          createdAt: new Date(),
+          updatedAt: new Date(),
+        },
+        {
+          name: "guess the word",
+          chapter_index: 9,
+          sectionId: 5,
+          markdown_url:
+            "https://raw.githubusercontent.com/weiyu95/capstone-markdownfiles/main/1.E.5_GuessTheWord.md",
           createdAt: new Date(),
           updatedAt: new Date(),
         },
