@@ -12,7 +12,7 @@ module.exports = {
       name: {
         type: Sequelize.STRING,
       },
-      chapter_index: {
+      chapterIndex: {
         type: Sequelize.FLOAT,
       },
       sectionId: {
@@ -22,7 +22,7 @@ module.exports = {
           key: "id",
         },
       },
-      markdown_url: {
+      markdownUrl: {
         type: Sequelize.STRING,
       },
       createdAt: {

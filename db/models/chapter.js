@@ -1,7 +1,7 @@
 "use strict";
 const { Model } = require("sequelize");
 module.exports = (sequelize, DataTypes) => {
-  class chapter extends Model {
+  class Chapter extends Model {
     /**
      * Helper method for defining associations.
      * This method is not a part of Sequelize lifecycle.
@@ -11,7 +11,7 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
       this.belongsToMany(models.cadet, {
         through: {
-          model: "cadet_chapters",
+          model: "cadetChapters",
           unique: false,
         },
         constraints: false,
@@ -21,23 +21,23 @@ module.exports = (sequelize, DataTypes) => {
       this.belongsTo(models.section);
     }
   }
-  chapter.init(
+  Chapter.init(
     {
       name: DataTypes.STRING,
-      chapter_index: DataTypes.FLOAT,
+      chapterIndex: DataTypes.FLOAT,
       sectionId: {
         type: DataTypes.INTEGER,
         references: {
-          model: "section",
+          model: "Section",
           key: "id",
         },
       },
-      markdown_url: DataTypes.STRING,
+      markdownUrl: DataTypes.STRING,
     },
     {
       sequelize,
       modelName: "chapter",
     }
   );
-  return chapter;
+  return Chapter;
 };

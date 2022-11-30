@@ -7,7 +7,7 @@ module.exports = {
       "notes",
       [
         {
-          due_by: "2022-08-20 02:59:00.000 +0900",
+          dueBy: "2022-08-20 02:59:00.000 +0900",
           cadetId: 1,
           input1: "hello world",
           input2: "hu dis",
@@ -16,7 +16,7 @@ module.exports = {
           updatedAt: "2022-08-19 02:59:00.000 +0900",
         },
         {
-          due_by: "2022-08-22 02:59:00.000 +0900",
+          dueBy: "2022-08-22 02:59:00.000 +0900",
           cadetId: 2,
           input1: "bye world",
           input2: "not me",
@@ -25,7 +25,7 @@ module.exports = {
           updatedAt: "2022-08-21 02:59:00.000 +0900",
         },
         {
-          due_by: "2022-08-20 02:59:00.000 +0900",
+          dueBy: "2022-08-20 02:59:00.000 +0900",
           cadetId: 3,
           input1: "earth world",
           input2: "blue green",

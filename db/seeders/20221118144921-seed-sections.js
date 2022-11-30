@@ -7,52 +7,52 @@ module.exports = {
       "sections",
       [
         {
-          name: "welcome to bootcamp",
+          name: "Welcome To Bootcamp",
           createdAt: new Date(),
           updatedAt: new Date(),
         },
         {
-          name: "logistics",
+          name: "Logistics",
           createdAt: new Date(),
           updatedAt: new Date(),
         },
         {
-          name: "general reference",
+          name: "General Reference",
           createdAt: new Date(),
           updatedAt: new Date(),
         },
         {
-          name: "foundations",
+          name: "Foundations",
           createdAt: new Date(),
           updatedAt: new Date(),
         },
         {
-          name: "frontend",
+          name: "Frontend",
           createdAt: new Date(),
           updatedAt: new Date(),
         },
         {
-          name: "full stack",
+          name: "Full Stack",
           createdAt: new Date(),
           updatedAt: new Date(),
         },
         {
-          name: "backend",
+          name: "Backend",
           createdAt: new Date(),
           updatedAt: new Date(),
         },
         {
-          name: "capstone",
+          name: "Capstone",
           createdAt: new Date(),
           updatedAt: new Date(),
         },
         {
-          name: "algorithms",
+          name: "Algorithms",
           createdAt: new Date(),
           updatedAt: new Date(),
         },
         {
-          name: "interview prep",
+          name: "Interview Prep",
           createdAt: new Date(),
           updatedAt: new Date(),
         },

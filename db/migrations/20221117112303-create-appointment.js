@@ -9,10 +9,10 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER,
       },
-      start_datetime: {
+      startDatetime: {
         type: Sequelize.DATE,
       },
-      end_datetime: {
+      endDatetime: {
         type: Sequelize.DATE,
       },
       slId: {
@@ -29,7 +29,7 @@ module.exports = {
           key: "id",
         },
       },
-      current_sl: {
+      currentSl: {
         type: Sequelize.BOOLEAN,
       },
       createdAt: {

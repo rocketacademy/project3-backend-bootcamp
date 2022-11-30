@@ -1,7 +1,7 @@
 "use strict";
 const { Model } = require("sequelize");
 module.exports = (sequelize, DataTypes) => {
-  class appointment extends Model {
+  class Appointment extends Model {
     /**
      * Helper method for defining associations.
      * This method is not a part of Sequelize lifecycle.
@@ -13,10 +13,10 @@ module.exports = (sequelize, DataTypes) => {
       this.belongsTo(models.sl);
     }
   }
-  appointment.init(
+  Appointment.init(
     {
-      start_datetime: DataTypes.DATE,
-      end_datetime: DataTypes.DATE,
+      startDatetime: DataTypes.DATE,
+      endDatetime: DataTypes.DATE,
       slId: {
         type: DataTypes.INTEGER,
         references: {
@@ -31,12 +31,12 @@ module.exports = (sequelize, DataTypes) => {
           key: "id",
         },
       },
-      current_sl: DataTypes.BOOLEAN,
+      currentSl: DataTypes.BOOLEAN,
     },
     {
       sequelize,
       modelName: "appointment",
     }
   );
-  return appointment;
+  return Appointment;
 };

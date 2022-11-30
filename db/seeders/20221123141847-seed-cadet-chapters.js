@@ -4,26 +4,33 @@
 module.exports = {
   async up(queryInterface, Sequelize) {
     await queryInterface.bulkInsert(
-      "memo_entries",
+      "cadetChapters",
       [
         {
           cadetId: 1,
-          slId: 1,
-          general_input: "why me",
+          chapterId: 1,
+          completed: true,
+          createdAt: new Date(),
+          updatedAt: new Date(),
+        },
+        {
+          cadetId: 1,
+          chapterId: 2,
+          completed: false,
           createdAt: new Date(),
           updatedAt: new Date(),
         },
         {
           cadetId: 2,
-          slId: 2,
-          general_input: "yes you",
+          chapterId: 1,
+          completed: false,
           createdAt: new Date(),
           updatedAt: new Date(),
         },
         {
           cadetId: 3,
-          slId: 3,
-          general_input: "it cant be",
+          chapterId: 1,
+          completed: false,
           createdAt: new Date(),
           updatedAt: new Date(),
         },
@@ -33,6 +40,6 @@ module.exports = {
   },
 
   async down(queryInterface, Sequelize) {
-    await queryInterface.bulkDelete("memo_entries", null, {});
+    await queryInterface.bulkDelete("cadetChapters", null, {});
   },
 };

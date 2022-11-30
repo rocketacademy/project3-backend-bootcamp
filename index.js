@@ -18,13 +18,13 @@ const CadetSectionController = require("./controllers/cadet-section-controller")
 const db = require("./db/models/index");
 const {
   appointment,
-  blocked_date,
-  cadet_chapters,
-  cadet_section,
+  blockedDate,
+  cadetChapter,
+  cadetSection,
   cadet,
   chapter,
   comment,
-  memo_entry,
+  memoEntry,
   section,
   note,
   sl,
@@ -37,12 +37,12 @@ const sectionsController = new SectionsController(section);
 // for cadets, get
 const cadetsController = new CadetsController(
   cadet,
-  cadet_section,
-  cadet_chapters,
+  cadetSection,
+  cadetChapter,
   section
 );
 const cadetSectionController = new CadetSectionController(
-  cadet_section,
+  cadetSection,
   cadet,
   section
 );

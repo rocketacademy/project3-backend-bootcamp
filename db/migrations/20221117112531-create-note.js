@@ -9,7 +9,7 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER,
       },
-      due_by: {
+      dueBy: {
         type: Sequelize.DATE,
       },
       cadetId: {
