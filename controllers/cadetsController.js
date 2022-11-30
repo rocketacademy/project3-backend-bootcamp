@@ -21,10 +21,10 @@ class CadetsController extends BaseController {
   }
 
   async getOne(req, res) {
-    const { cadetName } = req.query.name;
+    const { id, sectionId } = req.query;
     try {
       const user = await this.model.findOne({
-        where: { name: cadetName },
+        where: [{ cadetId: id }, { sectionId: sectionId }],
         include: { model: this.cadetSectionModel },
       });
       return res.json(user);
