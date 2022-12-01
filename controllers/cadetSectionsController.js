@@ -1,6 +1,6 @@
 const BaseController = require("./baseController");
 
-class CadetSectionController extends BaseController {
+class CadetSectionsController extends BaseController {
   constructor(model, cadetModel, sectionModel) {
     super(model);
     this.cadetModel = cadetModel;
@@ -30,4 +30,4 @@ class CadetSectionController extends BaseController {
   }
 }
 
-module.exports = CadetSectionController;
+module.exports = CadetSectionsController;

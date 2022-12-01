@@ -6,13 +6,15 @@ require("dotenv").config();
 const ChaptersRouter = require("./routers/chaptersRouter");
 const SectionsRouter = require("./routers/sectionsRouter");
 const CadetsRouter = require("./routers/cadetsRouter");
-const CadetSectionRouter = require("./routers/cadetSectionRouter");
+const CadetSectionsRouter = require("./routers/cadetSectionsRouter");
+const CadetChaptersRouter = require("./routers/cadetChaptersRouter");
 
 // importing Controllers
 const ChaptersController = require("./controllers/chaptersController");
 const SectionsController = require("./controllers/sectionsController");
 const CadetsController = require("./controllers/cadetsController");
-const CadetSectionController = require("./controllers/cadetSectionController");
+const CadetSectionsController = require("./controllers/cadetSectionsController");
+const CadetChaptersController = require("./controllers/cadetChaptersController");
 
 //import DB
 const db = require("./db/models/index");
@@ -41,18 +43,26 @@ const cadetsController = new CadetsController(
   cadetChapter,
   section
 );
-const cadetSectionController = new CadetSectionController(
+const cadetSectionsController = new CadetSectionsController(
   cadetSection,
   cadet,
   section
+);
+const cadetChaptersController = new CadetChaptersController(
+  cadetChapter,
+  cadet,
+  chapter
 );
 
 // initializing Routers
 const chaptersRouter = new ChaptersRouter(chaptersController).routes();
 const sectionsRouter = new SectionsRouter(sectionsController).routes();
 const cadetsRouter = new CadetsRouter(cadetsController).routes();
-const cadetSectionRouter = new CadetSectionRouter(
-  cadetSectionController
+const cadetSectionsRouter = new CadetSectionsRouter(
+  cadetSectionsController
+).routes();
+const cadetChaptersRouter = new CadetChaptersRouter(
+  cadetChaptersController
 ).routes();
 
 const PORT = process.env.PORT;
@@ -68,7 +78,8 @@ app.use(express.json());
 app.use("/chapters", chaptersRouter);
 app.use("/sections", sectionsRouter);
 app.use("/cadets", cadetsRouter);
-app.use("/cadetSection", cadetSectionRouter);
+app.use("/cadetSections", cadetSectionsRouter);
+app.use("/cadetChapters", cadetChaptersRouter);
 
 app.listen(PORT, () => {
   console.log(`Express app listening on port ${PORT}!`);
