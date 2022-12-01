@@ -6,13 +6,13 @@ require("dotenv").config();
 const ChaptersRouter = require("./routers/chaptersRouter");
 const SectionsRouter = require("./routers/sectionsRouter");
 const CadetsRouter = require("./routers/cadetsRouter");
-const CadetSectionRouter = require("./routers/cadet-section-router");
+const CadetSectionRouter = require("./routers/cadetSectionRouter");
 
 // importing Controllers
 const ChaptersController = require("./controllers/chaptersController");
 const SectionsController = require("./controllers/sectionsController");
 const CadetsController = require("./controllers/cadetsController");
-const CadetSectionController = require("./controllers/cadet-section-controller");
+const CadetSectionController = require("./controllers/cadetSectionController");
 
 //import DB
 const db = require("./db/models/index");
