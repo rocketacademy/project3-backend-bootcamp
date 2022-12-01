@@ -28,6 +28,19 @@ class CadetSectionsController extends BaseController {
       return res.status(400).json({ error: true, msg: err });
     }
   }
+
+  async getAllSectionsProgress(req, res) {
+    const { cadetId } = req.query;
+    try {
+      const { count, rows } = await this.model.findAndCountAll({
+        where: { cadetId: cadetId, completed: true },
+      });
+      console.log(count);
+      return res.json(rows);
+    } catch (err) {
+      return res.status(400).json({ error: true, msg: err });
+    }
+  }
 }
 
 module.exports = CadetSectionsController;

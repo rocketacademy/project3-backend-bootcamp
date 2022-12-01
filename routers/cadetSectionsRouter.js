@@ -13,6 +13,10 @@ class CadetSectionsRouter {
       "/complete-status",
       this.controller.getOne.bind(this.controller)
     );
+    router.get(
+      "/progress-status",
+      this.controller.getAllSectionsProgress.bind(this.controller)
+    );
 
     return router;
   }
