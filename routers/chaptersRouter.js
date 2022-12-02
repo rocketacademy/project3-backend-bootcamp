@@ -1,4 +1,4 @@
-const express = require("express");
+const express = require('express');
 const router = express.Router();
 
 class ChaptersRouter {
@@ -7,8 +7,12 @@ class ChaptersRouter {
   }
   routes() {
     // we will insert routes into here later on
-    router.get("/", this.controller.getAll.bind(this.controller));
-    router.post("/", this.controller.insertOne.bind(this.controller));
+    router.get('/', this.controller.getAll.bind(this.controller));
+    router.post('/', this.controller.insertOne.bind(this.controller));
+    router.get(
+      '/total-chapters',
+      this.controller.getAllChapters.bind(this.controller)
+    );
 
     return router;
   }

@@ -1,4 +1,4 @@
-const BaseController = require("./baseController");
+const BaseController = require('./baseController');
 
 class CadetChaptersController extends BaseController {
   constructor(model, cadetModel, chapterModel) {
