@@ -178,7 +178,7 @@ module.exports = {
           updatedAt: new Date(),
         },
         {
-          name: 'Guess The Word',
+          name: 'Project 1: Frontend App',
           chapterIndex: 10,
           sectionId: 5,
           markdownUrl: '',
