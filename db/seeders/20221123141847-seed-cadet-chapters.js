@@ -28,6 +28,13 @@ module.exports = {
           updatedAt: new Date(),
         },
         {
+          cadetId: 1,
+          chapterId: 13,
+          completed: true,
+          createdAt: new Date(),
+          updatedAt: new Date(),
+        },
+        {
           cadetId: 2,
           chapterId: 1,
           completed: false,
