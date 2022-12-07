@@ -1,4 +1,4 @@
-const BaseController = require('./baseController');
+const BaseController = require("./baseController");
 
 class ChaptersController extends BaseController {
   constructor(model) {
@@ -12,6 +12,16 @@ class ChaptersController extends BaseController {
       });
       console.log(count);
       return res.json(rows);
+    } catch (err) {
+      return res.status(400).json({ error: true, msg: err });
+    }
+  }
+
+  async getOne(req, res) {
+    const { id } = req.params;
+    try {
+      const chapter = await this.model.findByPk(id);
+      return res.json(chapter);
     } catch (err) {
       return res.status(400).json({ error: true, msg: err });
     }
