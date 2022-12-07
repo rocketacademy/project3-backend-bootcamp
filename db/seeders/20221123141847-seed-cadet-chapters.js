@@ -8,15 +8,29 @@ module.exports = {
       [
         {
           cadetId: 1,
-          chapterId: 1,
+          chapterId: 10,
           completed: true,
           createdAt: new Date(),
           updatedAt: new Date(),
         },
         {
           cadetId: 1,
-          chapterId: 2,
+          chapterId: 11,
+          completed: true,
+          createdAt: new Date(),
+          updatedAt: new Date(),
+        },
+        {
+          cadetId: 1,
+          chapterId: 12,
           completed: false,
+          createdAt: new Date(),
+          updatedAt: new Date(),
+        },
+        {
+          cadetId: 1,
+          chapterId: 13,
+          completed: true,
           createdAt: new Date(),
           updatedAt: new Date(),
         },
