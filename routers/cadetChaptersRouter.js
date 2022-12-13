@@ -1,4 +1,4 @@
-const express = require('express');
+const express = require("express");
 const router = express.Router();
 
 class CadetChaptersRouter {
@@ -7,14 +7,15 @@ class CadetChaptersRouter {
   }
   routes() {
     // we will insert routes into here later on
-    router.get('/', this.controller.getAll.bind(this.controller));
-    router.post('/', this.controller.insertOne.bind(this.controller));
+    router.get("/", this.controller.getAll.bind(this.controller));
+    router.post("/", this.controller.insertOne.bind(this.controller));
+    router.put("/", this.controller.updateOne.bind(this.controller));
     router.get(
-      '/complete-status',
+      "/complete-status",
       this.controller.getOne.bind(this.controller)
     );
     router.get(
-      '/progress-status',
+      "/progress-status",
       this.controller.getAllChaptersProgress.bind(this.controller)
     );
 
