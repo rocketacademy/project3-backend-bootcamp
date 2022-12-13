@@ -51,7 +51,8 @@ const cadetSectionsController = new CadetSectionsController(
 const cadetChaptersController = new CadetChaptersController(
   cadetChapter,
   cadet,
-  chapter
+  chapter,
+  cadetSection
 );
 
 // initializing Routers
