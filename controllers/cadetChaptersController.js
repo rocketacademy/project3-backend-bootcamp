@@ -41,6 +41,25 @@ class CadetChaptersController extends BaseController {
       return res.status(400).json({ error: true, msg: err });
     }
   }
+
+  //create one new entry when cadet marks a chapter as completed
+  // async insertOne(req, res) {
+  // const { cadetId, chapterId } = req.query;
+  //   const {  updatedAt } = req.body;
+  //   console.log(req.body);
+  //   console.log(req.params);
+  //   try {
+  //     const completedChap = await this.model.create({
+
+  //       updatedAt: updatedAt,
+  //       completed: true,
+  //     });
+  //     console.log(completedChap);
+  //     return res.json(completedChap);
+  //   } catch (err) {
+  //     return res.status(400).json({ error: true, msg: err });
+  //   }
+  // }
 }
 
 module.exports = CadetChaptersController;
