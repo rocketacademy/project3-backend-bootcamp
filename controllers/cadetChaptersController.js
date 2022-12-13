@@ -11,9 +11,7 @@ class CadetChaptersController extends BaseController {
   /** if a method in this extended class AND the base class has the same name, the one in the extended class will run over the base method */
   async getAll(req, res) {
     try {
-      const output = await this.model.findAll({
-        include: [{ model: this.chapterModel, attributes: ["sectionId"] }],
-      });
+      const output = await this.model.findAll();
       return res.json(output);
     } catch (err) {
       return res.status(400).json({ error: true, msg: err });
@@ -32,6 +30,7 @@ class CadetChaptersController extends BaseController {
     }
   }
 
+  // to count for total percentage of bootcamp progress.
   async getAllChaptersProgress(req, res) {
     const { cadetId } = req.query;
     try {
@@ -45,6 +44,7 @@ class CadetChaptersController extends BaseController {
     }
   }
 
+  // to create row to indicate that the cadet has started the chapter in cadetChapter table.
   async insertOne(req, res) {
     const { cadetId, chapterId, sectionId } = req.body;
     try {
@@ -73,6 +73,7 @@ class CadetChaptersController extends BaseController {
     }
   }
 
+  // to update row when the cadet has completed the chapter in cadetChapter table.
   async updateOne(req, res) {
     const { cadetId, chapterId, sectionId } = req.body;
     try {
@@ -92,6 +93,9 @@ class CadetChaptersController extends BaseController {
       });
       const totalCadetChapterProgress = await this.model.findAndCountAll({
         where: { cadetId: cadetId, completed: true },
+        include: [
+          { model: this.chapterModel, where: { sectionId: sectionId } },
+        ],
       });
 
       if (totalCadetChapterProgress.count === totalChapters.count) {
@@ -99,6 +103,7 @@ class CadetChaptersController extends BaseController {
           { completed: true },
           {
             where: {
+              cadetId: cadetId,
               sectionId: sectionId,
             },
           }
