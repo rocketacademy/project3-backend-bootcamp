@@ -11,13 +11,7 @@ class CadetChaptersController extends BaseController {
   /** if a method in this extended class AND the base class has the same name, the one in the extended class will run over the base method */
   async getAll(req, res) {
     try {
-<<<<<<< HEAD
-      const output = await this.model.findAll({
-        include: [{ model: this.chapterModel, attributes: ['sectionId'] }],
-      });
-=======
       const output = await this.model.findAll();
->>>>>>> 480f78151811eaea47d5cb5ff26ee5cf5c8a1f7c
       return res.json(output);
     } catch (err) {
       return res.status(400).json({ error: true, msg: err });
