@@ -8,7 +8,7 @@ module.exports = {
       [
         {
           name: "Adam",
-          email: "adam@mail.com",
+          email: "adam1@mail.com",
           photoLink:
             "https://img1.ak.crunchyroll.com/i/spire1/9ba7326ca5b194a03dcdf6e2c1609bc51652761752_large.jpg",
           class: "PTBC4",
@@ -18,7 +18,7 @@ module.exports = {
         },
         {
           name: "Jermaine",
-          email: "jermaine@mail.com",
+          email: "jermaine1@mail.com",
           photoLink:
             "https://www.giantbomb.com/a/uploads/scale_medium/1/16207/1818877-quatre.jpg",
           class: "PTBC4",
@@ -28,7 +28,7 @@ module.exports = {
         },
         {
           name: "Wei Yu",
-          email: "weiyu@mail.com",
+          email: "weiyu1@mail.com",
           photoLink:
             "https://www.giantbomb.com/a/uploads/square_small/1/12165/359555-heero_yuy.jpg",
           class: "PTBC4",

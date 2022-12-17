@@ -21,13 +21,16 @@ class CadetsController extends BaseController {
   }
 
   async getOne(req, res) {
-    const { id, sectionId } = req.query;
+    // const { id, sectionId } = req.query;
     try {
-      const user = await this.model.findOne({
-        where: [{ cadetId: id }, { sectionId: sectionId }],
-        include: { model: this.cadetSectionModel },
+      const cadet = await this.model.findOne({
+        // where: [{ cadetId: id }, { sectionId: sectionId }],
+        // include: { model: this.cadetSectionModel },
+        where: {
+          email: req.query.cadetEmail,
+        },
       });
-      return res.json(user);
+      return res.json(cadet);
     } catch (err) {
       return res.status(400).json({ error: true, msg: err });
     }
