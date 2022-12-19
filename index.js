@@ -9,6 +9,7 @@ const SectionsRouter = require("./routers/sectionsRouter");
 const CadetsRouter = require("./routers/cadetsRouter");
 const CadetSectionsRouter = require("./routers/cadetSectionsRouter");
 const CadetChaptersRouter = require("./routers/cadetChaptersRouter");
+const PostsRouter = require("./routers/postsRouter");
 
 // importing Controllers
 const ChaptersController = require("./controllers/chaptersController");
@@ -16,6 +17,7 @@ const SectionsController = require("./controllers/sectionsController");
 const CadetsController = require("./controllers/cadetsController");
 const CadetSectionsController = require("./controllers/cadetSectionsController");
 const CadetChaptersController = require("./controllers/cadetChaptersController");
+const PostsController = require("./controllers/postsController");
 
 //import DB
 const db = require("./db/models/index");
@@ -31,6 +33,7 @@ const {
   section,
   note,
   sl,
+  post,
 } = db;
 
 // initializing Controllers -> note the lowercase for the first word
@@ -55,6 +58,7 @@ const cadetChaptersController = new CadetChaptersController(
   chapter,
   cadetSection
 );
+const postsController = new PostsController(post);
 
 // initializing Routers
 const chaptersRouter = new ChaptersRouter(chaptersController).routes();
@@ -66,6 +70,7 @@ const cadetSectionsRouter = new CadetSectionsRouter(
 const cadetChaptersRouter = new CadetChaptersRouter(
   cadetChaptersController
 ).routes();
+const postsRouter = new PostsRouter(postsController).routes();
 
 const PORT = process.env.PORT;
 const app = express();
@@ -82,6 +87,7 @@ app.use("/sections", sectionsRouter);
 app.use("/cadets", cadetsRouter);
 app.use("/cadetSections", cadetSectionsRouter);
 app.use("/cadetChapters", cadetChaptersRouter);
+app.use("/posts", postsRouter);
 
 app.listen(PORT, () => {
   console.log(`Express app listening on port ${PORT}!`);
