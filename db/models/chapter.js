@@ -17,7 +17,8 @@ module.exports = (sequelize, DataTypes) => {
         constraints: false,
       });
       // this.hasMany(models.cadet_chapter);
-      this.hasMany(models.comment);
+      // this.hasMany(models.comment);
+      this.hasMany(models.post);
       this.belongsTo(models.section);
     }
   }
