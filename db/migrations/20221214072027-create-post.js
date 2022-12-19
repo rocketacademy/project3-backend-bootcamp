@@ -2,15 +2,19 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable("comments", {
+    await queryInterface.createTable("posts", {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER,
       },
-      content: {
-        type: Sequelize.TEXT,
+      author: {
+        type: Sequelize.INTEGER,
+        references: {
+          model: "cadets",
+          key: "id",
+        },
       },
       chapterId: {
         type: Sequelize.INTEGER,
@@ -18,6 +22,18 @@ module.exports = {
           model: "chapters",
           key: "id",
         },
+      },
+      content: {
+        type: Sequelize.TEXT,
+      },
+      views: {
+        type: Sequelize.INTEGER,
+      },
+      upvotes: {
+        type: Sequelize.INTEGER,
+      },
+      time: {
+        type: Sequelize.DATE,
       },
       createdAt: {
         allowNull: false,
@@ -30,6 +46,6 @@ module.exports = {
     });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable("comments");
+    await queryInterface.dropTable("posts");
   },
 };
