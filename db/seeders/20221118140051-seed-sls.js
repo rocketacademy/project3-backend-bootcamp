@@ -8,7 +8,7 @@ module.exports = {
       [
         {
           name: "Yew Wee",
-          email: "yewwee@mail.com",
+          email: "yewwee1@mail.com",
           photoLink:
             "https://uploads-ssl.webflow.com/63272a48849152178901e15a/635645b4e708dc1281513d15_Yee%20Wee-%20Testimonial%20Rocket%20Academy.png",
           admin: true,
@@ -17,7 +17,7 @@ module.exports = {
         },
         {
           name: "Sam O",
-          email: "samo@mail.com",
+          email: "samo1@mail.com",
           photoLink:
             "https://uploads-ssl.webflow.com/63272a48849152178901e15a/63498e40d2f3b4344507d398_SAMO-p-500.png",
           admin: true,
@@ -26,7 +26,7 @@ module.exports = {
         },
         {
           name: "Kai",
-          email: "kai@mail.com",
+          email: "kai1@mail.com",
           photoLink:
             "https://uploads-ssl.webflow.com/63272a48849152178901e15a/63498e5aa76f03cb5ceadee7_KAI-p-500.png",
           admin: true,
