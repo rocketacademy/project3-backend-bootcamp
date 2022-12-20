@@ -20,7 +20,7 @@ module.exports = {
           name: "Jermaine",
           email: "jermaine1@mail.com",
           photoLink:
-            "https://www.giantbomb.com/a/uploads/scale_medium/1/16207/1818877-quatre.jpg",
+            "https://static.wikia.nocookie.net/gundam/images/3/3f/Relena_Peacecraft.png",
           class: "PTBC4",
           admin: false,
           createdAt: new Date(),
