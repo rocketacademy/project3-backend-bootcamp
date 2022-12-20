@@ -20,13 +20,8 @@ module.exports = {
           name: 'Jermaine',
           email: 'jermaine1@mail.com',
           photoLink:
-<<<<<<< HEAD
             'https://static.wikia.nocookie.net/gundam/images/3/3f/Relena_Peacecraft.png',
           class: 'PTBC4',
-=======
-            "https://static.wikia.nocookie.net/gundam/images/3/3f/Relena_Peacecraft.png",
-          class: "PTBC4",
->>>>>>> 750bfa6597dc167cdce64ff67dc4308c3b326779
           admin: false,
           createdAt: new Date(),
           updatedAt: new Date(),
