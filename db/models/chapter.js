@@ -11,7 +11,7 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
       this.belongsToMany(models.cadet, {
         through: {
-          model: "cadetChapters",
+          model: "cadetChapter",
           unique: false,
         },
         constraints: false,

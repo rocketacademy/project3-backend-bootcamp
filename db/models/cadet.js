@@ -18,13 +18,13 @@ module.exports = (sequelize, DataTypes) => {
       });
       this.belongsToMany(models.chapter, {
         through: {
-          model: "cadetChapters",
+          model: "cadetChapter",
           unique: false,
         },
         constraints: false,
       });
       this.hasMany(models.cadetSection);
-      // this.hasMany(models.cadet_chapter);
+      this.hasMany(models.cadetChapter);
       // this.hasMany(models.note);
       // this.hasMany(models.appointment);
       // this.hasMany(models.memo_entry);

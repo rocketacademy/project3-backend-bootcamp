@@ -1,9 +1,9 @@
 const BaseController = require("./baseController");
 
 class CadetsController extends BaseController {
-  constructor(model, cadetSectionModel, cadetChaptersModel, sectionsModel) {
+  constructor(model, cadetSectionsModel, cadetChaptersModel, sectionsModel) {
     super(model);
-    this.cadetSectionModel = cadetSectionModel;
+    this.cadetSectionsModel = cadetSectionsModel;
     this.cadetChaptersModel = cadetChaptersModel;
     this.sectionsModel = sectionsModel;
   }
@@ -12,7 +12,10 @@ class CadetsController extends BaseController {
   async getAll(req, res) {
     try {
       const output = await this.model.findAll({
-        include: { model: this.cadetSectionModel },
+        include: [
+          { model: this.cadetSectionsModel },
+          { model: this.cadetChaptersModel },
+        ],
       });
       return res.json(output);
     } catch (err) {
