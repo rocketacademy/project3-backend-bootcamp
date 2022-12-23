@@ -16,6 +16,12 @@ module.exports = {
           key: "id",
         },
       },
+      authorName: {
+        type: Sequelize.TEXT,
+      },
+      authorImage: {
+        type: Sequelize.TEXT,
+      },
       chapterId: {
         type: Sequelize.INTEGER,
         references: {

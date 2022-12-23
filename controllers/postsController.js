@@ -7,8 +7,31 @@ class PostsController extends BaseController {
 
   /** if a method in this extended class AND the base class has the same name, the one in the extended class will run over the base method */
   async getAll(req, res) {
+    const { chapterId } = req.query;
     try {
-      const output = await this.model.findAll();
+      const output = await this.model.findAll({
+        where: { chapterId: chapterId },
+        attributes: {
+          include: [
+            [
+              this.model.sequelize.fn(
+                "to_char",
+                this.model.sequelize.col("createdAt"),
+                "DD-MM-YYYY HH24:MI:SS"
+              ),
+              "createdAt",
+            ],
+            [
+              this.model.sequelize.fn(
+                "to_char",
+                this.model.sequelize.col("updatedAt"),
+                "DD-MM-YYYY HH24:MI:SS"
+              ),
+              "updatedAt",
+            ],
+          ],
+        },
+      });
       return res.json(output);
     } catch (err) {
       return res.status(400).json({ error: true, msg: err });
@@ -28,13 +51,15 @@ class PostsController extends BaseController {
   }
 
   async insertOne(req, res) {
-    const { author, chapterId, content } = req.body;
+    const { author, authorName, authorImage, chapterId, content } = req.body;
     try {
       const newPost = await this.model.create({
         author: author,
+        authorName: authorName,
+        authorImage: authorImage,
         chapterId: chapterId,
         content: content,
-        time: new Date(),
+        createdAt: new Date(),
       });
       return res.json(newPost);
     } catch (err) {
