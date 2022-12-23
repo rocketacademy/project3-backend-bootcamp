@@ -18,6 +18,8 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.INTEGER,
         references: { model: "cadet", key: "id" },
       },
+      authorName: DataTypes.TEXT,
+      authorImage: DataTypes.TEXT,
       chapterId: {
         type: DataTypes.INTEGER,
         references: {
@@ -28,7 +30,6 @@ module.exports = (sequelize, DataTypes) => {
       content: DataTypes.TEXT,
       views: DataTypes.INTEGER,
       upvotes: DataTypes.INTEGER,
-      time: DataTypes.DATE,
     },
     {
       sequelize,
