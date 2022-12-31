@@ -10,6 +10,7 @@ const CadetsRouter = require("./routers/cadetsRouter");
 const CadetSectionsRouter = require("./routers/cadetSectionsRouter");
 const CadetChaptersRouter = require("./routers/cadetChaptersRouter");
 const PostsRouter = require("./routers/postsRouter");
+const GitHubSubmissionsRouter = require("./routers/gitHubSubmissionsRouter");
 
 // importing Controllers
 const ChaptersController = require("./controllers/chaptersController");
@@ -18,6 +19,7 @@ const CadetsController = require("./controllers/cadetsController");
 const CadetSectionsController = require("./controllers/cadetSectionsController");
 const CadetChaptersController = require("./controllers/cadetChaptersController");
 const PostsController = require("./controllers/postsController");
+const GitHubSubmissionsController = require("./controllers/gitHubSubmissionsController");
 
 //import DB
 const db = require("./db/models/index");
@@ -34,13 +36,12 @@ const {
   note,
   sl,
   post,
+  gitHubSubmission,
 } = db;
 
 // initializing Controllers -> note the lowercase for the first word
 const chaptersController = new ChaptersController(chapter);
 const sectionsController = new SectionsController(section);
-
-// for cadets, get
 const cadetsController = new CadetsController(
   cadet,
   cadetSection,
@@ -59,6 +60,11 @@ const cadetChaptersController = new CadetChaptersController(
   cadetSection
 );
 const postsController = new PostsController(post);
+const gitHubSubmissionsController = new GitHubSubmissionsController(
+  gitHubSubmission,
+  cadet,
+  chapter
+);
 
 // initializing Routers
 const chaptersRouter = new ChaptersRouter(chaptersController).routes();
@@ -71,6 +77,9 @@ const cadetChaptersRouter = new CadetChaptersRouter(
   cadetChaptersController
 ).routes();
 const postsRouter = new PostsRouter(postsController).routes();
+const gitHubSubmissionsRouter = new GitHubSubmissionsRouter(
+  gitHubSubmissionsController
+).routes();
 
 const PORT = process.env.PORT;
 const app = express();
@@ -88,6 +97,7 @@ app.use("/cadets", cadetsRouter);
 app.use("/cadetSections", cadetSectionsRouter);
 app.use("/cadetChapters", cadetChaptersRouter);
 app.use("/posts", postsRouter);
+app.use("/gitHubSubmissions", gitHubSubmissionsRouter);
 
 app.listen(PORT, () => {
   console.log(`Express app listening on port ${PORT}!`);
