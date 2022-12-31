@@ -11,7 +11,7 @@ module.exports = {
           chapterIndex: 0,
           sectionId: 1,
           markdownUrl:
-            'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d0/Flag_of_the_First_Galactic_Empire.svg/600px-Flag_of_the_First_Galactic_Empire.svg.png',
+            'https://raw.githubusercontent.com/rocketacademy/bootcamp3.0-docs/main/README.md',
           createdAt: new Date(),
           updatedAt: new Date(),
         },
@@ -20,7 +20,7 @@ module.exports = {
           chapterIndex: 0,
           sectionId: 2,
           markdownUrl:
-            'https://upload.wikimedia.org/wikipedia/en/8/87/StarWarsMoviePoster1977.jpg',
+            'https://raw.githubusercontent.com/rocketacademy/bootcamp3.0-docs/main/logistics/README.md',
           createdAt: new Date(),
           updatedAt: new Date(),
         },
@@ -29,7 +29,7 @@ module.exports = {
           chapterIndex: 1,
           sectionId: 2,
           markdownUrl:
-            'https://upload.wikimedia.org/wikipedia/en/8/87/StarWarsMoviePoster1977.jpg',
+            'https://raw.githubusercontent.com/rocketacademy/bootcamp3.0-docs/main/logistics/course-schedules.md',
           createdAt: new Date(),
           updatedAt: new Date(),
         },
@@ -38,7 +38,7 @@ module.exports = {
           chapterIndex: 2,
           sectionId: 2,
           markdownUrl:
-            'https://upload.wikimedia.org/wikipedia/en/8/87/StarWarsMoviePoster1977.jpg',
+            'https://raw.githubusercontent.com/rocketacademy/bootcamp3.0-docs/main/logistics/course-methodology.md',
           createdAt: new Date(),
           updatedAt: new Date(),
         },
@@ -47,7 +47,7 @@ module.exports = {
           chapterIndex: 3,
           sectionId: 2,
           markdownUrl:
-            'https://upload.wikimedia.org/wikipedia/en/8/87/StarWarsMoviePoster1977.jpg',
+            'https://raw.githubusercontent.com/rocketacademy/bootcamp3.0-docs/main/logistics/required-software.md',
           createdAt: new Date(),
           updatedAt: new Date(),
         },
@@ -56,7 +56,7 @@ module.exports = {
           chapterIndex: 4,
           sectionId: 2,
           markdownUrl:
-            'https://upload.wikimedia.org/wikipedia/en/8/87/StarWarsMoviePoster1977.jpg',
+            'https://raw.githubusercontent.com/rocketacademy/bootcamp3.0-docs/main/logistics/linkedin-education-badge.md',
           createdAt: new Date(),
           updatedAt: new Date(),
         },
@@ -65,7 +65,7 @@ module.exports = {
           chapterIndex: 0,
           sectionId: 3,
           markdownUrl:
-            'https://upload.wikimedia.org/wikipedia/en/3/3f/The_Empire_Strikes_Back_%281980_film%29.jpg',
+            'https://raw.githubusercontent.com/rocketacademy/bootcamp3.0-docs/main/general-reference/README.md',
           createdAt: new Date(),
           updatedAt: new Date(),
         },
@@ -74,7 +74,7 @@ module.exports = {
           chapterIndex: 1,
           sectionId: 3,
           markdownUrl:
-            'https://upload.wikimedia.org/wikipedia/en/3/3f/The_Empire_Strikes_Back_%281980_film%29.jpg',
+            'https://raw.githubusercontent.com/rocketacademy/bootcamp3.0-docs/main/general-reference/vs-code-tips.md',
           createdAt: new Date(),
           updatedAt: new Date(),
         },
@@ -83,7 +83,7 @@ module.exports = {
           chapterIndex: 2,
           sectionId: 3,
           markdownUrl:
-            'https://upload.wikimedia.org/wikipedia/en/3/3f/The_Empire_Strikes_Back_%281980_film%29.jpg',
+            'https://raw.githubusercontent.com/rocketacademy/bootcamp3.0-docs/main/general-reference/vs-code-tips.md',
           createdAt: new Date(),
           updatedAt: new Date(),
         },
@@ -92,7 +92,7 @@ module.exports = {
           chapterIndex: 3,
           sectionId: 3,
           markdownUrl:
-            'https://upload.wikimedia.org/wikipedia/en/3/3f/The_Empire_Strikes_Back_%281980_film%29.jpg',
+            'https://raw.githubusercontent.com/rocketacademy/bootcamp3.0-docs/main/general-reference/recommended-resources.md',
           createdAt: new Date(),
           updatedAt: new Date(),
         },
@@ -101,7 +101,7 @@ module.exports = {
           chapterIndex: 0,
           sectionId: 4,
           markdownUrl:
-            'https://upload.wikimedia.org/wikipedia/en/b/b2/ReturnOfTheJediPoster1983.jpg',
+            'https://raw.githubusercontent.com/rocketacademy/bootcamp3.0-docs/main/0-foundations/README.md',
           createdAt: new Date(),
           updatedAt: new Date(),
         },
@@ -110,7 +110,7 @@ module.exports = {
           chapterIndex: 1,
           sectionId: 4,
           markdownUrl:
-            'https://upload.wikimedia.org/wikipedia/en/4/40/Star_Wars_Phantom_Menace_poster.jpg',
+            'https://raw.githubusercontent.com/rocketacademy/bootcamp3.0-docs/main/0-foundations/0.1-command-line.md',
           createdAt: new Date(),
           updatedAt: new Date(),
         },
@@ -119,7 +119,7 @@ module.exports = {
           chapterIndex: 2,
           sectionId: 4,
           markdownUrl:
-            'https://upload.wikimedia.org/wikipedia/en/3/32/Star_Wars_-_Episode_II_Attack_of_the_Clones_%28movie_poster%29.jpg',
+            'https://raw.githubusercontent.com/rocketacademy/bootcamp3.0-docs/main/0-foundations/0.2-git/README.md',
           createdAt: new Date(),
           updatedAt: new Date(),
         },
@@ -128,7 +128,7 @@ module.exports = {
           chapterIndex: 3,
           sectionId: 4,
           markdownUrl:
-            'https://upload.wikimedia.org/wikipedia/en/9/93/Star_Wars_Episode_III_Revenge_of_the_Sith_poster.jpg',
+            'https://raw.githubusercontent.com/rocketacademy/bootcamp3.0-docs/main/0-foundations/0.3-github/README.md',
           createdAt: new Date(),
           updatedAt: new Date(),
         },
@@ -137,7 +137,7 @@ module.exports = {
           chapterIndex: 4,
           sectionId: 4,
           markdownUrl:
-            'https://upload.wikimedia.org/wikipedia/en/a/a2/Star_Wars_The_Force_Awakens_Theatrical_Poster.jpg',
+            'https://raw.githubusercontent.com/rocketacademy/bootcamp3.0-docs/main/0-foundations/0.4-javascript/0.4.1-es6.md',
           createdAt: new Date(),
           updatedAt: new Date(),
         },
@@ -146,7 +146,7 @@ module.exports = {
           chapterIndex: 5,
           sectionId: 4,
           markdownUrl:
-            'https://upload.wikimedia.org/wikipedia/en/7/7f/Star_Wars_The_Last_Jedi.jpg',
+            'https://raw.githubusercontent.com/rocketacademy/bootcamp3.0-docs/main/0-foundations/0.5-node.js/README.md',
           createdAt: new Date(),
           updatedAt: new Date(),
         },
@@ -250,8 +250,179 @@ module.exports = {
           updatedAt: new Date(),
         },
         {
-          name: 'Algorithms',
+          name: 'Full Stack',
+          chapterIndex: 0,
+          sectionId: 6,
+          markdownUrl:
+            'https://raw.githubusercontent.com/rocketacademy/bootcamp3.0-docs/main/2-full-stack/README.md',
+          createdAt: new Date(),
+          updatedAt: new Date(),
+        },
+        {
+          name: 'Advanced React',
           chapterIndex: 1,
+          sectionId: 6,
+          markdownUrl:
+            'https://raw.githubusercontent.com/rocketacademy/bootcamp3.0-docs/main/2-full-stack/2.2-advanced-react/README.md',
+          createdAt: new Date(),
+          updatedAt: new Date(),
+        },
+        {
+          name: 'Firebase',
+          chapterIndex: 2,
+          sectionId: 6,
+          markdownUrl:
+            'https://raw.githubusercontent.com/rocketacademy/bootcamp3.0-docs/main/2-full-stack/2.3-firebase/README.md',
+          createdAt: new Date(),
+          updatedAt: new Date(),
+        },
+        {
+          name: 'Exercises',
+          chapterIndex: 3,
+          sectionId: 6,
+          markdownUrl:
+            'https://raw.githubusercontent.com/rocketacademy/bootcamp3.0-docs/main/2-full-stack/2.e-exercises/README.md',
+          createdAt: new Date(),
+          updatedAt: new Date(),
+        },
+        {
+          name: 'Project 2: Full-Stack App (Firebase)',
+          chapterIndex: 4,
+          sectionId: 6,
+          markdownUrl:
+            'https://raw.githubusercontent.com/rocketacademy/bootcamp3.0-docs/main/2-full-stack/2.p-full-stack-app-firebase.md',
+          createdAt: new Date(),
+          updatedAt: new Date(),
+        },
+        {
+          name: 'Backend',
+          chapterIndex: 0,
+          sectionId: 7,
+          markdownUrl:
+            'https://raw.githubusercontent.com/rocketacademy/bootcamp3.0-docs/main/3-backend/README.md',
+          createdAt: new Date(),
+          updatedAt: new Date(),
+        },
+        {
+          name: 'Express',
+          chapterIndex: 1,
+          sectionId: 7,
+          markdownUrl:
+            'https://raw.githubusercontent.com/rocketacademy/bootcamp3.0-docs/main/3-backend/3.1-express.js/README.md',
+          createdAt: new Date(),
+          updatedAt: new Date(),
+        },
+        {
+          name: 'SQL',
+          chapterIndex: 2,
+          sectionId: 7,
+          markdownUrl:
+            'https://raw.githubusercontent.com/rocketacademy/bootcamp3.0-docs/main/3-backend/README.md',
+          createdAt: new Date(),
+          updatedAt: new Date(),
+        },
+        {
+          name: 'Sequelize',
+          chapterIndex: 3,
+          sectionId: 7,
+          markdownUrl:
+            'https://raw.githubusercontent.com/rocketacademy/bootcamp3.0-docs/main/3-backend/README.md',
+          createdAt: new Date(),
+          updatedAt: new Date(),
+        },
+        {
+          name: 'Authentication',
+          chapterIndex: 4,
+          sectionId: 7,
+          markdownUrl:
+            'https://raw.githubusercontent.com/rocketacademy/bootcamp3.0-docs/main/3-backend/README.md',
+          createdAt: new Date(),
+          updatedAt: new Date(),
+        },
+        {
+          name: 'Application Deployment',
+          chapterIndex: 5,
+          sectionId: 7,
+          markdownUrl:
+            'https://raw.githubusercontent.com/rocketacademy/bootcamp3.0-docs/main/3-backend/README.md',
+          createdAt: new Date(),
+          updatedAt: new Date(),
+        },
+        {
+          name: 'Exercises',
+          chapterIndex: 6,
+          sectionId: 7,
+          markdownUrl:
+            'https://raw.githubusercontent.com/rocketacademy/bootcamp3.0-docs/main/3-backend/README.md',
+          createdAt: new Date(),
+          updatedAt: new Date(),
+        },
+        {
+          name: 'Project 3: Full-Stack App (Express)',
+          chapterIndex: 7,
+          sectionId: 7,
+          markdownUrl:
+            'https://raw.githubusercontent.com/rocketacademy/bootcamp3.0-docs/main/3-backend/README.md',
+          createdAt: new Date(),
+          updatedAt: new Date(),
+        },
+        {
+          name: 'Capstone',
+          chapterIndex: 0,
+          sectionId: 8,
+          markdownUrl:
+            'https://raw.githubusercontent.com/rocketacademy/bootcamp3.0-docs/main/3-backend/README.md',
+          createdAt: new Date(),
+          updatedAt: new Date(),
+        },
+        {
+          name: 'Testing',
+          chapterIndex: 1,
+          sectionId: 8,
+          markdownUrl:
+            'https://raw.githubusercontent.com/rocketacademy/bootcamp3.0-docs/main/3-backend/README.md',
+          createdAt: new Date(),
+          updatedAt: new Date(),
+        },
+        {
+          name: 'Continuous Integration',
+          chapterIndex: 2,
+          sectionId: 8,
+          markdownUrl:
+            'https://raw.githubusercontent.com/rocketacademy/bootcamp3.0-docs/main/3-backend/README.md',
+          createdAt: new Date(),
+          updatedAt: new Date(),
+        },
+        {
+          name: 'Typescript',
+          chapterIndex: 3,
+          sectionId: 8,
+          markdownUrl:
+            'https://raw.githubusercontent.com/rocketacademy/bootcamp3.0-docs/main/3-backend/README.md',
+          createdAt: new Date(),
+          updatedAt: new Date(),
+        },
+        {
+          name: 'Security',
+          chapterIndex: 4,
+          sectionId: 8,
+          markdownUrl:
+            'https://raw.githubusercontent.com/rocketacademy/bootcamp3.0-docs/main/3-backend/README.md',
+          createdAt: new Date(),
+          updatedAt: new Date(),
+        },
+        {
+          name: 'Project 4: Capstone',
+          chapterIndex: 5,
+          sectionId: 8,
+          markdownUrl:
+            'https://raw.githubusercontent.com/rocketacademy/bootcamp3.0-docs/main/3-backend/README.md',
+          createdAt: new Date(),
+          updatedAt: new Date(),
+        },
+        {
+          name: 'Algorithms',
+          chapterIndex: 0,
           sectionId: 9,
           markdownUrl:
             'https://raw.githubusercontent.com/weiyu95/capstone-markdownfiles/main/1.P_FrontendApp.md',
@@ -260,6 +431,15 @@ module.exports = {
         },
         {
           name: 'Arrays',
+          chapterIndex: 1,
+          sectionId: 9,
+          markdownUrl:
+            'https://raw.githubusercontent.com/weiyu95/capstone-markdownfiles/main/1.P_FrontendApp.md',
+          createdAt: new Date(),
+          updatedAt: new Date(),
+        },
+        {
+          name: 'Hash Tables',
           chapterIndex: 2,
           sectionId: 9,
           markdownUrl:
@@ -268,9 +448,153 @@ module.exports = {
           updatedAt: new Date(),
         },
         {
-          name: 'Binary Search',
+          name: 'Stacks',
           chapterIndex: 3,
           sectionId: 9,
+          markdownUrl:
+            'https://raw.githubusercontent.com/weiyu95/capstone-markdownfiles/main/1.P_FrontendApp.md',
+          createdAt: new Date(),
+          updatedAt: new Date(),
+        },
+        {
+          name: 'Queues',
+          chapterIndex: 4,
+          sectionId: 9,
+          markdownUrl:
+            'https://raw.githubusercontent.com/weiyu95/capstone-markdownfiles/main/1.P_FrontendApp.md',
+          createdAt: new Date(),
+          updatedAt: new Date(),
+        },
+        {
+          name: 'Linked Lists',
+          chapterIndex: 5,
+          sectionId: 9,
+          markdownUrl:
+            'https://raw.githubusercontent.com/weiyu95/capstone-markdownfiles/main/1.P_FrontendApp.md',
+          createdAt: new Date(),
+          updatedAt: new Date(),
+        },
+        {
+          name: 'Trees',
+          chapterIndex: 6,
+          sectionId: 9,
+          markdownUrl:
+            'https://raw.githubusercontent.com/weiyu95/capstone-markdownfiles/main/1.P_FrontendApp.md',
+          createdAt: new Date(),
+          updatedAt: new Date(),
+        },
+        {
+          name: 'Graphs',
+          chapterIndex: 7,
+          sectionId: 9,
+          markdownUrl:
+            'https://raw.githubusercontent.com/weiyu95/capstone-markdownfiles/main/1.P_FrontendApp.md',
+          createdAt: new Date(),
+          updatedAt: new Date(),
+        },
+        {
+          name: 'Heaps',
+          chapterIndex: 8,
+          sectionId: 9,
+          markdownUrl:
+            'https://raw.githubusercontent.com/weiyu95/capstone-markdownfiles/main/1.P_FrontendApp.md',
+          createdAt: new Date(),
+          updatedAt: new Date(),
+        },
+        {
+          name: 'Complexity Analysis',
+          chapterIndex: 9,
+          sectionId: 9,
+          markdownUrl:
+            'https://raw.githubusercontent.com/weiyu95/capstone-markdownfiles/main/1.P_FrontendApp.md',
+          createdAt: new Date(),
+          updatedAt: new Date(),
+        },
+        {
+          name: 'Object-Oriented Programming',
+          chapterIndex: 10,
+          sectionId: 9,
+          markdownUrl:
+            'https://raw.githubusercontent.com/weiyu95/capstone-markdownfiles/main/1.P_FrontendApp.md',
+          createdAt: new Date(),
+          updatedAt: new Date(),
+        },
+        {
+          name: 'Recursion',
+          chapterIndex: 11,
+          sectionId: 9,
+          markdownUrl:
+            'https://raw.githubusercontent.com/weiyu95/capstone-markdownfiles/main/1.P_FrontendApp.md',
+          createdAt: new Date(),
+          updatedAt: new Date(),
+        },
+        {
+          name: 'Dynamic Programming',
+          chapterIndex: 12,
+          sectionId: 9,
+          markdownUrl:
+            'https://raw.githubusercontent.com/weiyu95/capstone-markdownfiles/main/1.P_FrontendApp.md',
+          createdAt: new Date(),
+          updatedAt: new Date(),
+        },
+        {
+          name: 'Bit Manipulation',
+          chapterIndex: 13,
+          sectionId: 9,
+          markdownUrl:
+            'https://raw.githubusercontent.com/weiyu95/capstone-markdownfiles/main/1.P_FrontendApp.md',
+          createdAt: new Date(),
+          updatedAt: new Date(),
+        },
+        {
+          name: 'Python',
+          chapterIndex: 14,
+          sectionId: 9,
+          markdownUrl:
+            'https://raw.githubusercontent.com/weiyu95/capstone-markdownfiles/main/1.P_FrontendApp.md',
+          createdAt: new Date(),
+          updatedAt: new Date(),
+        },
+        {
+          name: 'Interview Prep',
+          chapterIndex: 0,
+          sectionId: 10,
+          markdownUrl:
+            'https://raw.githubusercontent.com/weiyu95/capstone-markdownfiles/main/1.P_FrontendApp.md',
+          createdAt: new Date(),
+          updatedAt: new Date(),
+        },
+        {
+          name: 'Job Application Strategy',
+          chapterIndex: 1,
+          sectionId: 10,
+          markdownUrl:
+            'https://raw.githubusercontent.com/weiyu95/capstone-markdownfiles/main/1.P_FrontendApp.md',
+          createdAt: new Date(),
+          updatedAt: new Date(),
+        },
+        {
+          name: 'Resume',
+          chapterIndex: 2,
+          sectionId: 10,
+          markdownUrl:
+            'https://raw.githubusercontent.com/weiyu95/capstone-markdownfiles/main/1.P_FrontendApp.md',
+          createdAt: new Date(),
+          updatedAt: new Date(),
+        },
+        {
+          name: 'Portfolio',
+          chapterIndex: 3,
+          sectionId: 10,
+          markdownUrl:
+            'https://raw.githubusercontent.com/weiyu95/capstone-markdownfiles/main/1.P_FrontendApp.md',
+          createdAt: new Date(),
+          updatedAt: new Date(),
+        },
+        {
+          name: 'Job List',
+          chapterIndex: 4,
+          sectionId: 10,
           markdownUrl:
             'https://raw.githubusercontent.com/weiyu95/capstone-markdownfiles/main/1.P_FrontendApp.md',
           createdAt: new Date(),
