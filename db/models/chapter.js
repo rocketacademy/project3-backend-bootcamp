@@ -19,6 +19,7 @@ module.exports = (sequelize, DataTypes) => {
       // this.hasMany(models.cadet_chapter);
       // this.hasMany(models.comment);
       this.hasMany(models.post);
+      this.hasMany(models.gitHubSubmission);
       this.belongsTo(models.section);
     }
   }

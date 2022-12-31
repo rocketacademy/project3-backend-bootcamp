@@ -25,6 +25,7 @@ module.exports = (sequelize, DataTypes) => {
       });
       this.hasMany(models.cadetSection);
       this.hasMany(models.cadetChapter);
+      this.hasMany(models.gitHubSubmission);
       // this.hasMany(models.note);
       // this.hasMany(models.appointment);
       // this.hasMany(models.memo_entry);
