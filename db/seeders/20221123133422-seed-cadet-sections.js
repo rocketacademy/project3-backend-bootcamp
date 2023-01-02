@@ -48,6 +48,13 @@ module.exports = {
           createdAt: new Date(),
           updatedAt: new Date(),
         },
+        {
+          cadetId: 1,
+          sectionId: 10,
+          completed: false,
+          createdAt: new Date(),
+          updatedAt: new Date(),
+        },
 
         {
           cadetId: 2,
@@ -91,6 +98,13 @@ module.exports = {
           createdAt: new Date(),
           updatedAt: new Date(),
         },
+        {
+          cadetId: 2,
+          sectionId: 10,
+          completed: false,
+          createdAt: new Date(),
+          updatedAt: new Date(),
+        },
 
         {
           cadetId: 3,
@@ -130,6 +144,13 @@ module.exports = {
         {
           cadetId: 3,
           sectionId: 9,
+          completed: false,
+          createdAt: new Date(),
+          updatedAt: new Date(),
+        },
+        {
+          cadetId: 3,
+          sectionId: 10,
           completed: false,
           createdAt: new Date(),
           updatedAt: new Date(),
