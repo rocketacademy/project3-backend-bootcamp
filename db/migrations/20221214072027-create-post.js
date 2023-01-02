@@ -16,6 +16,13 @@ module.exports = {
           key: "id",
         },
       },
+      sl: {
+        type: Sequelize.INTEGER,
+        references: {
+          model: "sls",
+          key: "id",
+        },
+      },
       authorName: {
         type: Sequelize.TEXT,
       },
