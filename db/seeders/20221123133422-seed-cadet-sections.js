@@ -48,6 +48,7 @@ module.exports = {
           createdAt: new Date(),
           updatedAt: new Date(),
         },
+
         {
           cadetId: 2,
           sectionId: 1,
@@ -90,6 +91,7 @@ module.exports = {
           createdAt: new Date(),
           updatedAt: new Date(),
         },
+
         {
           cadetId: 3,
           sectionId: 1,
