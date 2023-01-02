@@ -1,4 +1,4 @@
-const BaseController = require("./baseController");
+const BaseController = require('./baseController');
 
 class CadetSectionsController extends BaseController {
   constructor(model, cadetModel, sectionModel) {
@@ -29,11 +29,26 @@ class CadetSectionsController extends BaseController {
     }
   }
 
-  async getAllSectionsProgress(req, res) {
+  //get all completed section progress
+  async getAllCompletedSectionsProgress(req, res) {
     const { cadetId } = req.query;
     try {
       const { count, rows } = await this.model.findAndCountAll({
         where: { cadetId: cadetId, completed: true },
+      });
+      console.log(count);
+      return res.json(rows);
+    } catch (err) {
+      return res.status(400).json({ error: true, msg: err });
+    }
+  }
+
+  //get ALL section progress irregardless completed or not
+  async getAllSectionsProgress(req, res) {
+    const { cadetId } = req.query;
+    try {
+      const { count, rows } = await this.model.findAndCountAll({
+        where: { cadetId: cadetId },
       });
       console.log(count);
       return res.json(rows);

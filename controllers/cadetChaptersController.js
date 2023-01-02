@@ -1,4 +1,4 @@
-const BaseController = require("./baseController");
+const BaseController = require('./baseController');
 
 class CadetChaptersController extends BaseController {
   constructor(model, cadetModel, chapterModel, cadetSectionModel) {
@@ -30,13 +30,51 @@ class CadetChaptersController extends BaseController {
     }
   }
 
-  // to count for total percentage of bootcamp progress.
+  // // to count for total percentage of bootcamp progress based on section
+  // async getAllChaptersProgress(req, res) {
+  //   const { cadetId, sectionId } = req.query;
+  //   try {
+  //     const { count, rows } = await this.model.findAndCountAll({
+  //       where: { cadetId: cadetId, completed: true },
+  //       //added this to see if I can filter with section Id
+  //       include: [
+  //         { model: this.chapterModel, where: { sectionId: sectionId } },
+  //       ],
+  //     });
+  //     //////
+  //     console.log(count);
+  //     return res.json(rows);
+  //   } catch (err) {
+  //     return res.status(400).json({ error: true, msg: err });
+  //   }
+  // }
+  // // to count for total percentage of bootcamp progress based on section
   async getAllChaptersProgress(req, res) {
+    const { cadetId, sectionId } = req.query;
+    try {
+      const checkData = await this.model.findAll({
+        where: { cadetId: cadetId, completed: true },
+        //added this to see if I can filter with section Id
+        include: [
+          { model: this.chapterModel, where: { sectionId: sectionId } },
+        ],
+      });
+      //////
+
+      return res.json(checkData);
+    } catch (err) {
+      return res.status(400).json({ error: true, msg: err });
+    }
+  }
+
+  // to count for total percentage of bootcamp progress.
+  async getTotalChaptersProgress(req, res) {
     const { cadetId } = req.query;
     try {
       const { count, rows } = await this.model.findAndCountAll({
         where: { cadetId: cadetId, completed: true },
       });
+
       console.log(count);
       return res.json(rows);
     } catch (err) {
