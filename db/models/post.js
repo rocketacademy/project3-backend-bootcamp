@@ -18,6 +18,10 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.INTEGER,
         references: { model: "cadet", key: "id" },
       },
+      sl: {
+        type: DataTypes.INTEGER,
+        references: { model: "sl", key: "id" },
+      },
       authorName: DataTypes.TEXT,
       authorImage: DataTypes.TEXT,
       chapterId: {

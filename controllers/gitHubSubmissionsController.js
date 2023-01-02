@@ -10,7 +10,12 @@ class GitHubSubmissionsController extends BaseController {
   /** if a method in this extended class AND the base class has the same name, the one in the extended class will run over the base method */
   async getAll(req, res) {
     try {
-      const output = await this.model.findAll();
+      const output = await this.model.findAll({
+        include: [
+          { model: this.cadetModel, attributes: ["name"] },
+          { model: this.chapterModel, attributes: ["name"] },
+        ],
+      });
       return res.json(output);
     } catch (err) {
       return res.status(400).json({ error: true, msg: err });
