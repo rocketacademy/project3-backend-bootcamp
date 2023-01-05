@@ -11,6 +11,7 @@ class PostsController extends BaseController {
     try {
       const output = await this.model.findAll({
         where: { chapterId: chapterId },
+        order: [['id', 'ASC']],
         attributes: {
           include: [
             [
