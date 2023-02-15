@@ -5,11 +5,12 @@ const { Router } = require("express");
 // const likesRouter = require("./likes");
 // const categoriesRouter = require("./categories");
 const listingsRouter = require("./listings")
+const usersRouter = require("./users");
 
 const appRouter = Router();
 
 appRouter.use("/", listingsRouter)
-// appRouter.use("/sightings", sightingsRouter);
+appRouter.use("/users", usersRouter);
 // appRouter.use("/comments", commentsRouter);
 // appRouter.use("/likes", likesRouter);
 // appRouter.use("/categories", categoriesRouter);
