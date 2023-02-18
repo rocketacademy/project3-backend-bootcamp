@@ -1,9 +1,14 @@
 const { Router } = require("express");
 const listingsController = require("../controllers/listings");
+const authMiddleware = require("../middleware/auth");
 
 const listingsRouter = Router();
 
-listingsRouter.get("/", listingsController.getHomepageListings);
+//Only the welcome page no need auth
+listingsRouter.get("/", listingsController.getWelcomePageListings);
+
+//everything below requires auth
+listingsRouter.use(authMiddleware);
 listingsRouter.get("/:user_id/homepage", listingsController.getAllListings);
 listingsRouter.get("/:user_id/profile", listingsController.getUserListings);
 listingsRouter.get(
