@@ -15,7 +15,8 @@ module.exports = {
         role: "user",
         mrt: "Jurong West",
         username: "yummyz",
-        profile_photo: "abcd",
+        profile_photo:
+          "https://res.cloudinary.com/dwgeik14h/image/upload/v1676894039/elsa.png",
         created_at: new Date(),
         updated_at: new Date(),
       },
@@ -30,7 +31,8 @@ module.exports = {
         role: "user",
         mrt: "Woodlands",
         username: "ohnoz",
-        profile_photo: "bcde",
+        profile_photo:
+          "https://res.cloudinary.com/dwgeik14h/image/upload/v1676894031/anna.jpg",
         created_at: new Date(),
         updated_at: new Date(),
       },
@@ -45,7 +47,8 @@ module.exports = {
         role: "user",
         mrt: "Bedok",
         username: "pokemonz",
-        profile_photo: "cdef",
+        profile_photo:
+          "https://res.cloudinary.com/dwgeik14h/image/upload/v1676894024/olaf.png",
         created_at: new Date(),
         updated_at: new Date(),
       },

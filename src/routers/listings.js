@@ -9,7 +9,7 @@ listingsRouter.get("/", listingsController.getWelcomePageListings);
 
 //everything below requires auth
 listingsRouter.use(authMiddleware);
-listingsRouter.get("/:user_id/homepage", listingsController.getAllListings);
+listingsRouter.get("/listings", listingsController.getAllListings);
 listingsRouter.get("/:user_id/profile", listingsController.getUserListings);
 listingsRouter.get(
   "/:user_id/listings/:listing_id",
@@ -24,7 +24,7 @@ listingsRouter.put(
   listingsController.editListing
 );
 listingsRouter.delete(
-  "/:user_id/listings/:listing_id",
+  "/delete/:listing_id",
   listingsController.deleteListing
 );
 

@@ -1,4 +1,4 @@
-const { users } = require("../db/models");
+const { users, listings } = require("../db/models");
 
 module.exports = {
   async createUser(req, res) {
