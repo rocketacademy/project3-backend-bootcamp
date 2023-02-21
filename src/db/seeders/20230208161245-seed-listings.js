@@ -40,7 +40,7 @@ module.exports = {
           item_name: "White School Shoes",
           description:
             "Asking for donation of a size 12 for my child to go to school. Any condition will do. Old shoes also okay. We are poor and have problems paying the bills already! Much appreciated!",
-          condition: "Any",
+          condition: "Well Used",
           listing_type: "Take",
           created_at: new Date(),
           updated_at: new Date(),
@@ -53,7 +53,7 @@ module.exports = {
           item_name: "Harry Potter and the Deathly Hallows",
           description:
             "My kid wants to read this but I can't find it anywhere!",
-          condition: "Any",
+          condition: "Well Used",
           listing_type: "Take",
           created_at: new Date(),
           updated_at: new Date(),

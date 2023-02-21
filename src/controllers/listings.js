@@ -43,7 +43,7 @@ module.exports = {
   async getUserListings(req, res) {
     const userListings = await listings.findAll({
       where: {
-        id: req.params.user_id,
+        user_id: req.params.user_id,
       },
     });
     return res.json(userListings);
