@@ -1,14 +1,18 @@
 {
-  "name": "project3-backend-bootcamp",
+  "name": "my_edu_cloud",
   "version": "1.0.0",
-  "type": "module",
   "scripts": {
     "start": "nodemon index.js"
   },
   "dependencies": {
-    "express": "^4.18.1"
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "pg": "^8.10.0",
+    "sequelize": "^6.31.0"
   },
   "devDependencies": {
-    "eslint": "^8.16.0"
+    "eslint": "^8.16.0",
+    "sequelize-cli": "^6.6.0"
   }
 }
