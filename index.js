@@ -11,10 +11,6 @@ app.use(express.urlencoded({ extended: false }));
 
 const db = require("./db/models/index");
 
-app.get("/", (req, res) => {
-  res.send("Hello, World!");
-});
-
 app.listen(PORT, () => {
   console.log(`Express app listening on port ${PORT}!`);
 });
