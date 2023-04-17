@@ -5,5 +5,11 @@ class UserRouter {
   }
   route = () => {
     let router = this.express.Router();
+
+    router.get("/", this.controller.getAllStudents);
+
+    return router;
   };
 }
+
+module.exports = UserRouter;

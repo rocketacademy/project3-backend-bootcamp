@@ -17,7 +17,7 @@ module.exports = (sequelize, DataTypes) => {
     },
     {
       sequelize,
-      modelName: "chatroom",
+      modelName: "chatrooms",
       underscored: true,
     }
   );

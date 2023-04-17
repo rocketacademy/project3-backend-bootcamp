@@ -16,9 +16,9 @@ const UserController = require("./Controllers/UserController");
 const UserRouter = require("./Routers/UserRouter");
 
 const userController = new UserController(users);
-const userRouter = new UserRouter(userController, express);
+const userRouter = new UserRouter(userController, express).route();
 
-app.use("/students", userRouter.route());
+app.use("/students", userRouter);
 
 app.listen(PORT, () => {
   console.log(`Express app listening on port ${PORT}!`);
