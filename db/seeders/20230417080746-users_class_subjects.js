@@ -13,21 +13,14 @@ module.exports = {
      * }], {});
      */
     await queryInterface.bulkInsert(
-      "questionnaires",
+      "users_class_subjects",
       [
         {
           id: 1,
-          users_class_subject_id: 1,
-          question:
-            "Which of the following sentences is grammatically incorrect?",
-          option_a: "Is this your jacket?",
-          option_b: "Whose jacket is this?",
-          option_c: "Is this jacker yours?",
-          option_d: "Who's jacket is this?",
-          option_e: null,
-          created_at: new Date(),
-          updated_at: new Date(),
+          user_id: 1,
+          class_subject_id: 1,
         },
+        { id: 2, user_id: 2, class_subject_id: 1 },
       ],
       {}
     );
@@ -40,6 +33,6 @@ module.exports = {
      * Example:
      * await queryInterface.bulkDelete('People', null, {});
      */
-    await queryInterface.bulkDelete("questionnaires", null, {});
+    await queryInterface.bulkDelete("users_class_subjects", null, {});
   },
 };
