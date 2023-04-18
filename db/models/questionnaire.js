@@ -13,7 +13,7 @@ module.exports = (sequelize, DataTypes) => {
   }
   Questionnaire.init(
     {
-      users_class_subject_id: DataTypes.INTEGER,
+      test_id: DataTypes.INTEGER,
       question: DataTypes.STRING,
       option_a: DataTypes.STRING,
       option_b: DataTypes.STRING,
