@@ -17,7 +17,7 @@ module.exports = {
       [
         {
           id: 1,
-          users_class_subject_id: 1,
+          test_id: 1,
           question:
             "Which of the following sentences is grammatically incorrect?",
           option_a: "Is this your jacket?",
