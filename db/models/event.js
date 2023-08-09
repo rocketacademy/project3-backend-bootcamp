@@ -1,18 +1,13 @@
 "use strict";
 const { Model } = require("sequelize");
 module.exports = (sequelize, DataTypes) => {
-  class event extends Model {
-    /**
-     * Helper method for defining associations.
-     * This method is not a part of Sequelize lifecycle.
-     * The `models/index` file will call this method automatically.
-     */
+  class Event extends Model {
     static associate(models) {
       // define association here
       this.hasMany(models.order_history);
     }
   }
-  event.init(
+  Event.init(
     {
       name: DataTypes.STRING,
     },
@@ -22,5 +17,5 @@ module.exports = (sequelize, DataTypes) => {
       underscored: true,
     }
   );
-  return event;
+  return Event;
 };

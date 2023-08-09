@@ -1,18 +1,12 @@
 "use strict";
 const { Model } = require("sequelize");
 module.exports = (sequelize, DataTypes) => {
-  class shipping_method extends Model {
-    /**
-     * Helper method for defining associations.
-     * This method is not a part of Sequelize lifecycle.
-     * The `models/index` file will call this method automatically.
-     */
+  class Shipping_Method extends Model {
     static associate(models) {
-      // define association here
       this.hasMany(models.orders);
     }
   }
-  shipping_method.init(
+  Shipping_Method.init(
     {
       name: DataTypes.STRING,
       description: DataTypes.STRING,
@@ -23,5 +17,5 @@ module.exports = (sequelize, DataTypes) => {
       underscored: true,
     }
   );
-  return shipping_method;
+  return Shipping_Method;
 };

@@ -1,18 +1,12 @@
 "use strict";
 const { Model } = require("sequelize");
 module.exports = (sequelize, DataTypes) => {
-  class rating_category extends Model {
-    /**
-     * Helper method for defining associations.
-     * This method is not a part of Sequelize lifecycle.
-     * The `models/index` file will call this method automatically.
-     */
+  class Rating_Category extends Model {
     static associate(models) {
-      // define association here
       this.hasMany(models.review);
     }
   }
-  rating_category.init(
+  Rating_Category.init(
     {
       name: DataTypes.STRING,
       description: DataTypes.STRING,
@@ -23,5 +17,5 @@ module.exports = (sequelize, DataTypes) => {
       underscored: true,
     }
   );
-  return rating_category;
+  return Rating_Category;
 };

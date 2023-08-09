@@ -1,18 +1,12 @@
 "use strict";
 const { Model } = require("sequelize");
 module.exports = (sequelize, DataTypes) => {
-  class chat_history extends Model {
-    /**
-     * Helper method for defining associations.
-     * This method is not a part of Sequelize lifecycle.
-     * The `models/index` file will call this method automatically.
-     */
+  class Chat_History extends Model {
     static associate(models) {
-      // define association here
       this.belongsTo(models.chat, { foreignKey: "chatId" });
     }
   }
-  chat_history.init(
+  Chat_History.init(
     {
       chatId: {
         type: DataTypes.INTEGER,
@@ -28,5 +22,5 @@ module.exports = (sequelize, DataTypes) => {
       underscored: true,
     }
   );
-  return chat_history;
+  return Chat_History;
 };
