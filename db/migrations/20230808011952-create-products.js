@@ -18,7 +18,7 @@ module.exports = {
           key: "id",
         },
       },
-      discount_id: {
+      seller_discount_id: {
         type: Sequelize.INTEGER,
         references: {
           model: "seller_discounts",
@@ -32,17 +32,17 @@ module.exports = {
         type: Sequelize.DECIMAL,
       },
       description: {
-        type: Sequelize.STRING,
+        type: Sequelize.TEXT,
+      },
+      categoryId: {
+        type: Sequelize.INTEGER,
+        references: {
+          model: "categories",
+          key: "id",
+        },
       },
       quantity: {
         type: Sequelize.INTEGER,
-      },
-      shipping_method: {
-        type: Sequelize.INTEGER,
-        references: {
-          model: "shipping_methods",
-          key: "id",
-        },
       },
       created_at: {
         allowNull: false,

@@ -10,9 +10,13 @@ module.exports = (sequelize, DataTypes) => {
       this.hasMany(models.photos);
       this.belongsTo(models.seller_discount, {
         foreignKey: "discountId",
+        as: "sellerDiscountId",
       });
       this.belongsTo(models.shipping_method, {
         foreignKey: "shippingMethod",
+      });
+      this.belongsTo(models.category, {
+        foreignKey: "categoryId",
       });
       this.belongsToMany(models.user, {
         through: "user_product",
@@ -24,9 +28,6 @@ module.exports = (sequelize, DataTypes) => {
       this.belongsToMany(models.order, {
         through: "product_order",
       });
-      this.belongsToMany(models.category, {
-        through: "product_category",
-      });
     }
   }
   Product.init(
@@ -35,9 +36,9 @@ module.exports = (sequelize, DataTypes) => {
       discountId: DataTypes.INTEGER,
       title: DataTypes.STRING,
       price: DataTypes.DECIMAL,
-      description: DataTypes.STRING,
+      description: DataTypes.TEXT,
+      categoryId: DataTypes.INTEGER,
       quantity: DataTypes.INTEGER,
-      shippingMethod: DataTypes.INTEGER,
     },
     {
       sequelize,
