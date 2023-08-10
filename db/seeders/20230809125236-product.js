@@ -110,7 +110,7 @@ module.exports = {
         description:
           "Brand New Console.Latest CFI-1218B model. Official Playstation Singapore Warrantied Console With Playstation Singapore Hologram Sticker. 12 Months warranty by Playstation Singapore Service Center. Register online for EXTRA 90 days warranty on the console. NOT IMPORTED , ETC Japan/Korea/US/UK which is not covered by Singapore Distributor. Bundle Includes : 1. 1 X Playstation 5 Digital Edition CFI-1218B, 2. As Below Option : A. 2 X PS5 Dualsense Wireless Controller (2 X White), B. 2 X PS5 Dualsense Wireless Controller (1 X White , 1 X Cosmic Red), C. 2 X PS5 Dualsense Wireless Controller (1 X White , 1 X Galactic Purple), D. 2 X PS5 Dualsense Wireless Controller  (1 X White , 1 X Starlight Blue), E. 2 X PS5 Dualsense Wireless Controller (1 X White , 1 X Nova Pink), F. 2 X PS5 Dualsense Wireless Controller (1 X White , 1 X Black), G. 2 X PS5 Dualsense Wireless Controller (1 X White , 1 X Grey Camoflague), H. 1 X PS5 Dualsense Wireless Controller (White), ** 1 Year Playstation Singapore Warranty For All Controllers & Accessories.  3. 1 X HDMI Cable, 4. 1 X 3 Pin AC Power Cord, 5. 1 X USB Charging Cable, 6. 1 X Base Stand With Screw",
         categoryId: 2,
-        quantity: 20,
+        quantity: 30,
         created_at: new Date(),
         updated_at: new Date(),
       },
@@ -124,6 +124,19 @@ module.exports = {
           "Ultra-High-Definition Video: Records every image in crystal-clear 3MP definition, Pan and Tilt: 360º horizontal range, Advanced Night Vision: Provides a visual distance of up to 30 ft, Motion Detection and Notifications: Notifies you when the camera detects movement, Sound and Light Alarm: Trigger light and sound effects to frighten away unwanted visitors. Two-Way Audio: Enables communication through a built-in microphone and speaker, Safe Storage: Locally stores up to 256 GB on a microSD card, equal to 512 hours (21 days) of footage. (Based on laboratory conditions), Voice Control: Free Up Your Hands with Voice Control: Works with the Google Assistant and Amazon Alexa. (Google Assistant and Amazon Alexa are not available in all languages and countries)",
         categoryId: 2,
         quantity: 34,
+        created_at: new Date(),
+        updated_at: new Date(),
+      },
+      {
+        seller_id: 4,
+        seller_discount_id: 1,
+        title:
+          "PHIILIPS 32 inch SLIM LED HD Ready TV 32PHT5678/98 | Pixel Plus HD | 3 Year Local Warranty ",
+        price: 239,
+        description:
+          "Ultra-High-Definition Video: Records every image in crystal-clear 3MP definition, Pan and Tilt: 360º horizontal range, Advanced Night Vision: Provides a visual distance of up to 30 ft, Motion Detection and Notifications: Notifies you when the camera detects movement, Sound and Light Alarm: Trigger light and sound effects to frighten away unwanted visitors. Two-Way Audio: Enables communication through a built-in microphone and speaker, Safe Storage: Locally stores up to 256 GB on a microSD card, equal to 512 hours (21 days) of footage. (Based on laboratory conditions), Voice Control: Free Up Your Hands with Voice Control: Works with the Google Assistant and Amazon Alexa. (Google Assistant and Amazon Alexa are not available in all languages and countries)",
+        categoryId: 3,
+        quantity: 32,
         created_at: new Date(),
         updated_at: new Date(),
       },
@@ -208,8 +221,8 @@ module.exports = {
         title: "DENIM Shaving Foam Black",
         price: 4.7,
         description:
-          "BrandPhilips Sound & VisionSKU2418291973_SGAMZ-14261083840Television Screen ResolutionHD (720p)Televisions Display Size32Television FeaturesDigital TVinput_voltage220VElectronic PortsHDMI,USB,Digital Audio Out(Optical)Plug Type2 PinInstallation No Model 32PHT5678/98power_consumption1-500Television TechnologyLED, What’s in the box        Included accessories: Remote Control, 2 x AAA Batteries, Table top stand, Quick start guide, Legal and safety brochure, User Manual, Power cord",
-        categoryId: 3,
+          "Denim Black is made for the bold and the confident. The unmistakably intense and woody accord of Patchouli, Sandalwood And Cedar represent masculinity, while Amber, Labdanum And Oakmoss balances the composition with warm sensual tones. Denim Black is a timeless classic.",
+        categoryId: 4,
         quantity: 15,
         created_at: new Date(),
         updated_at: new Date(),
@@ -228,7 +241,7 @@ module.exports = {
       },
       {
         seller_id: 6,
-        seller_discount_id: null,
+        seller_discount_id: 1,
         title:
           "HUGO BOSS Fragrances BOSS Bottled Eau de Parfum for Men (BOSS Bottled Eau de Parfum 100ml) ",
         price: 179,
@@ -438,7 +451,7 @@ module.exports = {
         seller_id: 2,
         seller_discount_id: null,
         title: "Nike Women's Sporstwear Boxy T-Shirt - Black (Free Size)",
-        price: 20.45,
+        price: 44.5,
         description:
           "Product details of Nike Women's Sporstwear Boxy T-Shirt - Black. STYLE COLOR: DX7933-010. Women's APPAREL DIVISION NIKE SPORTSWEAR.  Black.  Nike Women's Sporstwear Boxy T-Shirt - Black. Elevate your style—and those around you—in this soft cotton tee. Relaxed without feeling too big, its boxy fit is shorter than our oversized tops but still roomyr a relaxed look and feel. Midweight cotton fabric feels soft and slightly textured. Roomy fit with slightly dropped shoulders provides relaxed look without feeling too big. 100% cotton. Printed graphics. Machine wash. Imported.",
         categoryId: 8,

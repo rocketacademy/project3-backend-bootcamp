@@ -10,6 +10,13 @@ module.exports = {
         unique: true,
         type: Sequelize.INTEGER,
       },
+      order_id: {
+        type: Sequelize.INTEGER,
+        references: {
+          model: "orders",
+          key: "id",
+        },
+      },
       product_id: {
         type: Sequelize.INTEGER,
         references: {
@@ -17,12 +24,14 @@ module.exports = {
           key: "id",
         },
       },
-      order_id: {
+      quantity: {
         type: Sequelize.INTEGER,
-        references: {
-          model: "orders",
-          key: "id",
-        },
+      },
+      subtotal_price: {
+        type: Sequelize.DECIMAL,
+      },
+      seller_discount_amount: {
+        type: Sequelize.DECIMAL,
       },
       created_at: {
         allowNull: false,

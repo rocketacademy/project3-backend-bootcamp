@@ -22,10 +22,6 @@ module.exports = {
         allowNull: false,
         type: Sequelize.DATE,
       },
-      quantity: {
-        allowNull: false,
-        type: Sequelize.INTEGER,
-      },
       total_price: {
         allowNull: false,
         type: Sequelize.DECIMAL,
@@ -38,13 +34,15 @@ module.exports = {
           key: "id",
         },
       },
-      discount_id: {
-        allowNull: false,
+      user_discount_id: {
         type: Sequelize.INTEGER,
         references: {
           model: "user_discounts",
           key: "id",
         },
+      },
+      user_discount_amount: {
+        type: Sequelize.DECIMAL,
       },
       created_at: {
         allowNull: false,

@@ -1,0 +1,121 @@
+"use strict";
+
+/** @type {import('sequelize-cli').Migration} */
+module.exports = {
+  async up(queryInterface, Sequelize) {
+    await queryInterface.bulkInsert("product_orders", [
+      {
+        order_id: 1,
+        product_id: 3,
+        quantity: 1,
+        subtotal_price: 185,
+        seller_discount_amount: 1.85,
+        created_at: new Date(),
+        updated_at: new Date(),
+      },
+      {
+        order_id: 1,
+        product_id: 34,
+        quantity: 2,
+        subtotal_price: 103.6,
+        seller_discount_amount: 0,
+        created_at: new Date(),
+        updated_at: new Date(),
+      },
+      {
+        order_id: 1,
+        product_id: 35,
+        quantity: 1,
+        subtotal_price: 14.7,
+        seller_discount_amount: 0,
+        created_at: new Date(),
+        updated_at: new Date(),
+      },
+      {
+        order_id: 1,
+        product_id: 42,
+        quantity: 1,
+        subtotal_price: 32,
+        seller_discount_amount: 0,
+        created_at: new Date(),
+        updated_at: new Date(),
+      },
+      {
+        order_id: 2,
+        product_id: 7,
+        quantity: 1,
+        subtotal_price: 795,
+        seller_discount_amount: 15.9,
+        created_at: new Date(),
+        updated_at: new Date(),
+      },
+      {
+        order_id: 2,
+        product_id: 36,
+        quantity: 2,
+        subtotal_price: 59.6,
+        seller_discount_amount: 0,
+        created_at: new Date(),
+        updated_at: new Date(),
+      },
+      {
+        order_id: 2,
+        product_id: 9,
+        quantity: 2,
+        subtotal_price: 1460,
+        seller_discount_amount: 43.8,
+        created_at: new Date(),
+        updated_at: new Date(),
+      },
+      {
+        order_id: 3,
+        product_id: 22,
+        quantity: 2,
+        subtotal_price: 145.6,
+        seller_discount_amount: 0,
+        created_at: new Date(),
+        updated_at: new Date(),
+      },
+      {
+        order_id: 3,
+        product_id: 36,
+        quantity: 3,
+        subtotal_price: 44.7,
+        seller_discount_amount: 0,
+        created_at: new Date(),
+        updated_at: new Date(),
+      },
+      {
+        order_id: 4,
+        product_id: 18,
+        quantity: 4,
+        subtotal_price: 18.8,
+        seller_discount_amount: 0,
+        created_at: new Date(),
+        updated_at: new Date(),
+      },
+      {
+        order_id: 4,
+        product_id: 49,
+        quantity: 1,
+        subtotal_price: 2090,
+        seller_discount_amount: 62.7,
+        created_at: new Date(),
+        updated_at: new Date(),
+      },
+      {
+        order_id: 4,
+        product_id: 33,
+        quantity: 1,
+        subtotal_price: 8.2,
+        seller_discount_amount: 0,
+        created_at: new Date(),
+        updated_at: new Date(),
+      },
+    ]);
+  },
+
+  async down(queryInterface, Sequelize) {
+    await queryInterface.bulkDelete("product_orders", null, {});
+  },
+};
