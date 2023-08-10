@@ -1,7 +1,7 @@
 "use strict";
 const { Model } = require("sequelize");
 module.exports = (sequelize, DataTypes) => {
-  class order_history extends Model {
+  class Order_History extends Model {
     /**
      * Helper method for defining associations.
      * This method is not a part of Sequelize lifecycle.
@@ -13,7 +13,7 @@ module.exports = (sequelize, DataTypes) => {
       this.belongsTo(models.event, { foreignKey: "eventType" });
     }
   }
-  order_history.init(
+  Order_History.init(
     {
       orderId: {
         type: DataTypes.INTEGER,
@@ -36,5 +36,5 @@ module.exports = (sequelize, DataTypes) => {
       underscored: true,
     }
   );
-  return order_history;
+  return Order_History;
 };

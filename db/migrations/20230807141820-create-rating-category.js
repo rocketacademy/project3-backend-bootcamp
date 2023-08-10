@@ -42,8 +42,10 @@ module.exports = {
         discount_amount: {
           type: Sequelize.DECIMAL,
         },
+        valid_from: {
+          type: Sequelize.DATE,
+        },
         valid_till: {
-          allowNull: false,
           type: Sequelize.DATE,
         },
         created_at: {
