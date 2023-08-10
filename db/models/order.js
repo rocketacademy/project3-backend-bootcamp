@@ -6,9 +6,11 @@ module.exports = (sequelize, DataTypes) => {
       this.hasMany(models.order_history);
       this.belongsTo(models.user, { foreignKey: "userId" });
       this.belongsTo(models.shipping_methods, { foreignKey: "shippingMethod" });
-      this.belongsTo(models.user_discount, { foreignKey: "discountId" });
+      this.belongsTo(models.user_discount, {
+        foreignKey: "discountId",
+        as: "userDiscountId",
+      });
       this.belongsToMany(models.product, {
-        as: "product",
         through: "product_order",
       });
     }
@@ -20,7 +22,6 @@ module.exports = (sequelize, DataTypes) => {
         references: { model: "user", key: "id" },
       },
       orderDate: DataTypes.DATE,
-      quantity: DataTypes.INTEGER,
       totalPrice: DataTypes.DECIMAL,
       shippingMethod: {
         type: DataTypes.INTEGER,
@@ -30,6 +31,7 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.INTEGER,
         references: { model: "user_discount", key: "id" },
       },
+      userDiscountAmount: DataTypes.DECIMAL,
     },
     {
       sequelize,
