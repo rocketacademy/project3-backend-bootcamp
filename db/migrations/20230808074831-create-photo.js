@@ -14,7 +14,7 @@ module.exports = {
         type: Sequelize.INTEGER,
       },
       url: {
-        type: Sequelize.STRING,
+        type: Sequelize.TEXT,
       },
       product_id: {
         type: Sequelize.INTEGER,
