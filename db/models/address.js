@@ -3,12 +3,12 @@ const { Model } = require("sequelize");
 module.exports = (sequelize, DataTypes) => {
   class Address extends Model {
     static associate(models) {
-      this.belongsTo(models.users, { foreignKey: "userId" });
+      this.belongsTo(models.user, { foreignKey: "userId" });
     }
   }
   Address.init(
     {
-      userId: { type: DataTypes.INTEGER },
+      userId: DataTypes.INTEGER,
       address: DataTypes.STRING,
       city: DataTypes.STRING,
       postalCode: DataTypes.STRING,

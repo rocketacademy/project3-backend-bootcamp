@@ -5,10 +5,11 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       this.hasMany(models.order_history);
       this.belongsTo(models.user, { foreignKey: "userId" });
-      this.belongsTo(models.shipping_methods, { foreignKey: "shippingMethod" });
+      this.belongsTo(models.shipping_method, {
+        foreignKey: "shippingMethodId",
+      });
       this.belongsTo(models.user_discount, {
-        foreignKey: "discountId",
-        as: "userDiscountId",
+        foreignKey: "userDiscountId",
       });
       this.belongsToMany(models.product, {
         through: "product_order",
@@ -17,20 +18,11 @@ module.exports = (sequelize, DataTypes) => {
   }
   Order.init(
     {
-      userId: {
-        type: DataTypes.INTEGER,
-        references: { model: "user", key: "id" },
-      },
+      userId: DataTypes.INTEGER,
       orderDate: DataTypes.DATE,
       totalPrice: DataTypes.DECIMAL,
-      shippingMethod: {
-        type: DataTypes.INTEGER,
-        references: { model: "shipping_method", key: "id" },
-      },
-      discountId: {
-        type: DataTypes.INTEGER,
-        references: { model: "user_discount", key: "id" },
-      },
+      shippingMethodId: DataTypes.INTEGER,
+      userDiscountId: DataTypes.INTEGER,
       userDiscountAmount: DataTypes.DECIMAL,
     },
     {

@@ -3,7 +3,7 @@ const { Model } = require("sequelize");
 module.exports = (sequelize, DataTypes) => {
   class Shipping_Method extends Model {
     static associate(models) {
-      this.hasMany(models.orders);
+      this.hasMany(models.order);
     }
   }
   Shipping_Method.init(
