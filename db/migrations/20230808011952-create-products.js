@@ -34,7 +34,7 @@ module.exports = {
       description: {
         type: Sequelize.TEXT,
       },
-      categoryId: {
+      category_id: {
         type: Sequelize.INTEGER,
         references: {
           model: "categories",

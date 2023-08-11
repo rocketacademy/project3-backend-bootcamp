@@ -26,7 +26,7 @@ module.exports = {
         allowNull: false,
         type: Sequelize.DECIMAL,
       },
-      shipping_method: {
+      shipping_method_id: {
         allowNull: false,
         type: Sequelize.INTEGER,
         references: {
