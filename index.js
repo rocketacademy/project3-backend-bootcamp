@@ -17,7 +17,7 @@ const OrdersController = require("./controllers/ordersController.js");
 // initializing Controllers -> note the lowercase for the first word
 const productsController = new ProductsController(product);
 const usersController = new UsersController(user);
-const ordersController = new OrdersController(order);
+const ordersController = new OrdersController(order, user);
 
 // importing Routers
 const ProductsRouter = require("./routers/productsRouter");
