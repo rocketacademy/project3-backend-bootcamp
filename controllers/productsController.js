@@ -109,9 +109,8 @@ class ProductsController extends BaseController {
     }
   }
 
-
   //get all products with the category, seller info (user), and seller discount info
-  async getAllProducts(req, res) { 
+  async getAllProducts(req, res) {
     try {
       const output = await this.model.findAll({
         include: [
@@ -125,7 +124,16 @@ class ProductsController extends BaseController {
       return res.status(400).json({ error: true, msg: err.message });
     }
   }
-}
 
+  //get all categories
+  async getAllCategories(req, res) {
+    try {
+      const output = await this.categoryModel.findAll();
+      return res.json(output);
+    } catch (err) {
+      return res.status(400).json({ error: true, msg: err.message });
+    }
+  }
+}
 
 module.exports = ProductsController;
