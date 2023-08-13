@@ -4,7 +4,7 @@ module.exports = (sequelize, DataTypes) => {
   class User extends Model {
     static associate(models) {
       this.hasMany(models.address);
-      this.hasMany(models.order);
+      this.hasMany(models.order, { as: "buyer", foreignKey: "id" });
       this.hasMany(models.review);
       this.hasMany(models.chat);
       this.hasOne(models.current_cart);
