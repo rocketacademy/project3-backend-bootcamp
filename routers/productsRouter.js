@@ -14,6 +14,10 @@ class ProductsRouter {
       "/categories",
       this.controller.getAllCategories.bind(this.controller)
     );
+    router.get(
+      "/categories/:categoryId",
+      this.controller.getAllProductsByCategory.bind(this.controller)
+    );
     // router.post(
     //   "/",
     // this.jwtCheck,

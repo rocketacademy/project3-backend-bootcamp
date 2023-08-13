@@ -134,6 +134,18 @@ class ProductsController extends BaseController {
       return res.status(400).json({ error: true, msg: err.message });
     }
   }
-}
 
+  //get all products by category
+  async getAllProductsByCategory(req, res) {
+    const categoryId = req.params.categoryId;
+    try {
+      const output = await this.model.findAll({
+        where: { categoryId },
+      });
+      return res.json(output);
+    } catch (err) {
+      return res.status(400).json({ error: true, msg: err.message });
+    }
+  }
+}
 module.exports = ProductsController;

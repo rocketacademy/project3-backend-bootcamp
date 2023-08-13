@@ -42,6 +42,7 @@ const app = express();
 const corsOptions = {
   origin: process.env.REACT_APP_CORS_OPTIONS,
 };
+
 app.use(cors(corsOptions));
 // Enable reading JSON request bodies
 app.use(express.json());
