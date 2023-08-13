@@ -18,6 +18,10 @@ class ProductsRouter {
       "/categories/:categoryId",
       this.controller.getAllProductsByCategory.bind(this.controller)
     );
+    router.get(
+      "/category/:categoryId",
+      this.controller.getOneCategory.bind(this.controller)
+    );
     // router.post(
     //   "/",
     // this.jwtCheck,

@@ -100,7 +100,6 @@ class ProductsController extends BaseController {
 
   async getOne(req, res) {
     const { productId } = req.params;
-
     try {
       const output = await this.model.findByPk(productId);
       return res.json(output);
@@ -129,6 +128,17 @@ class ProductsController extends BaseController {
   async getAllCategories(req, res) {
     try {
       const output = await this.categoryModel.findAll();
+      return res.json(output);
+    } catch (err) {
+      return res.status(400).json({ error: true, msg: err.message });
+    }
+  }
+
+  //get info from one category
+  async getOneCategory(req, res) {
+    const { categoryId } = req.params;
+    try {
+      const output = await this.categoryModel.findByPk(categoryId);
       return res.json(output);
     } catch (err) {
       return res.status(400).json({ error: true, msg: err.message });
