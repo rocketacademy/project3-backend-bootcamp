@@ -4,7 +4,7 @@ require("dotenv").config();
 
 // importing DB
 const db = require("./db/models/index");
-const { product, user, order } = db;
+const { product, user, order, category, seller_discount } = db;
 
 // import middlewares
 // const jwtCheck = require("./middlewares/jwtCheck");
@@ -15,7 +15,12 @@ const UsersController = require("./controllers/usersController.js");
 const OrdersController = require("./controllers/ordersController.js");
 
 // initializing Controllers -> note the lowercase for the first word
-const productsController = new ProductsController(product);
+const productsController = new ProductsController(
+  product,
+  category,
+  seller_discount,
+  user
+);
 const usersController = new UsersController(user);
 const ordersController = new OrdersController(order, user);
 
@@ -37,6 +42,7 @@ const app = express();
 const corsOptions = {
   origin: process.env.REACT_APP_CORS_OPTIONS,
 };
+
 app.use(cors(corsOptions));
 // Enable reading JSON request bodies
 app.use(express.json());

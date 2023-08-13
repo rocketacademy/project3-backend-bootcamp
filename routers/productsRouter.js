@@ -9,7 +9,19 @@ class ProductsRouter {
   routes() {
     // we will insert routes into here later on
     router.get("/", this.controller.getAll.bind(this.controller));
-
+    router.get("/list", this.controller.getAllProducts.bind(this.controller));
+    router.get(
+      "/categories",
+      this.controller.getAllCategories.bind(this.controller)
+    );
+    router.get(
+      "/categories/:categoryId",
+      this.controller.getAllProductsByCategory.bind(this.controller)
+    );
+    router.get(
+      "/category/:categoryId",
+      this.controller.getOneCategory.bind(this.controller)
+    );
     // router.post(
     //   "/",
     // this.jwtCheck,

@@ -1,8 +1,11 @@
 const BaseController = require("./baseController");
 
 class ProductsController extends BaseController {
-  constructor(model) {
+  constructor(model, category, seller_discount, user) {
     super(model);
+    this.categoryModel = category;
+    this.sellerDiscountModel = seller_discount;
+    this.userModel = user;
   }
 
   // onLogin check if user exists, if not create
@@ -77,16 +80,6 @@ class ProductsController extends BaseController {
   // }
 
   // Retrieve specific listing. No authentication required.
-  async getOne(req, res) {
-    const { productId } = req.params;
-
-    try {
-      const output = await this.model.findByPk(productId);
-      return res.json(output);
-    } catch (err) {
-      return res.status(400).json({ error: true, msg: err });
-    }
-  }
 
   // Buy specific listing. Requires authentication.
   // async buyItem(req, res) {
@@ -104,6 +97,65 @@ class ProductsController extends BaseController {
   //     return res.status(400).json({ error: true, msg: err });
   //   }
   // }
-}
 
+  async getOne(req, res) {
+    const { productId } = req.params;
+    try {
+      const output = await this.model.findByPk(productId);
+      return res.json(output);
+    } catch (err) {
+      return res.status(400).json({ error: true, msg: err });
+    }
+  }
+
+  //get all products with the category, seller info (user), and seller discount info
+  async getAllProducts(req, res) {
+    try {
+      const output = await this.model.findAll({
+        include: [
+          { model: this.userModel, as: "seller" }, // Using the alias defined in the association
+          { model: this.categoryModel },
+          { model: this.sellerDiscountModel },
+        ],
+      });
+      return res.json(output);
+    } catch (err) {
+      return res.status(400).json({ error: true, msg: err.message });
+    }
+  }
+
+  //get all categories
+  async getAllCategories(req, res) {
+    try {
+      const output = await this.categoryModel.findAll();
+      return res.json(output);
+    } catch (err) {
+      return res.status(400).json({ error: true, msg: err.message });
+    }
+  }
+
+  //get info from one category
+  async getOneCategory(req, res) {
+    const { categoryId } = req.params;
+    try {
+      const output = await this.categoryModel.findByPk(categoryId);
+      return res.json(output);
+    } catch (err) {
+      return res.status(400).json({ error: true, msg: err.message });
+    }
+  }
+
+  //get all products by category
+  async getAllProductsByCategory(req, res) {
+    const categoryId = req.params.categoryId;
+    try {
+      const output = await this.model.findAll({
+        where: { categoryId },
+      });
+      return res.json(output);
+    } catch (err) {
+      return res.status(400).json({ error: true, msg: err.message });
+    }
+  }
+}
 module.exports = ProductsController;
