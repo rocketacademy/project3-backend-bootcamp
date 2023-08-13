@@ -127,22 +127,5 @@ class ProductsController extends BaseController {
   }
 }
 
-// async getAllProducts(req, res) {
-//   try {
-//     console.log("its in base!");
-//     const output = await this.model.findAll({
-//       include: [
-//         this.categoryModel,
-//         {
-//           model: this.userModel,
-//           as: "seller",
-//         },
-//       ],
-//     });
-//     return res.json(output);
-//   } catch (err) {
-//     return res.status(400).json({ error: true, msg: err.message });
-//   }
-// }
-// }
+
 module.exports = ProductsController;
