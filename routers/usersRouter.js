@@ -10,6 +10,7 @@ class UsersRouter {
     // we will insert routes into here later on
     router.get("/", this.controller.getAll.bind(this.controller));
     router.get("/:userId", this.controller.getOne.bind(this.controller));
+    router.post("/login", this.controller.login.bind(this.controller)); //login
     // router.post(
     //   "/",
     // this.jwtCheck,

@@ -4,7 +4,7 @@ require("dotenv").config();
 
 // importing DB
 const db = require("./db/models/index");
-const { product, user, order, category, seller_discount } = db;
+const { product, user, order, category, seller_discount, photo } = db;
 
 // import middlewares
 // const jwtCheck = require("./middlewares/jwtCheck");
@@ -19,7 +19,8 @@ const productsController = new ProductsController(
   product,
   category,
   seller_discount,
-  user
+  user,
+  photo
 );
 const usersController = new UsersController(user);
 const ordersController = new OrdersController(order, user);
