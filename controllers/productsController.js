@@ -103,7 +103,9 @@ class ProductsController extends BaseController {
   async getOne(req, res) {
     const { productId } = req.params;
     try {
-      const output = await this.model.findByPk(productId);
+      const output = await this.model.findByPk(productId, {
+        include: [{ model: this.photoModel }],
+      });
       return res.json(output);
     } catch (err) {
       return res.status(400).json({ error: true, msg: err });
