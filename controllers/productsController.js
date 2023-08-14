@@ -1,11 +1,12 @@
 const BaseController = require("./baseController");
 
 class ProductsController extends BaseController {
-  constructor(model, category, seller_discount, user) {
+  constructor(model, category, seller_discount, user, photo) {
     super(model);
     this.categoryModel = category;
     this.sellerDiscountModel = seller_discount;
     this.userModel = user;
+    this.photoModel = photo;
   }
 
   // onLogin check if user exists, if not create
@@ -101,7 +102,9 @@ class ProductsController extends BaseController {
   async getOne(req, res) {
     const { productId } = req.params;
     try {
-      const output = await this.model.findByPk(productId);
+      const output = await this.model.findByPk(productId, {
+        include: [{ model: this.photoModel }],
+      });
       return res.json(output);
     } catch (err) {
       return res.status(400).json({ error: true, msg: err });
