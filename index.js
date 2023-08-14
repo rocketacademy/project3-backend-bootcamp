@@ -1,5 +1,7 @@
-const cors = require("cors");
 const express = require("express");
+const http = require("http");
+const cors = require("cors");
+const { Server } = require("socket.io");
 require("dotenv").config();
 
 // importing DB
@@ -38,10 +40,39 @@ const ordersRouter = new OrdersRouter(ordersController);
 const PORT = process.env.PORT;
 const app = express();
 
+//create server for chat
+const server = http.createServer(app);
+
 // Enable CORS access to this server
 const corsOptions = {
   origin: process.env.REACT_APP_CORS_OPTIONS,
 };
+
+// connect io server for chat
+const io = new Server(server, {
+  cors: process.env.REACT_APP_CORS_OPTIONS,
+  methods: ["GET", "POST"],
+});
+
+// listening for events
+io.on("connection", (socket) => {
+  console.log(`User Connected: ${socket.id}`);
+
+  // to join a room
+  socket.on("join_room", (data) => {
+    socket.join(data);
+    console.log(`User with ID: ${socket.id} joined room: ${data}`);
+  });
+
+  //emit message to single room
+  socket.on("send_message", (data) => {
+    socket.to(data.room).emit("receive_message", data);
+  });
+
+  socket.on("disconnect", () => {
+    console.log("User Disconnected", socket.id);
+  });
+});
 
 app.use(cors(corsOptions));
 // Enable reading JSON request bodies
@@ -55,4 +86,7 @@ app.use("/orders", ordersRouter.routes());
 
 app.listen(PORT, () => {
   console.log(`Express app listening on port ${PORT}!`);
+});
+server.listen(3001, () => {
+  console.log(`Server is running on port 3001`);
 });
