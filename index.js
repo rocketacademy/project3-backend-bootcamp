@@ -1,22 +1,22 @@
+// import env file
+require("dotenv").config();
 //Enable CORS access to this server
 const cors = require("cors");
-
 //import express to read json
 const express = require("express");
 
-// import env file
-require("dotenv").config();
-
-//-----------import auth0 middleware
+//import auth0 middleware
 const auth = require("./middlewares/auth");
 
-//-----------initializing Controllers, lowercase for the key
+//import DB
+const db = require("./db/models/index");
+const { talent } = db;
 
-//-----------initializing controllers
+//import controllers
+const TalentController = require("./controllers/TalentController");
 
-//-----------importing DB
-// const db = require("./db/models/index");
-// const {} = db;
+//import router
+const TalentRouter = require("./routers/TalentRouter");
 
 //port and express
 const PORT = process.env.PORT;
@@ -24,15 +24,17 @@ const app = express();
 
 // Enable CORS access to this server
 app.use(cors());
-
 // Enable reading JSON request bodies
 app.use(express.json());
 
-// <----- ROUTERS ----->
+//initialise contollers
+const talentController = new TalentController(talent);
 
-app.get("/", (req, res) => {
-  res.send("Hello, World!");
-});
+//initialise router
+const talentRouter = new TalentRouter(talentController).routes();
+
+// <----- USAGE----->
+app.use("/talents", talentRouter);
 
 app.listen(PORT, () => {
   console.log(`Express app listening on port ${PORT}!`);
