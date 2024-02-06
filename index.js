@@ -1,12 +1,13 @@
 const express = require("express");
 const cors = require("cors");
 const { auth } = require("express-oauth2-jwt-bearer");
-const server = require("http").createServer(app);
-const io = require("socket.io")(server);
+
 require("dotenv").config();
 
 const PORT = process.env.PORT;
 const app = express();
+// const server = require("http").createServer(app);
+// const io = require("socket.io")(server);
 
 // importing Routers
 const ListingsRouter = require("./routers/listingsRouter");
@@ -18,6 +19,7 @@ const ListingsController = require("./controllers/listingsController");
 const db = require("./db/models/index");
 const { listing, user } = db;
 
+//Auth0 JWT middleware
 const checkJwt = auth({
   audience: process.env.JWT_AUDIENCE,
   issuerBaseURL: process.env.JWT_ISSUER_BASE_URL,
