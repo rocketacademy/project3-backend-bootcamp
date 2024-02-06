@@ -8,6 +8,7 @@ const express = require("express");
 require("dotenv").config();
 
 //-----------import auth0 middleware
+const auth = require("./middlewares/auth");
 
 //-----------initializing Controllers, lowercase for the key
 
