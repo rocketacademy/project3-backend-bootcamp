@@ -6,6 +6,7 @@ class BenefitController extends BaseController {
   }
 }
 
-//just get all only.
+// allow users to read info, and select data only.
+// user cannot add, edit or delete benefits.
 
 module.exports = BenefitController;

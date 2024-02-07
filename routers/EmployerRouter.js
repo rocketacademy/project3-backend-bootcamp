@@ -8,6 +8,11 @@ class EmployerRouter {
 
   routes() {
     router.get("/", this.controller.getAll.bind(this.controller));
+    router.post("/", this.controller.addEmployer.bind(this.controller));
+    router.post(
+      "/:employerId",
+      this.controller.updateEmployer.bind(this.controller)
+    );
     return router; // Return the router instance
   }
 }
