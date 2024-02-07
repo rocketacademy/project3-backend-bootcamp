@@ -1,6 +1,6 @@
 const BaseController = require("./BaseController");
 
-class TalentController extends BaseController {
+class EmployerController extends BaseController {
   constructor(model) {
     super(model);
   }
@@ -10,17 +10,17 @@ class TalentController extends BaseController {
     const { firstName, lastName, email } = req.body;
     try {
       // Create new talent
-      const newTalent = await this.model.create({
+      const newEmployer = await this.model.create({
         firstName: firstName,
         lastName: lastName,
         email: email,
       });
       // Respond with new talent
-      return res.json(newTalent);
+      return res.json(newEmployert);
     } catch (err) {
       return res.status(400).json({ error: true, msg: err });
     }
   }
 }
 
-module.exports = TalentController;
+module.exports = EmployerController;
