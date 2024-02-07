@@ -55,7 +55,6 @@ class EmployerController extends BaseController {
   }
 }
 
-// Update employer content
 // get all user info under base controller
 // delete is not required - user can't delete profile
 
