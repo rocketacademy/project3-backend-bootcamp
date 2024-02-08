@@ -1,37 +1,36 @@
-// import cors from "cors";
-// import express from "express";
-import authController from "./controllers/authController.js";
-import homeController from "./controllers/homeController.js";
-import chatController from "./controllers/chatController.js";
-import profileController from "./controllers/profileController.js";
-
-const PORT = 3000;
-const app = express();
-const cors = require("cors");
 const express = require("express");
+const cors = require("cors");
+require("dotenv").config();
+const PORT = 3000;
 
-// Middleware / cors
+const app = express();
+
+// IMPORT ROUTER
+const UsersRouter = require('./routers/usersRouter')
+
+// IMPORT CONTROLLER
+const UsersController = require('./controllers/userController')
+
+
+// IMPORT DB 
+const db = require('./models/index')
+const { user, listing, category, chat_image, chatroom_message, chatroom, like, listing_image, order, review } =db
+
+// INIT CONTROLLER 
+const usersController = new UsersController(user)
+// ,like, listing, chatroom, chatroom_message, order
+
+// INIT ROUTERS 
+const usersRouter = new UsersRouter(usersController).routes()
+
+
+// Middleware 
 app.use(cors());
+app.use(express.json())
+// Enable and use routers
+app.use('/users', usersRouter)
 
-// AUTHENTICATION ROUTES
-app.get("/authentication", authController.getCurrentUser);
-app.post("/authentication", authController.postCurrentUser);
 
-// HOMEPAGE ROUTES
-app.get("/home/listing", homeController.getListing);
-app.post("/home/listing", homeController.postListing);
-app.delete("/home/listing", homeController.deleteListing);
-app.get("/home/search", homeController.searchListing);
-app.get("/home/category", homeController.getListingCategory);
-
-// CHATPAGE ROUTES
-app.get("/chat", chatController.getAllChat);
-app.get("/chat/chatroom", chatController.getSpecificChat);
-app.post("/chat/message", chatController.postMessage);
-app.delete("/chat/message", chatController.deleteMessage);
-
-// PROFILEPAGE ROUTES
-app.get("/profile", profileController.getUserProfile);
 
 // Start the server
 app.listen(PORT, () => {
