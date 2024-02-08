@@ -13,39 +13,27 @@ class ListingsController extends BaseController {
     const {
       title,
       description,
-      image_link,
-      sellerEmail,
-      starting_bid,
-      buyout_price,
-      ending_at,
-      ref_num,
-      brand,
-      model,
+      imageLink,
+      sellerId,
+      watchId,
+      startingBid,
+      buyoutPrice,
+      endingAt,
     } = req.body;
 
     try {
-      const [seller] = await this.userModel.findOrCreate({
-        where: {
-          email: sellerEmail,
-        },
-      });
-
-      const [watch] = await this.watchModel.findOrCreate({
-        where: { ref_num: ref_num, brand: brand, model: model },
-      });
-
       // Create new listing
       const newListing = await this.model.create({
         title: title,
         description: description,
-        imageLink: image_link,
-        sellerId: seller.id,
+        imageLink: imageLink,
+        sellerId: sellerId,
         buyerId: null,
-        watchId: watch.id,
-        startingBid: starting_bid,
-        buyoutPrice: buyout_price,
+        watchId: watchId,
+        startingBid: startingBid,
+        buyoutPrice: buyoutPrice,
         status: true,
-        endingAt: new Date(ending_at),
+        endingAt: new Date(endingAt),
       });
 
       // Respond with new listing

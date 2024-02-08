@@ -1,7 +1,7 @@
 "use strict";
 const { Model } = require("sequelize");
 module.exports = (sequelize, DataTypes) => {
-  class wishlist extends Model {
+  class Wishlist extends Model {
     /**
      * Helper method for defining associations.
      * This method is not a part of Sequelize lifecycle.
@@ -11,14 +11,14 @@ module.exports = (sequelize, DataTypes) => {
       this.belongsTo(models.user, { as: "user", foreignKey: "user_id" });
     }
   }
-  wishlist.init(
+  Wishlist.init(
     {
-      user_id: {
+      userId: {
         type: DataTypes.INTEGER,
         references: { model: "users", key: "id" },
       },
-      fav_brand: DataTypes.STRING,
-      fav_model: DataTypes.STRING,
+      favBrand: DataTypes.STRING,
+      favModel: DataTypes.STRING,
     },
     {
       sequelize,
@@ -26,5 +26,5 @@ module.exports = (sequelize, DataTypes) => {
       underscored: true,
     }
   );
-  return wishlist;
+  return Wishlist;
 };
