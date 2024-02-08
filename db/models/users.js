@@ -12,6 +12,7 @@ module.exports = (sequelize, DataTypes) => {
       this.belongsToMany(models.listings, { through: "bids" });
       this.hasMany(models.listing, { as: "buyer", foreignKey: "buyer_id" });
       this.hasMany(models.listing, { as: "seller", foreignKey: "seller_id" });
+      this.hasMany(models.wishlist);
     }
   }
   users.init(
