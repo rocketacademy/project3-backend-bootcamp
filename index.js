@@ -7,9 +7,11 @@ const app = express();
 
 // IMPORT ROUTER
 const UsersRouter = require('./routers/usersRouter')
+const CategoriesRouter = require('./routers/categoryRouter')
 
 // IMPORT CONTROLLER
 const UsersController = require('./controllers/userController')
+const CategoriesController = require('./controllers/categoryController')
 
 
 // IMPORT DB 
@@ -19,9 +21,11 @@ const { user, listing, category, chat_image, chatroom_message, chatroom, like, l
 // INIT CONTROLLER 
 const usersController = new UsersController(user)
 // ,like, listing, chatroom, chatroom_message, order
+const categoriesController = new CategoriesController(category)
 
 // INIT ROUTERS 
 const usersRouter = new UsersRouter(usersController).routes()
+const categoriesRouter = new CategoriesRouter(categoriesController).router()
 
 
 // Middleware 
@@ -29,6 +33,7 @@ app.use(cors());
 app.use(express.json())
 // Enable and use routers
 app.use('/users', usersRouter)
+app.use('/categories', categoriesRouter)
 
 
 

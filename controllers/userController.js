@@ -4,14 +4,30 @@ const BaseController = require("./baseController");
 class UsersController extends BaseController {
   constructor(model) {
     super(model);
+
   }
 
   async createOne(req, res) {
-    const { email, username } = req.body;
+    const {
+      email,
+      firstName,
+      lastName,
+      username,
+      bio,
+      style,
+      address,
+      profilePicture,
+    } = req.body;
     try {
       const createUser = await this.model.create({
         email,
+        firstName,
+        lastName,
         username,
+        bio,
+        style,
+        address,
+        profilePicture,
       });
       return res.status(200).json(createUser);
     } catch (err) {
@@ -49,6 +65,21 @@ class UsersController extends BaseController {
       return res.status(400).json({ error: true, msg: err });
     }
   }
+
+  async getProfileByUsername(req,res){
+    const {username} = req.params
+    try {
+      const output = await this.model.findOne({
+        where:{
+          username
+        }
+      })
+      return res.status(200).json(output)
+    }catch(err){
+      return res.status(400).send("Failed, check ur code dummy")
+    }
+  }
+
   async getByUsernameNewUser(req,res){
     const {username} = req.params
     try{
@@ -66,6 +97,7 @@ class UsersController extends BaseController {
 
   async updateOne(req, res) {
     const {
+      email,
       firstName,
       lastName,
       username,
@@ -78,6 +110,7 @@ class UsersController extends BaseController {
     try {
       await this.model.update(
         {
+          email,
           firstName,
           lastName,
           username,
