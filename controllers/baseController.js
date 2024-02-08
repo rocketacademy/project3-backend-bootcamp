@@ -9,7 +9,7 @@ class BaseController {
     try {
       const output = await this.model.findAll();
       console.log("HELLO WORLD")
-      return res.send("HELLO WORLD");
+      return res.json(output);
     } catch (err) {
       return res.status(400).json({ error: true, msg: err });
     }

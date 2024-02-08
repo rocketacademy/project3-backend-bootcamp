@@ -7,11 +7,11 @@ const app = express();
 
 // IMPORT ROUTER
 const UsersRouter = require('./routers/usersRouter')
-const CategoriesRouter = require('./routers/categoryRouter')
+const CategoriesRouter = require('./routers/categoriesRouter')
 
 // IMPORT CONTROLLER
 const UsersController = require('./controllers/userController')
-const CategoriesController = require('./controllers/categoryController')
+const CategoriesController = require('./controllers/categoriesController')
 
 
 // IMPORT DB 
@@ -25,7 +25,7 @@ const categoriesController = new CategoriesController(category)
 
 // INIT ROUTERS 
 const usersRouter = new UsersRouter(usersController).routes()
-const categoriesRouter = new CategoriesRouter(categoriesController).router()
+const categoriesRouter = new CategoriesRouter(categoriesController).routes()
 
 
 // Middleware 
