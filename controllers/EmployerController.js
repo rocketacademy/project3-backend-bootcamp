@@ -5,12 +5,12 @@ class EmployerController extends BaseController {
     super(model);
   }
 
-  // Create talent
+  // Create employer
   async addEmployer(req, res) {
     const { firstName, lastName, companyName, email, photo, description } =
       req.body;
     try {
-      // Create new talent
+      // Create new employer
       const newEmployer = await this.model.create({
         firstName: firstName,
         lastName: lastName,
@@ -19,7 +19,7 @@ class EmployerController extends BaseController {
         photo: photo,
         description: description,
       });
-      // Respond with new talent
+      // Respond with new employer
       return res.json(newEmployer);
     } catch (err) {
       return res.status(400).json({ error: true, msg: err });
