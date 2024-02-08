@@ -1,43 +1,49 @@
 const BaseController = require("./BaseController");
 
-class TalentController extends BaseController {
+class EmployerController extends BaseController {
   constructor(model) {
     super(model);
   }
 
-  // Create talent
-  async addTalent(req, res) {
-    const { firstName, lastName, email, photo } = req.body;
+  // Create employer
+  async addEmployer(req, res) {
+    const { firstName, lastName, companyName, email, photo, description } =
+      req.body;
     try {
-      // Create new talent
-      const newTalent = await this.model.create({
+      // Create new employer
+      const newEmployer = await this.model.create({
         firstName: firstName,
         lastName: lastName,
+        companyName: companyName,
         email: email,
         photo: photo,
+        description: description,
       });
-      // Respond with new talent
-      return res.json(newTalent);
+      // Respond with new employer
+      return res.json(newEmployer);
     } catch (err) {
       return res.status(400).json({ error: true, msg: err });
     }
   }
 
-  // Edit and Update Talent
-  async updateTalent(req, res) {
-    const { firstName, lastName, email, photo } = req.body;
-    const { talentId } = req.params;
+  // Edit and Update Employer
+  async updateEmployer(req, res) {
+    const { firstName, lastName, companyName, email, photo, description } =
+      req.body;
+    const { employerId } = req.params;
     try {
       await this.model.update(
         {
           firstName: firstName,
           lastName: lastName,
+          companyName: companyName,
           email: email,
           photo: photo,
+          description: description,
         },
         {
           where: {
-            id: talentId,
+            id: employerId,
           },
         }
       );
@@ -52,4 +58,4 @@ class TalentController extends BaseController {
 // get all user info under base controller
 // delete is not required - user can't delete profile
 
-module.exports = TalentController;
+module.exports = EmployerController;
