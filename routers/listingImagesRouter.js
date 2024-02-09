@@ -1,7 +1,7 @@
 const express = require('express')
 const router = express.Router()
 
-class listingImagesRouter{
+class ListingImagesRouter{
 	constructor(controller){
 		this.controller = controller
 	}
@@ -12,4 +12,4 @@ class listingImagesRouter{
 	}
 }
 
-module.exports = listingImagesRouter
+module.exports = ListingImagesRouter

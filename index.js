@@ -9,11 +9,13 @@ const app = express();
 const UsersRouter = require('./routers/usersRouter')
 const CategoriesRouter = require('./routers/categoriesRouter')
 const ListingsRouter = require('./routers/listingsRouter')
+const ListingImagesRouter = require('./routers/listingImagesRouter')
 
 // IMPORT CONTROLLER
 const UsersController = require('./controllers/userController')
 const CategoriesController = require('./controllers/categoriesController')
 const ListingsController = require('./controllers/listingsController')
+const ListingImagesController = require('./controllers/listingImagesController')
 
 
 // IMPORT DB 
@@ -31,6 +33,7 @@ const listingImagesController = new ListingImagesController(listing_image)
 const usersRouter = new UsersRouter(usersController).routes()
 const categoriesRouter = new CategoriesRouter(categoriesController).routes()
 const listingsRouter = new ListingsRouter(listingsController).routes()
+const listingImagesRouter = new ListingImagesRouter(listingImagesController).routes()
 
 
 // Middleware 
@@ -39,7 +42,8 @@ app.use(express.json())
 // Enable and use routers
 app.use('/users', usersRouter)
 app.use('/categories', categoriesRouter)
-
+app.use('/listings', listingsRouter)
+app.use('/listing-images', listingImagesRouter)
 
 
 // Start the server
