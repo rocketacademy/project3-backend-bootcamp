@@ -1,8 +1,11 @@
 const BaseController = require("./baseController");
 
 class ListingsController extends BaseController {
-	constructor(model) {
+	constructor(model, categoryModel, listingImageModel, userModel) {
 		super(model);
+		this.categoryModel = categoryModel;
+		this.listingImageModel = listingImageModel;
+		this.userModel = userModel
 	}
 	async createOne(req, res) {
 		const { title, description, price, sellerId, categoryId } = req.body;
@@ -16,6 +19,8 @@ class ListingsController extends BaseController {
 				sold: false,
 				reserved: false,
 			});
+			const selectedCategory = await this.categoryModel.findByPk(categoryId)
+			await createListing.setCategory(selectedCategory)
 			return res.status(200).json(createListing);
 		} catch (err) {
 			return res.status(400).send(err);
@@ -24,12 +29,20 @@ class ListingsController extends BaseController {
 	async getOne(req, res) {
 		const { listingId } = req.params;
 		try {
-			const output = await this.model.findOne({
-				where: {
-					listingId,
-				},
-			});
-			return res.status(200).json(output);
+			const output = await this.model.findByPk(listingId);
+			const images = await this.listingImageModel.findAll({
+				where:{
+					listingId
+				}
+			})
+			const imageUrls = images.map(image=>image.url)
+			const category = await this.categoryModel.findOne({
+				where:{
+					id:output.categoryId
+				}
+			})
+			const seller = await this.userModel.findByPk(output.sellerId)
+			return res.status(200).json({listing: output,images:imageUrls, category:category.name, seller:seller });
 		} catch (err) {
 			return res.status(400).send("Failed, check ur code dummy");
 		}

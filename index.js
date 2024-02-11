@@ -26,7 +26,7 @@ const { user, listing, category, chat_image, chatroom_message, chatroom, like, l
 const usersController = new UsersController(user)
 // ,like, listing, chatroom, chatroom_message, order
 const categoriesController = new CategoriesController(category)
-const listingsController = new ListingsController(listing)
+const listingsController = new ListingsController(listing, category, listing_image, user)
 const listingImagesController = new ListingImagesController(listing_image)
 
 // INIT ROUTERS 

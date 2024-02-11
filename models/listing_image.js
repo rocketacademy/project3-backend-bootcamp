@@ -23,6 +23,7 @@ module.exports = (sequelize, DataTypes) => {
       sequelize,
       modelName: "listing_image",
       underscored: true,
+			noPrimaryKey:true
     }
   );
   return Listing_image;

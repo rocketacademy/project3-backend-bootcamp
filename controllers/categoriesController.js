@@ -15,6 +15,15 @@ class CategoriesController extends BaseController {
     } catch (err) {
       return res.status(400).json({ error: true, msg: err });
     }
+  }  
+	async getById(req, res) {
+    const { categoryId } = req.params;
+    try {
+			const category = await this.model.findByPk(categoryId);
+      return res.status(200).send(category.name)
+    } catch (err) {
+      return res.status(400).json({ error: true, msg: err });
+    }
   }
 }
 
