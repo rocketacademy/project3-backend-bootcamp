@@ -35,10 +35,11 @@ const {
 } = db;
 
 // INIT CONTROLLER
+
 const usersController = new UsersController(user);
 const chatController = new ChatController(
-  chat_image,
   chatroom_message,
+  chat_image,
   chatroom,
   listing,
   user
