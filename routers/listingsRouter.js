@@ -8,7 +8,9 @@ class ListingsRouter {
 	routes() {
 		router.get("/", this.controller.getAll.bind(this.controller));
 		router.post("/", this.controller.createOne.bind(this.controller));
+		router.get("/user/:userId", this.controller.getListingsOfUser.bind(this.controller));
 		router.get("/:listingId", this.controller.getOne.bind(this.controller));
+		
 		return router;
 	}
 }
