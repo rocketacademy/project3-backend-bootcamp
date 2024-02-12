@@ -6,13 +6,15 @@ class TalentController extends BaseController {
     talentResumeModel,
     talentWorkExperienceModel,
     talentSkillSetModel,
-    talentEducationModel
+    talentEducationModel,
+    benefitModel
   ) {
     super(model);
     this.talentResumeModel = talentResumeModel;
     this.talentWorkExperienceModel = talentWorkExperienceModel;
     this.talentSkillSetModel = talentSkillSetModel;
     this.talentEducationModel = talentEducationModel;
+    this.benefitModel = benefitModel;
   }
 
   // Create talent
@@ -217,6 +219,47 @@ class TalentController extends BaseController {
       });
       // Respond with the new work experience
       return res.json(education);
+    } catch (err) {
+      return res.status(400).json({ error: true, msg: err });
+    }
+  }
+
+  // <------------------------ BENEFIT ------------------------ >
+
+  async getBenefit(req, res) {
+    const { talentId } = req.params;
+    try {
+      const talent = await this.model.findByPk(talentId, {
+        include: this.benefitModel,
+      });
+
+      //show benefits only
+      const benefit = talent.benefits;
+      return res.json(talent);
+    } catch (err) {
+      return res.status(400).json({ error: true, msg: err });
+    }
+  }
+
+  async addBenefit(req, res) {
+    const { talentId } = req.params;
+    const { selectedBenefitId } = req.body;
+    try {
+      // Check if the talent exists
+      const talent = await this.model.findByPk(talentId);
+      if (!talent) {
+        return res.status(404).json({ error: true, msg: "Talent not found" });
+      }
+
+      // Create a new benefit and associate it with the talent
+      const addNewBenefit = await this.benefitModel.findAll({
+        where: {
+          benefitId: selectedBenefitId,
+        },
+      });
+      await talent.setBenefits(addNewBenefit);
+      // Respond with the newly created benefit
+      return res.json(addNewBenefit);
     } catch (err) {
       return res.status(400).json({ error: true, msg: err });
     }

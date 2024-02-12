@@ -25,6 +25,7 @@ const {
   talentWorkExperience,
   talentSkillSet,
   talentEducation,
+  jobListing,
 } = db;
 
 //import controllers
@@ -52,10 +53,11 @@ const talentController = new TalentController(
   talentResume,
   talentWorkExperience,
   talentSkillSet,
-  talentEducation
+  talentEducation,
+  benefit
 );
 const benefitController = new BenefitController(benefit);
-const employerController = new EmployerController(employer);
+const employerController = new EmployerController(employer, jobListing);
 
 //initialise router
 const talentRouter = new TalentRouter(talentController, checkJwt).routes();

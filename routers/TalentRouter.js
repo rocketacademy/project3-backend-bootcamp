@@ -63,6 +63,18 @@ class TalentRouter {
       this.talentController.getEducation.bind(this.talentController)
     );
 
+    // <------------------------ BENEFIT ------------------------ >
+
+    router.get(
+      "/:talentId",
+      this.talentController.getBenefit.bind(this.talentController)
+    );
+
+    router.get(
+      "/:talentId",
+      this.talentController.addBenefit.bind(this.talentController)
+    );
+
     return router; // Return the router instance
   }
 }
