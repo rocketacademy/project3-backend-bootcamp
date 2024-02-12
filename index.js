@@ -38,9 +38,9 @@ const {
 
 const usersController = new UsersController(user);
 const chatController = new ChatController(
-  chatroom,
   chatroom_message,
   chat_image,
+  chatroom,
   listing,
   user
 );
