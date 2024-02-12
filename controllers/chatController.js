@@ -37,9 +37,9 @@ const { Sequelize } = require("../models");
 const BaseController = require("./baseController");
 
 class ChatController extends BaseController {
-  constructor(model, chatroom_message) {
+  constructor(model, chatroomMessageModel) {
     super(model);
-    this.chatroom_message = chatroom_message;
+    this.chatroomMessageModel = chatroomMessageModel;
   }
 
   //GET ALL CHATS WHERE USER IS EITHER OWNER OF LISTING OR POTENTIAL BUYER
@@ -60,7 +60,7 @@ class ChatController extends BaseController {
     const { chatroomId, comment, sender } = req.body;
     console.log(`chat ${chatroomId}`);
     try {
-      const newMessage = await this.chatroom_message.create({
+      const newMessage = await this.chatroomMessageModel.create({
         chatroomId: chatroomId,
         comment: comment,
         sender: sender,
