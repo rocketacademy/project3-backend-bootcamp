@@ -1,8 +1,9 @@
 const BaseController = require("./BaseController");
 
 class EmployerController extends BaseController {
-  constructor(model) {
+  constructor(model, jobListingModel) {
     super(model);
+    this.jobListingModel = jobListingModel;
   }
 
   // Create employer
@@ -49,6 +50,52 @@ class EmployerController extends BaseController {
       );
       const output = await this.model.findAll();
       return res.json(output);
+    } catch (err) {
+      return res.status(400).json({ error: true, msg: err });
+    }
+  }
+
+  // <------------------------ JOB LISTING ------------------------ >
+
+  async addJobListing(req, res) {
+    const { employerId } = req.params;
+    const {
+      jobTitle,
+      description,
+      jobResponsibility,
+      skillSet,
+      applicationStartDate,
+      applicationEndDate,
+    } = req.body;
+    try {
+      //tag to employerID
+      const newJobListing = await this.jobListingModel.create({
+        jobTitle: jobTitle,
+        description: description,
+        jobResponsibility: jobResponsibility,
+        skillSet: skillSet,
+        applicationStartDate: applicationStartDate,
+        applicationEndDate: applicationEndDate,
+        employerId: employerId,
+      });
+      // Respond with the new work experience
+      return res.json(newJobListing);
+    } catch (err) {
+      return res.status(400).json({ error: true, msg: err });
+    }
+  }
+
+  async getJobListing(req, res) {
+    const { employerId } = req.params;
+    try {
+      //tag to talent ID
+      const jobListing = await this.jobListingModel.findAll({
+        where: {
+          employerId: employerId,
+        },
+      });
+      // Respond with the new work experience
+      return res.json(jobListing);
     } catch (err) {
       return res.status(400).json({ error: true, msg: err });
     }
