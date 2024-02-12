@@ -52,7 +52,6 @@ class ChatController extends BaseController {
           potentialBuyerId: potentialBuyerId,
         },
       });
-      console.log(chatroom, created);
       return res.send(chatroom);
     } catch (err) {
       return res.status(400).json({ error: true, msg: err });
