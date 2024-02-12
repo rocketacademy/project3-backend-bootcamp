@@ -12,7 +12,7 @@ class ListingsController {
     try {
       const allListings = await this.model.findAll({
         include: [
-          { model: this.listingImageModel, attributes: ["url"] },
+          { model: this.listingImageModel, attributes: ["url"], limit: 1 },
           { model: this.categoryModel, attributes: ["id", "name"] },
           {
             model: this.userModel,
@@ -49,7 +49,7 @@ class ListingsController {
   async getOne(req, res) {
     const { listingId } = req.params;
     try {
-      const output = await this.model.findByPk(listingId, {
+      const listing = await this.model.findByPk(listingId, {
         include: [
           { model: this.listingImageModel, attributes: ["url"] },
           { model: this.categoryModel, attributes: ["id", "name"] },
@@ -60,12 +60,13 @@ class ListingsController {
           },
         ],
       });
-      return res.status(200).json({ output });
+      return res.status(200).json(listing);
     } catch (err) {
       return res.status(400).send("Failed, check ur code dummy");
     }
   }
 
+  //Should this be nested within userController, under getProfileByUsername?
   async getListingsOfUser(req, res) {
     const { userId } = req.params;
     try {
@@ -81,20 +82,21 @@ class ListingsController {
     }
   }
 
-  // ASK SAM ABOUT TURNING THIS INTO A MIDDLEWARE FUNCTION COS WTF?! THEY DIDNT TEACH US HOW TO USE MIDDLEWARE IN THIS
+  // ASK SAM ABOUT TURNING THIS INTO A MIDDLEWARE FUNCTION, IT CAN BE USED IN MESSAGES, SEARCH, ETC.
   getPaginated = async (req, res) => {
     const page = Number(req.query.page);
-    const limit = 1;
+    const limit = 6;
     const offset = (page - 1) * limit;
 
     try {
       const results = {};
 
       results.listings = await this.model.findAll({
+        order: [["updatedAt", "DESC"]],
         offset: offset,
         limit: limit,
         include: [
-          { model: this.listingImageModel, attributes: ["url"], limit:1 },
+          { model: this.listingImageModel, attributes: ["url"], limit: 1 },
           { model: this.categoryModel, attributes: ["id", "name"] },
           {
             model: this.userModel,
