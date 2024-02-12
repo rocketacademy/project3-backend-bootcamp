@@ -1,12 +1,32 @@
-const BaseController = require("./baseController");
+// const BaseController = require("./baseController");
 
-class ListingsController extends BaseController {
+class ListingsController {
   constructor(model, categoryModel, listingImageModel, userModel) {
-    super(model);
+    this.model = model;
     this.categoryModel = categoryModel;
     this.listingImageModel = listingImageModel;
     this.userModel = userModel;
   }
+
+  getAll = async (req, res) => {
+    try {
+      const allListings = await this.model.findAll({
+        include: [
+          { model: this.listingImageModel, attributes: ["url"] },
+          { model: this.categoryModel, attributes: ["id", "name"] },
+          {
+            model: this.userModel,
+            as: "seller",
+            attributes: ["username", "firstName", "lastName", "profilePicture"],
+          },
+        ],
+      });
+      return res.status(200).json(allListings);
+    } catch (error) {
+      return res.status(400).send(error);
+    }
+  };
+
   async createOne(req, res) {
     const { title, description, price, sellerId, categoryId } = req.body;
     try {
@@ -29,25 +49,18 @@ class ListingsController extends BaseController {
   async getOne(req, res) {
     const { listingId } = req.params;
     try {
-      const output = await this.model.findByPk(listingId);
-      const images = await this.listingImageModel.findAll({
-        where: {
-          listingId,
-        },
+      const output = await this.model.findByPk(listingId, {
+        include: [
+          { model: this.listingImageModel, attributes: ["url"] },
+          { model: this.categoryModel, attributes: ["id", "name"] },
+          {
+            model: this.userModel,
+            as: "seller",
+            attributes: ["username", "firstName", "lastName", "profilePicture"],
+          },
+        ],
       });
-      const imageUrls = images.map((image) => image.url);
-      const category = await this.categoryModel.findOne({
-        where: {
-          id: output.categoryId,
-        },
-      });
-      const seller = await this.userModel.findByPk(output.sellerId);
-      return res.status(200).json({
-        listing: output,
-        images: imageUrls,
-        category: category.name,
-        seller: seller,
-      });
+      return res.status(200).json({ output });
     } catch (err) {
       return res.status(400).send("Failed, check ur code dummy");
     }
@@ -60,51 +73,57 @@ class ListingsController extends BaseController {
         where: {
           sellerId: userId,
         },
+        include: [this.listingImageModel],
       });
-      const userListingsIdArr = userListings.map(
-        (userListing) => userListing.id
-      );
-      return res.status(200).send(userListingsIdArr);
+      return res.status(200).send(userListings);
     } catch (err) {
       return res.status(500).send("yea... check your code.");
     }
   }
 
-  // ASK SAM ABOUT TURNING THIS INTO A MIDDLEWARE FUNCTION COS WTF?! THEY DIDNT TEACH US HOW TO USE MIDDLEWARE IN THIS 
-  getPaginated = async(req, res) => {
-       const page = Number(req.query.page);
-       const limit = 1;
-       const offset = (page - 1) * limit;
+  // ASK SAM ABOUT TURNING THIS INTO A MIDDLEWARE FUNCTION COS WTF?! THEY DIDNT TEACH US HOW TO USE MIDDLEWARE IN THIS
+  getPaginated = async (req, res) => {
+    const page = Number(req.query.page);
+    const limit = 1;
+    const offset = (page - 1) * limit;
 
-       try {
-         const results = {};
+    try {
+      const results = {};
 
-         results.listings = await this.model.findAll({
-           offset: offset,
-           limit: limit,
-         });
-         const countListings = await this.model.count();
+      results.listings = await this.model.findAll({
+        offset: offset,
+        limit: limit,
+        include: [
+          { model: this.listingImageModel, attributes: ["url"], limit:1 },
+          { model: this.categoryModel, attributes: ["id", "name"] },
+          {
+            model: this.userModel,
+            as: "seller",
+            attributes: ["username", "firstName", "lastName", "profilePicture"],
+          },
+        ],
+      });
+      const countListings = await this.model.count();
 
-         if (offset > 0) {
-           results.previous = {
-             page: page - 1,
-             limit,
-           };
-         }
+      if (offset > 0) {
+        results.previous = {
+          page: page - 1,
+          limit,
+        };
+      }
 
-         if (offset + limit !== countListings) {
-           results.next = {
-             page: page + 1,
-             limit,
-           };
-         }
+      if (offset + limit !== countListings) {
+        results.next = {
+          page: page + 1,
+          limit,
+        };
+      }
 
-         res.status(200).json(results)
-       } catch (error) {
-         res.status(400).send("check your code");
-       }
-
-  }
+      res.status(200).json(results);
+    } catch (error) {
+      res.status(400).send("check your code");
+    }
+  };
 }
 
 module.exports = ListingsController;

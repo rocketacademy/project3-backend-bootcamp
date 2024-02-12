@@ -10,7 +10,7 @@ class ListingsRouter {
       "/paginated",
       this.controller.getPaginated
     );
-    router.get("/", this.controller.getAll.bind(this.controller));
+    router.get("/", this.controller.getAll);
     router.post("/", this.controller.createOne.bind(this.controller));
     router.get(
       "/user/:userId",
