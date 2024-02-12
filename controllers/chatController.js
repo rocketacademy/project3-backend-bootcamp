@@ -2,10 +2,10 @@ const { Sequelize } = require("../models");
 const BaseController = require("./baseController");
 
 class ChatController extends BaseController {
-  constructor(model, chatroomMessageModel, chatImageModel) {
+  constructor(model, chatImageModel, chatroomModel) {
     super(model);
-    this.chatroomMessageModel = chatroomMessageModel;
     this.chatImageModel = chatImageModel;
+    this.chatroomModel = chatroomModel;
   }
 
   //Posts message content
@@ -13,7 +13,7 @@ class ChatController extends BaseController {
     const { chatroomId, comment, sender } = req.body;
     console.log(`chat ${chatroomId}`);
     try {
-      const newMessage = await this.chatroomMessageModel.create({
+      const newMessage = await this.model.create({
         chatroomId: chatroomId,
         comment: comment,
         sender: sender,
@@ -36,6 +36,24 @@ class ChatController extends BaseController {
       });
 
       return res.send(newImage);
+    } catch (err) {
+      return res.status(400).json({ error: true, msg: err });
+    }
+  }
+
+  //Creates new chat or finds chat if available
+  async createChatroom(req, res) {
+    const { listingId, potentialBuyerId } = req.body;
+    console.log(listingId, potentialBuyerId);
+    try {
+      const [chatroom, created] = await this.chatroomModel.findOrCreate({
+        where: {
+          listingId: listingId,
+          potentialBuyerId: potentialBuyerId,
+        },
+      });
+      console.log(chatroom, created);
+      return res.send(chatroom);
     } catch (err) {
       return res.status(400).json({ error: true, msg: err });
     }
