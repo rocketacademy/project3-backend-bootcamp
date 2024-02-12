@@ -42,14 +42,12 @@ class ListingsController extends BaseController {
         },
       });
       const seller = await this.userModel.findByPk(output.sellerId);
-      return res
-        .status(200)
-        .json({
-          listing: output,
-          images: imageUrls,
-          category: category.name,
-          seller: seller,
-        });
+      return res.status(200).json({
+        listing: output,
+        images: imageUrls,
+        category: category.name,
+        seller: seller,
+      });
     } catch (err) {
       return res.status(400).send("Failed, check ur code dummy");
     }
@@ -63,11 +61,49 @@ class ListingsController extends BaseController {
           sellerId: userId,
         },
       });
-			const userListingsIdArr = userListings.map(userListing => userListing.id)
+      const userListingsIdArr = userListings.map(
+        (userListing) => userListing.id
+      );
       return res.status(200).send(userListingsIdArr);
     } catch (err) {
       return res.status(500).send("yea... check your code.");
     }
+  }
+
+  // ASK SAM ABOUT TURNING THIS INTO A MIDDLEWARE FUNCTION COS WTF?! THEY DIDNT TEACH US HOW TO USE MIDDLEWARE IN THIS 
+  getPaginated = async(req, res) => {
+       const page = Number(req.query.page);
+       const limit = Number(req.query.limit);
+       const offset = (page - 1) * limit;
+
+       try {
+         const results = {};
+
+         results.listings = await this.model.findAll({
+           offset: offset,
+           limit: limit,
+         });
+         const countListings = await this.model.count();
+
+         if (offset > 0) {
+           results.previous = {
+             page: page - 1,
+             limit,
+           };
+         }
+
+         if (offset + limit !== countListings) {
+           results.next = {
+             page: page + 1,
+             limit,
+           };
+         }
+
+         res.status(200).json(results)
+       } catch (error) {
+         res.status(400).send("check your code");
+       }
+
   }
 }
 
