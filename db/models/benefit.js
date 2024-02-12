@@ -4,7 +4,11 @@
 
 const { Model } = require("sequelize");
 module.exports = (sequelize, DataTypes) => {
-  class Benefit extends Model {}
+  class Benefit extends Model {
+    static associate(models) {
+      this.belongsToMany(models.talent, { through: "talent_benefits" });
+    }
+  }
   Benefit.init(
     {
       category: DataTypes.STRING,

@@ -3,21 +3,66 @@ const router = express.Router();
 
 class TalentRouter {
   constructor(talentController, checkJwt) {
-    this.controller = talentController;
+    this.talentController = talentController;
     this.checkJwt = checkJwt;
   }
 
   routes() {
-    router.get("/", this.controller.getAll.bind(this.controller));
+    router.get("/", this.talentController.getAll.bind(this.talentController));
     router.post(
       "/",
       this.checkJwt,
-      this.controller.addTalent.bind(this.controller)
+      this.talentController.addTalent.bind(this.talentController)
     );
     router.post(
       "/:talentId",
-      this.controller.updateTalent.bind(this.controller)
+      this.talentController.updateTalent.bind(this.talentController)
     );
+
+    // <------------------------ RESUME ------------------------ >
+
+    router.post(
+      "/:talentId/resume",
+      this.talentController.addResume.bind(this.talentController)
+    );
+    router.get(
+      "/:talentId/resume",
+      this.talentController.getResume.bind(this.talentController)
+    );
+
+    // <------------------------ WORK EXPERIENCE ------------------------ >
+
+    router.post(
+      "/:talentId/workexperience",
+      this.talentController.addWorkExperience.bind(this.talentController)
+    );
+    router.get(
+      "/:talentId/workexperience",
+      this.talentController.getWorkExperiences.bind(this.talentController)
+    );
+
+    // <------------------------ SKILL SET ------------------------ >
+
+    router.post(
+      "/:talentId/skill",
+      this.talentController.addSkillSet.bind(this.talentController)
+    );
+    router.get(
+      "/:talentId/skill",
+      this.talentController.getSkillSet.bind(this.talentController)
+    );
+
+    // <------------------------ EDUCATION ------------------------ >
+
+    router.post(
+      "/:talentId/education",
+      this.talentController.addEducation.bind(this.talentController)
+    );
+    router.get(
+      "/:talentId/education",
+      this.talentController.getEducation.bind(this.talentController)
+    );
+
     return router; // Return the router instance
   }
 }

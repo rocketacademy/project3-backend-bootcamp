@@ -3,7 +3,7 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable("talents_resume", {
+    await queryInterface.createTable("talent_resumes", {
       id: {
         allowNull: false,
         autoIncrement: true,
@@ -41,7 +41,7 @@ module.exports = {
       },
     });
 
-    await queryInterface.createTable("talents_work_experiences", {
+    await queryInterface.createTable("talent_work_experiences", {
       id: {
         allowNull: false,
         autoIncrement: true,
@@ -93,7 +93,7 @@ module.exports = {
       },
     });
 
-    await queryInterface.createTable("talents_skill_set", {
+    await queryInterface.createTable("talent_skill_sets", {
       id: {
         allowNull: false,
         autoIncrement: true,
@@ -125,7 +125,7 @@ module.exports = {
       },
     });
 
-    await queryInterface.createTable("talents_education", {
+    await queryInterface.createTable("talent_educations", {
       id: {
         allowNull: false,
         autoIncrement: true,
@@ -289,10 +289,10 @@ module.exports = {
   },
 
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable("talents_resume");
-    await queryInterface.dropTable("talents_work_experiences");
-    await queryInterface.dropTable("talents_skill_set");
-    await queryInterface.dropTable("talents_education");
+    await queryInterface.dropTable("talent_resumes");
+    await queryInterface.dropTable("talent_work_experiences");
+    await queryInterface.dropTable("talent_skill_sets");
+    await queryInterface.dropTable("talent_educations");
     await queryInterface.dropTable("job_listings");
     await queryInterface.dropTable("applications");
     await queryInterface.dropTable("chatrooms");

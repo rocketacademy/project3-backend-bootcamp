@@ -17,7 +17,15 @@ const checkJwt = auth({
 
 //import DB
 const db = require("./db/models/index");
-const { talent, benefit, employer } = db;
+const {
+  talent,
+  benefit,
+  employer,
+  talentResume,
+  talentWorkExperience,
+  talentSkillSet,
+  talentEducation,
+} = db;
 
 //import controllers
 const TalentController = require("./controllers/TalentController");
@@ -39,7 +47,13 @@ app.use(cors());
 app.use(express.json());
 
 //initialise contollers
-const talentController = new TalentController(talent);
+const talentController = new TalentController(
+  talent,
+  talentResume,
+  talentWorkExperience,
+  talentSkillSet,
+  talentEducation
+);
 const benefitController = new BenefitController(benefit);
 const employerController = new EmployerController(employer);
 

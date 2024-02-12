@@ -3,7 +3,7 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.bulkInsert("talents_resume", [
+    await queryInterface.bulkInsert("talent_resumes", [
       {
         talent_id: 1,
         location: "Singapore",
@@ -29,7 +29,7 @@ module.exports = {
       },
     ]);
 
-    await queryInterface.bulkInsert("talents_work_experiences", [
+    await queryInterface.bulkInsert("talent_work_experiences", [
       // talent_id: 1
       {
         talent_id: 1,
@@ -73,7 +73,7 @@ module.exports = {
       },
     ]);
 
-    await queryInterface.bulkInsert("talents_skill_set", [
+    await queryInterface.bulkInsert("talent_skill_sets", [
       // talent_id: 1
       {
         talent_id: 1,
@@ -99,7 +99,7 @@ module.exports = {
       },
     ]);
 
-    await queryInterface.bulkInsert("talents_education", [
+    await queryInterface.bulkInsert("talent_educations", [
       // Education for talent_id: 1
       {
         talent_id: 1,
@@ -170,10 +170,10 @@ module.exports = {
   },
 
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable("talents_resume");
-    await queryInterface.dropTable("talents_work_experiences");
-    await queryInterface.dropTable("talents_skill_set");
-    await queryInterface.dropTable("talents_education");
+    await queryInterface.dropTable("talent_resumes");
+    await queryInterface.dropTable("talent_work_experiences");
+    await queryInterface.dropTable("talent_skill_sets");
+    await queryInterface.dropTable("talent_educations");
     await queryInterface.dropTable("job_listings");
     await queryInterface.dropTable("applications");
     await queryInterface.dropTable("chatrooms");
