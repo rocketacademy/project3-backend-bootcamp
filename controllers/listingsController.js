@@ -107,19 +107,17 @@ class ListingsController {
       });
       const countListings = await this.model.count();
 
-      if (offset > 0) {
-        results.previous = {
-          page: page - 1,
-          limit,
-        };
-      }
+      results.previous = {
+        exists: offset > 0 ? true : false,
+        page: offset > 0 ? page - 1 : null,
+        limit,
+      };
 
-      if (offset + limit !== countListings) {
-        results.next = {
-          page: page + 1,
-          limit,
-        };
-      }
+      results.next = {
+        exists: offset + limit <= countListings ? true : false,
+        page: offset + limit <= countListings ? page + 1 : null,
+        limit,
+      };
 
       res.status(200).json(results);
     } catch (error) {
