@@ -73,7 +73,7 @@ class ListingsController extends BaseController {
   // ASK SAM ABOUT TURNING THIS INTO A MIDDLEWARE FUNCTION COS WTF?! THEY DIDNT TEACH US HOW TO USE MIDDLEWARE IN THIS 
   getPaginated = async(req, res) => {
        const page = Number(req.query.page);
-       const limit = Number(req.query.limit);
+       const limit = 1;
        const offset = (page - 1) * limit;
 
        try {
