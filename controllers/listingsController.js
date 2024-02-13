@@ -124,6 +124,28 @@ class ListingsController {
       res.status(400).send("check your code");
     }
   };
+
+  deleteOne = async(req,res)=>{
+    const {listingId} = req.params
+    try {
+
+      await this.listingImageModel.destroy({
+        where:{
+          listingId
+        }
+      })
+
+      await this.model.destroy({
+        where:{
+          id: listingId
+        }
+      })
+      return res.status(200).send("listing was deleted")
+    } catch (error) {
+      return res.status(400).send(error)
+    }
+  }
+
 }
 
 module.exports = ListingsController;

@@ -17,6 +17,7 @@ class ListingsRouter {
       this.controller.getListingsOfUser.bind(this.controller)
     );
     router.get("/:listingId", this.controller.getOne.bind(this.controller));
+    router.delete("/:listingId", this.controller.deleteOne)
 
     return router;
   }
