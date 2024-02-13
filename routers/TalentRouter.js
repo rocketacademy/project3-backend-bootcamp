@@ -14,6 +14,7 @@ class TalentRouter {
       this.checkJwt,
       this.talentController.addTalent.bind(this.talentController)
     );
+
     router.post(
       "/:talentId",
       this.talentController.updateTalent.bind(this.talentController)
@@ -29,6 +30,10 @@ class TalentRouter {
       "/:talentId/resume",
       this.talentController.getResume.bind(this.talentController)
     );
+    router.put(
+      "/:talentId/resume",
+      this.talentController.updateResume.bind(this.talentController)
+    );
 
     // <------------------------ WORK EXPERIENCE ------------------------ >
 
@@ -39,6 +44,10 @@ class TalentRouter {
     router.get(
       "/:talentId/workexperience",
       this.talentController.getWorkExperiences.bind(this.talentController)
+    );
+    router.put(
+      "/:talentId/workexperience",
+      this.talentController.updateWorkExp.bind(this.talentController)
     );
 
     // <------------------------ SKILL SET ------------------------ >

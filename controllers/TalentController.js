@@ -96,6 +96,42 @@ class TalentController extends BaseController {
       return res.status(400).json({ error: true, msg: err });
     }
   }
+  // Edit and Update Resume
+  async updateResume(req, res) {
+    const { talentId } = req.params;
+    const { location, title, industry, objective } = req.body;
+    try {
+      // Check if talent resume exists
+      const existingResume = await this.talentResumeModel.findOne({
+        where: {
+          talentId: talentId,
+        },
+      });
+
+      if (!existingResume) {
+        return res.status(404).json({ error: true, msg: "Resume not found" });
+      }
+
+      // Update the resume
+      await existingResume.update({
+        location: location || existingResume.location,
+        title: title || existingResume.title,
+        industry: industry || existingResume.industry,
+        objective: objective || existingResume.objective,
+      });
+
+      // Fetch the updated resume
+      const updatedResume = await this.talentResumeModel.findOne({
+        where: {
+          talentId: talentId,
+        },
+      });
+
+      return res.json(updatedResume);
+    } catch (err) {
+      return res.status(400).json({ error: true, msg: err });
+    }
+  }
 
   // <------------------------ WORK EXPERIENCE ------------------------ >
 
@@ -140,6 +176,55 @@ class TalentController extends BaseController {
       });
       // Respond with the new work experience
       return res.json(workExperiences);
+    } catch (err) {
+      return res.status(400).json({ error: true, msg: err });
+    }
+  }
+
+  //update work experience
+
+  async updateWorkExp(req, res) {
+    const { talentId } = req.params;
+    const {
+      companyName,
+      position,
+      responsibility,
+      startMonth,
+      startYear,
+      endMonth,
+      endYear,
+    } = req.body;
+    try {
+      // Check if talent resume exists
+      const existingWorkExp = await this.talentWorkExperienceModel.findOne({
+        where: {
+          talentId: talentId,
+        },
+      });
+
+      if (!existingWorkExp) {
+        return res.status(404).json({ error: true, msg: "Resume not found" });
+      }
+
+      // Update the resume
+      await existingWorkExp.update({
+        companyName: companyName || existingWorkExp.companyName,
+        position: position || existingWorkExp.position,
+        responsibility: responsibility || existingWorkExp.responsibility,
+        startMonth: startMonth || existingWorkExp.startMonth,
+        startYear: startYear || existingWorkExp.startYear,
+        endMonth: endMonth || existingWorkExp.endMonth,
+        endYear: endYear || existingWorkExp.endYear,
+      });
+
+      // Fetch the updated work exp
+      const updatedWorkExp = await this.talentWorkExperienceModel.findOne({
+        where: {
+          talentId: talentId,
+        },
+      });
+
+      return res.json(updatedWorkExp);
     } catch (err) {
       return res.status(400).json({ error: true, msg: err });
     }
