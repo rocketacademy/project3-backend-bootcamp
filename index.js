@@ -74,6 +74,8 @@ app.use("/listings", listingsRouter);
 app.use("/listing-images", listingImagesRouter);
 app.use("/chat", chatRouter);
 
+
+
 // Start the server
 app.listen(PORT, () => {
   console.log(`Express app listening on port ${PORT}!`);
