@@ -8,6 +8,23 @@ class ChatController extends BaseController {
     this.chatroomModel = chatroomModel;
   }
 
+  //Retrieve past messages for specific chatroom Id
+  async getMessages(req, res) {
+    const { chatroomId } = req.params;
+    console.log(`chat ${chatroomId}`);
+    try {
+      const chatroomMessages = await this.model.findAll({
+        where: {
+          chatroomId: chatroomId,
+        },
+      });
+
+      return res.send(chatroomMessages);
+    } catch (err) {
+      return res.status(400).json({ error: true, msg: err });
+    }
+  }
+
   //Posts message content
   async createMessage(req, res) {
     const { chatroomId, comment, sender } = req.body;
