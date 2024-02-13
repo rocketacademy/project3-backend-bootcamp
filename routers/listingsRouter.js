@@ -8,8 +8,10 @@ class ListingsRouter {
   routes() {
     router.get(
       "/paginated",
-      this.controller.getPaginated
+      this.controller.getPaginatedAll
     );
+    router.get("/category", this.controller.getPaginatedCategory)
+    router.get("/search", this.controller.getPaginatedSearch)
     router.get("/", this.controller.getAll);
     router.post("/", this.controller.createOne.bind(this.controller));
     router.get(

@@ -83,7 +83,7 @@ class ListingsController {
   }
 
   // ASK SAM ABOUT TURNING THIS INTO A MIDDLEWARE FUNCTION, IT CAN BE USED IN MESSAGES, SEARCH, ETC.
-  getPaginated = async (req, res) => {
+  getPaginatedAll = async (req, res) => {
     const page = Number(req.query.page);
     const limit = 6;
     const offset = (page - 1) * limit;
@@ -124,6 +124,14 @@ class ListingsController {
       res.status(400).send("check your code");
     }
   };
+
+  getPaginatedCategory = async (req,res) =>{
+    
+  }
+
+  getPaginatedSearch = async (req,res) =>{
+    
+  }
 
   deleteOne = async(req,res)=>{
     const {listingId} = req.params
