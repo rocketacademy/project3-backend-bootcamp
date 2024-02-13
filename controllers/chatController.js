@@ -22,7 +22,6 @@ class ChatController extends BaseController {
         include: [
           {
             model: this.listingModel,
-            attributes: ["sellerId"],
             where: {
               sellerId: userId,
             },
@@ -45,6 +44,11 @@ class ChatController extends BaseController {
         where: {
           chatroomId: chatroomId,
         },
+        include: [
+          {
+            model: this.chatImageModel,
+          },
+        ],
       });
 
       return res.send(chatroomMessages);

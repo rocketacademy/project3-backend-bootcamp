@@ -8,7 +8,7 @@ class ChatRouter {
   routes() {
     router.get("/:userId", this.controller.getAll.bind(this.controller));
     router.get(
-      "chatroom/:chatroomId",
+      "/chatroom/:chatroomId",
       this.controller.getMessages.bind(this.controller)
     );
     router.post(
