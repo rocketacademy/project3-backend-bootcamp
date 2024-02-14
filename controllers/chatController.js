@@ -41,23 +41,6 @@ class ChatController extends BaseController {
     }
   }
 
-  // async getAll(req, res) {
-  //   const { userId } = req.params;
-  //   console.log(userId);
-  //   try {
-  //     const output = await this.chatroomModel.findAll({
-  //       where: {
-  //         potentialBuyerId: userId,
-  //       },
-  //       include: [{ model: this.listingModel }, { model: this.userModel }],
-  //     });
-
-  //     return res.send(output);
-  //   } catch (err) {
-  //     return res.status(400).json({ error: true, msg: err });
-  //   }
-  // }
-
   //Retrieve past messages for specific chatroom Id
   async getMessages(req, res) {
     const { chatroomId } = req.params;
@@ -68,10 +51,7 @@ class ChatController extends BaseController {
         where: {
           chatroomId: chatroomId,
         },
-        include: [
-          { model: this.chatImageModel },
-          // { model: this.userModel, as: "sender" },
-        ],
+        include: [{ model: this.chatImageModel }, { model: this.userModel }],
       });
 
       return res.send(chatroomMessages);
