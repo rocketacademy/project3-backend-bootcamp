@@ -1,12 +1,14 @@
 const { Sequelize } = require("../models");
+const { Op } = require("sequelize");
 const BaseController = require("./baseController");
 
 class ChatController extends BaseController {
-  constructor(model, chatImageModel, chatroomModel, listingModel) {
+  constructor(model, chatImageModel, chatroomModel, listingModel, userModel) {
     super(model);
     this.chatImageModel = chatImageModel;
     this.chatroomModel = chatroomModel;
     this.listingModel = listingModel;
+    this.userModel = userModel;
   }
 
   //GET ALL CHATS WHERE USER IS EITHER OWNER OF LISTING OR POTENTIAL BUYER
@@ -17,23 +19,44 @@ class ChatController extends BaseController {
     try {
       const output = await this.chatroomModel.findAll({
         where: {
-          potentialBuyerId: 1,
+          [Op.or]: [
+            { potentialBuyerId: userId },
+            { "$listing.seller_id$": userId },
+          ],
         },
         include: [
           {
             model: this.listingModel,
-            where: {
-              sellerId: userId,
-            },
+            as: "listing", // Alias for the listingModel association
+            required: false,
           },
+          { model: this.userModel },
         ],
       });
 
       return res.send(output);
     } catch (err) {
-      return res.status(400).json({ error: true, msg: err });
+      console.error(err); // Log the error for debugging purposes
+      return res.status(400).json({ error: true, msg: err.message });
     }
   }
+
+  // async getAll(req, res) {
+  //   const { userId } = req.params;
+  //   console.log(userId);
+  //   try {
+  //     const output = await this.chatroomModel.findAll({
+  //       where: {
+  //         potentialBuyerId: userId,
+  //       },
+  //       include: [{ model: this.listingModel }, { model: this.userModel }],
+  //     });
+
+  //     return res.send(output);
+  //   } catch (err) {
+  //     return res.status(400).json({ error: true, msg: err });
+  //   }
+  // }
 
   //Retrieve past messages for specific chatroom Id
   async getMessages(req, res) {
@@ -41,13 +64,13 @@ class ChatController extends BaseController {
     console.log(`chat ${chatroomId}`);
     try {
       const chatroomMessages = await this.model.findAll({
+        order: [["createdAt", "ASC"]],
         where: {
           chatroomId: chatroomId,
         },
         include: [
-          {
-            model: this.chatImageModel,
-          },
+          { model: this.chatImageModel },
+          // { model: this.userModel, as: "sender" },
         ],
       });
 
