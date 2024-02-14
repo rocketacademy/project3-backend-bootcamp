@@ -25,6 +25,20 @@ class CategoriesController extends BaseController {
       return res.status(400).json({ error: true, msg: err });
     }
   }
+	async getByName(req, res) {
+    const { categoryName } = req.params;
+    try {
+			const category = await this.model.findOne({
+        where:{
+          name:categoryName
+        },
+        attributes: ["id"]
+      });
+      return res.status(200).send(category)
+    } catch (err) {
+      return res.status(400).json({ error: true, msg: err });
+    }
+  }
 }
 
 module.exports = CategoriesController;

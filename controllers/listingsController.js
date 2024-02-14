@@ -1,4 +1,5 @@
 // const BaseController = require("./baseController");
+const { Sequelize } = require("../models");
 
 class ListingsController {
   constructor(model, categoryModel, listingImageModel, userModel) {
@@ -125,35 +126,137 @@ class ListingsController {
     }
   };
 
-  getPaginatedCategory = async (req,res) =>{
-    
-  }
+  getPaginatedCategory = async (req, res) => {
+    const categoryId = req.query.category;
+    const page = Number(req.query.page);
+    const limit = 6;
+    const offset = (page - 1) * limit;
 
-  getPaginatedSearch = async (req,res) =>{
-    
-  }
-
-  deleteOne = async(req,res)=>{
-    const {listingId} = req.params
     try {
+      const results = {};
 
+      results.listings = await this.model.findAll({
+        where: {
+          categoryId,
+        },
+        order: [["updatedAt", "DESC"]],
+        offset: offset,
+        limit: limit,
+        include: [
+          { model: this.listingImageModel, attributes: ["url"], limit: 1 },
+          { model: this.categoryModel, attributes: ["id", "name"] },
+          {
+            model: this.userModel,
+            as: "seller",
+            attributes: ["username", "firstName", "lastName", "profilePicture"],
+          },
+        ],
+      });
+      const countListings = await this.model.count();
+
+      results.previous = {
+        exists: offset > 0 ? true : false,
+        page: offset > 0 ? page - 1 : null,
+        limit,
+      };
+
+      results.next = {
+        exists: offset + limit <= countListings ? true : false,
+        page: offset + limit <= countListings ? page + 1 : null,
+        limit,
+      };
+
+      res.status(200).json(results);
+    } catch (error) {
+      res.status(400).send("error here");
+    }
+  };
+
+  getPaginatedSearch = async (req, res) => {
+    const search = req.query.search;
+    const page = Number(req.query.page);
+    const limit = 6;
+    const offset = (page - 1) * limit;
+
+    try {
+      const results = {};
+
+      results.listings = await this.model.findAll({
+        where: {
+          title: {
+            [Sequelize.Op.substring]: search,
+          },
+        },
+        order: [["updatedAt", "DESC"]],
+        offset: offset,
+        limit: limit,
+        attributes: ["title", "id"]
+      });
+
+      results.users = await this.userModel.findAll({
+        where: {
+          username: {
+            [Sequelize.Op.substring]: search,
+          },
+        },
+        order: [["updatedAt", "DESC"]],
+        offset: offset,
+        limit: limit,
+        attributes:["username", "profilePicture"]
+      });
+
+      const countListings = await this.model.count({
+        where: {
+          title: {
+            [Sequelize.Op.substring]: search,
+          },
+        },
+      });
+      const countUsers = await this.userModel.count({
+        where: {
+          username: {
+            [Sequelize.Op.substring]: search,
+          },
+        },
+      });
+
+      results.previous = {
+        exists: offset > 0 ? true : false,
+        page: offset > 0 ? page - 1 : null,
+        limit,
+      };
+
+      results.next = {
+        exists: offset + limit <= countListings + countUsers ? true : false,
+        page: offset + limit <= countListings + countUsers ? page + 1 : null,
+        limit,
+      };
+
+      res.status(200).json(results);
+    } catch (error) {
+      res.status(400).send(error);
+    }
+  };
+
+  deleteOne = async (req, res) => {
+    const { listingId } = req.params;
+    try {
       await this.listingImageModel.destroy({
-        where:{
-          listingId
-        }
-      })
+        where: {
+          listingId,
+        },
+      });
 
       await this.model.destroy({
-        where:{
-          id: listingId
-        }
-      })
-      return res.status(200).send("listing was deleted")
+        where: {
+          id: listingId,
+        },
+      });
+      return res.status(200).send("listing was deleted");
     } catch (error) {
-      return res.status(400).send(error)
+      return res.status(400).send(error);
     }
-  }
-
+  };
 }
 
 module.exports = ListingsController;
