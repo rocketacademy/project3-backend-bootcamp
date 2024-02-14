@@ -17,7 +17,9 @@ class ChatController extends BaseController {
     console.log(userId);
 
     try {
-      const output = await this.chatroomModel.findAll({
+      let results = {};
+
+      results = await this.chatroomModel.findAll({
         where: {
           [Op.or]: [
             { potentialBuyerId: userId },
@@ -27,14 +29,20 @@ class ChatController extends BaseController {
         include: [
           {
             model: this.listingModel,
-            as: "listing", // Alias for the listingModel association
+            as: "listing",
             required: false,
           },
           { model: this.userModel },
         ],
       });
 
-      return res.send(output);
+      const sellerId = results[0].listing.dataValues.sellerId;
+      console.log("seller", results[0].listing.dataValues.sellerId);
+
+      results.sellerId = await this.userModel.findByPk(sellerId);
+      console.log("result", results.sellerId);
+
+      return res.send(results);
     } catch (err) {
       console.error(err); // Log the error for debugging purposes
       return res.status(400).json({ error: true, msg: err.message });
