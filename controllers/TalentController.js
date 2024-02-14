@@ -450,9 +450,10 @@ class TalentController extends BaseController {
 
   async addBenefit(req, res) {
     const { talentId } = req.params;
-    const { selectedBenefitId } = req.body;
+    const { selectedBenefitIds } = req.body;
     try {
       // Check if the talent exists
+      console.log("did data went through?", req.body);
       const talent = await this.model.findByPk(talentId);
       if (!talent) {
         return res.status(404).json({ error: true, msg: "Talent not found" });
@@ -461,7 +462,7 @@ class TalentController extends BaseController {
       // Create a new benefit and associate it with the talent
       const addNewBenefit = await this.benefitModel.findAll({
         where: {
-          benefitId: selectedBenefitId,
+          id: selectedBenefitIds,
         },
       });
       await talent.setBenefits(addNewBenefit);

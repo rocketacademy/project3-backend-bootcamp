@@ -84,12 +84,12 @@ class TalentRouter {
     // <------------------------ BENEFIT ------------------------ >
 
     router.get(
-      "/:talentId",
+      "/:talentId/benefits",
       this.talentController.getBenefit.bind(this.talentController)
     );
 
-    router.get(
-      "/:talentId",
+    router.post(
+      "/:talentId/benefits",
       this.talentController.addBenefit.bind(this.talentController)
     );
 
