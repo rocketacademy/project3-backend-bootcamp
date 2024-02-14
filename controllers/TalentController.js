@@ -441,7 +441,7 @@ class TalentController extends BaseController {
       });
 
       //show benefits only
-      const benefit = talent.benefits;
+      const benefits = talent.benefits;
       return res.json(talent);
     } catch (err) {
       return res.status(400).json({ error: true, msg: err });
@@ -458,7 +458,6 @@ class TalentController extends BaseController {
       if (!talent) {
         return res.status(404).json({ error: true, msg: "Talent not found" });
       }
-
       // Create a new benefit and associate it with the talent
       const addNewBenefit = await this.benefitModel.findAll({
         where: {
