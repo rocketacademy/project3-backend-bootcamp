@@ -11,6 +11,8 @@ const CategoriesRouter = require("./routers/categoriesRouter");
 const ListingsRouter = require("./routers/listingsRouter");
 const ListingImagesRouter = require("./routers/listingImagesRouter");
 const ChatRouter = require("./routers/chatRouter");
+const LikeRouter = require("./routers/likeRouter");
+const ReviewRouter = require("./routers/reviewRouter");
 
 // IMPORT CONTROLLER
 const UsersController = require("./controllers/userController");
@@ -18,6 +20,8 @@ const CategoriesController = require("./controllers/categoriesController");
 const ListingsController = require("./controllers/listingsController");
 const ListingImagesController = require("./controllers/listingImagesController");
 const ChatController = require("./controllers/chatController");
+const LikeController = require("./controllers/likeController");
+const ReviewController = require("./controllers/reviewController");
 
 // IMPORT DB
 const db = require("./models/index");
@@ -35,7 +39,6 @@ const {
 } = db;
 
 // INIT CONTROLLER
-
 const usersController = new UsersController(user);
 const chatController = new ChatController(
   chatroom_message,
@@ -53,6 +56,8 @@ const listingsController = new ListingsController(
   user
 );
 const listingImagesController = new ListingImagesController(listing_image);
+const likeController = new LikeController(like);
+const reviewController = new ReviewController(review);
 
 // INIT ROUTERS
 const usersRouter = new UsersRouter(usersController).routes();
@@ -62,6 +67,8 @@ const listingImagesRouter = new ListingImagesRouter(
   listingImagesController
 ).routes();
 const chatRouter = new ChatRouter(chatController).routes();
+const likeRouter = new LikeRouter(likeController).routes();
+const reviewRouter = new ReviewRouter(reviewController).routes();
 
 // Middleware
 app.use(cors());
@@ -73,6 +80,8 @@ app.use("/categories", categoriesRouter);
 app.use("/listings", listingsRouter);
 app.use("/listing-images", listingImagesRouter);
 app.use("/chat", chatRouter);
+app.use("/like", likeRouter);
+app.use("/review", reviewRouter);
 
 // Start the server
 const server = app.listen(PORT, () => {
