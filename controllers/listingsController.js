@@ -202,7 +202,7 @@ class ListingsController {
         order: [["updatedAt", "DESC"]],
         offset: offset,
         limit: limit,
-        attributes:["username"]
+        attributes:["username", "profilePicture"]
       });
 
       const countListings = await this.model.count({
