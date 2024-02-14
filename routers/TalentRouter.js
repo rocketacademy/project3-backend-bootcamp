@@ -61,6 +61,11 @@ class TalentRouter {
       this.talentController.getSkillSet.bind(this.talentController)
     );
 
+    router.put(
+      "/:talentId/skill",
+      this.talentController.updateSkill.bind(this.talentController)
+    );
+
     // <------------------------ EDUCATION ------------------------ >
 
     router.post(
@@ -70,6 +75,10 @@ class TalentRouter {
     router.get(
       "/:talentId/education",
       this.talentController.getEducation.bind(this.talentController)
+    );
+    router.put(
+      "/:talentId/education",
+      this.talentController.updateEdu.bind(this.talentController)
     );
 
     // <------------------------ BENEFIT ------------------------ >
