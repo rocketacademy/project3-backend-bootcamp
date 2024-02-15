@@ -39,6 +39,7 @@ class TalentRouter {
 
     router.post(
       "/:talentId/workexperience",
+      this.checkJwt,
       this.talentController.addWorkExperience.bind(this.talentController)
     );
     router.get(
@@ -48,11 +49,13 @@ class TalentRouter {
 
     router.put(
       "/:talentId/workexperience",
+      this.checkJwt,
       this.talentController.updateWorkExp.bind(this.talentController)
     );
 
     router.delete(
       "/:talentId/workexperience/:workExpID",
+      this.checkJwt,
       this.talentController.deleteWorkExp.bind(this.talentController)
     );
 
