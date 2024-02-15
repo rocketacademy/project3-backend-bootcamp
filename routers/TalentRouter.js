@@ -81,6 +81,7 @@ class TalentRouter {
 
     router.post(
       "/:talentId/education",
+      this.checkJwt,
       this.talentController.addEducation.bind(this.talentController)
     );
     router.get(
@@ -89,11 +90,13 @@ class TalentRouter {
     );
     router.put(
       "/:talentId/education",
+      this.checkJwt,
       this.talentController.updateEdu.bind(this.talentController)
     );
 
     router.delete(
       "/:talentId/education/:educationID",
+      this.checkJwt,
       this.talentController.deleteEdu.bind(this.talentController)
     );
 
