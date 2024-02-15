@@ -109,6 +109,13 @@ class TalentRouter {
       this.talentController.addBenefit.bind(this.talentController)
     );
 
+    // <------------------- JOB LISTINGS ------------------- >
+
+    router.get(
+      "/joblistings",
+      this.talentController.getEmAndJobListing.bind(this.talentController)
+    );
+
     return router; // Return the router instance
   }
 }

@@ -1,9 +1,10 @@
 const BaseController = require("./BaseController");
 
 class EmployerController extends BaseController {
-  constructor(model, jobListingModel) {
+  constructor(model, jobListingModel, benefitModel) {
     super(model);
     this.jobListingModel = jobListingModel;
+    this.benefitModel = benefitModel;
   }
 
   // Create employer

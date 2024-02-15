@@ -27,6 +27,8 @@ const {
   talentEducation,
   jobListing,
 } = db;
+console.log("index tal", talent);
+console.log("index", jobListing);
 
 //import controllers
 const TalentController = require("./controllers/TalentController");
@@ -54,10 +56,16 @@ const talentController = new TalentController(
   talentWorkExperience,
   talentSkillSet,
   talentEducation,
+  benefit,
+  employer,
+  jobListing
+);
+const benefitController = new BenefitController(benefit, employer);
+const employerController = new EmployerController(
+  employer,
+  jobListing,
   benefit
 );
-const benefitController = new BenefitController(benefit);
-const employerController = new EmployerController(employer, jobListing);
 
 //initialise router
 const talentRouter = new TalentRouter(talentController, checkJwt).routes();

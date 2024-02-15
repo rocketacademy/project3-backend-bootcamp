@@ -7,7 +7,9 @@ class TalentController extends BaseController {
     talentWorkExperienceModel,
     talentSkillSetModel,
     talentEducationModel,
-    benefitModel
+    benefitModel,
+    employerModel,
+    jobListing
   ) {
     super(model);
     this.talentResumeModel = talentResumeModel;
@@ -15,6 +17,8 @@ class TalentController extends BaseController {
     this.talentSkillSetModel = talentSkillSetModel;
     this.talentEducationModel = talentEducationModel;
     this.benefitModel = benefitModel;
+    this.employerModel = employerModel;
+    this.jobListingModel = jobListing;
   }
 
   // Create talent
@@ -548,6 +552,38 @@ class TalentController extends BaseController {
       // Respond with the newly created benefit
       return res.json(addNewBenefit);
     } catch (err) {
+      return res.status(400).json({ error: true, msg: err });
+    }
+  }
+
+  // <------------------------ JOB LISTINGS  ------------------------ >
+
+  async getEmAndJobListing(req, res) {
+    try {
+      // Include associated employer data when querying for job listings
+      console.log("hello, get employer and job listing.");
+      console.log(this.jobListingModel);
+      const jobListing = await this.jobListingModel.findAll({
+        include: [
+          {
+            model: this.employerModel,
+            attributes: ["companyName", "description"],
+          },
+          {
+            model: this.benefitModel,
+            attributes: ["id", "category"], //benefits modal
+            through: {
+              attributes: ["jobListingId"], //joint modal
+            },
+          },
+        ],
+      });
+
+      console.log(jobListing);
+      // Respond with the job listings including associated employer data
+      return res.json(jobListing);
+    } catch (err) {
+      console.log(err);
       return res.status(400).json({ error: true, msg: err });
     }
   }
