@@ -37,14 +37,6 @@ class ChatController extends BaseController {
         ],
       });
 
-      // const data = results[0];
-
-      // const sellerId = results[0].listing.dataValues.sellerId;
-      // console.log("seller", results[0].listing.dataValues.sellerId);
-
-      // results.sellerId = await this.userModel.findByPk(sellerId);
-      // console.log("result", results.sellerId);
-
       return res.send(results);
     } catch (err) {
       console.error(err); // Log the error for debugging purposes
