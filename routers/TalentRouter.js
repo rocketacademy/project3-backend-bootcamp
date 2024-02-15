@@ -14,6 +14,7 @@ class TalentRouter {
       this.checkJwt,
       this.talentController.addTalent.bind(this.talentController)
     );
+
     router.post(
       "/:talentId",
       this.talentController.updateTalent.bind(this.talentController)
@@ -29,6 +30,10 @@ class TalentRouter {
       "/:talentId/resume",
       this.talentController.getResume.bind(this.talentController)
     );
+    router.put(
+      "/:talentId/resume",
+      this.talentController.updateResume.bind(this.talentController)
+    );
 
     // <------------------------ WORK EXPERIENCE ------------------------ >
 
@@ -39,6 +44,16 @@ class TalentRouter {
     router.get(
       "/:talentId/workexperience",
       this.talentController.getWorkExperiences.bind(this.talentController)
+    );
+
+    router.put(
+      "/:talentId/workexperience",
+      this.talentController.updateWorkExp.bind(this.talentController)
+    );
+
+    router.delete(
+      "/:talentId/workexperience/:workExpID",
+      this.talentController.deleteWorkExp.bind(this.talentController)
     );
 
     // <------------------------ SKILL SET ------------------------ >
@@ -52,6 +67,16 @@ class TalentRouter {
       this.talentController.getSkillSet.bind(this.talentController)
     );
 
+    router.put(
+      "/:talentId/skill",
+      this.talentController.updateSkill.bind(this.talentController)
+    );
+
+    router.delete(
+      "/:talentId/skill/:skillId",
+      this.talentController.deleteSkill.bind(this.talentController)
+    );
+
     // <------------------------ EDUCATION ------------------------ >
 
     router.post(
@@ -62,16 +87,25 @@ class TalentRouter {
       "/:talentId/education",
       this.talentController.getEducation.bind(this.talentController)
     );
+    router.put(
+      "/:talentId/education",
+      this.talentController.updateEdu.bind(this.talentController)
+    );
+
+    router.delete(
+      "/:talentId/education/:educationID",
+      this.talentController.deleteEdu.bind(this.talentController)
+    );
 
     // <------------------------ BENEFIT ------------------------ >
 
     router.get(
-      "/:talentId",
+      "/:talentId/benefits",
       this.talentController.getBenefit.bind(this.talentController)
     );
 
-    router.get(
-      "/:talentId",
+    router.post(
+      "/:talentId/benefits",
       this.talentController.addBenefit.bind(this.talentController)
     );
 

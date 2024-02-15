@@ -96,6 +96,42 @@ class TalentController extends BaseController {
       return res.status(400).json({ error: true, msg: err });
     }
   }
+  // Edit and Update Resume
+  async updateResume(req, res) {
+    const { talentId } = req.params;
+    const { location, title, industry, objective } = req.body;
+    try {
+      // Check if talent resume exists
+      const existingResume = await this.talentResumeModel.findOne({
+        where: {
+          talentId: talentId,
+        },
+      });
+
+      if (!existingResume) {
+        return res.status(404).json({ error: true, msg: "Resume not found" });
+      }
+
+      // Update the resume
+      await existingResume.update({
+        location: location || existingResume.location,
+        title: title || existingResume.title,
+        industry: industry || existingResume.industry,
+        objective: objective || existingResume.objective,
+      });
+
+      // Fetch the updated resume
+      const updatedResume = await this.talentResumeModel.findOne({
+        where: {
+          talentId: talentId,
+        },
+      });
+
+      return res.json(updatedResume);
+    } catch (err) {
+      return res.status(400).json({ error: true, msg: err });
+    }
+  }
 
   // <------------------------ WORK EXPERIENCE ------------------------ >
 
@@ -145,6 +181,129 @@ class TalentController extends BaseController {
     }
   }
 
+  //update work experience
+  async updateWorkExp(req, res) {
+    //check if it's an array, same name as Frontend
+    const { workExpData } = req.body;
+    try {
+      console.log("Request to update work experience");
+      console.log(req.body);
+
+      // Iterate over each provided work experience and update it
+      for (const workExp of workExpData) {
+        await this.talentWorkExperienceModel.update(
+          {
+            companyName: workExp.companyName,
+            position: workExp.position,
+            responsibility: workExp.responsibility,
+            startMonth: workExp.startMonth,
+            startYear: workExp.startYear,
+            endMonth: workExp.endMonth,
+            endYear: workExp.endYear,
+          },
+          //pull workexp ID instead of talentId
+          {
+            where: { id: workExp.id },
+          }
+        );
+
+        console.log(`Work experience updated`);
+      }
+
+      console.log("All work exp updated");
+
+      return res.status(200).json({
+        success: true,
+        message: "Work experiences updated successfully",
+      });
+    } catch (err) {
+      console.error("Error updating work experiences:", err);
+      return res.status(400).json({ error: true, msg: err });
+    }
+  }
+
+  // async updateWorkExp(req, res) {
+  //   const { talentId } = req.params;
+  //   const {
+  //     companyName,
+  //     position,
+  //     responsibility,
+  //     startMonth,
+  //     startYear,
+  //     endMonth,
+  //     endYear,
+  //   } = req.body;
+  //   try {
+  //     console.log("request to update work experience");
+  //     console.log(req.body);
+  //     // Check if talent resume exists
+  //     const existingWorkExp = await this.talentWorkExperienceModel.findOne({
+  //       where: {
+  //         talentId: talentId,
+  //         //try passing workexpID instead
+  //       },
+  //     });
+
+  //     if (!existingWorkExp) {
+  //       return res.status(404).json({ error: true, msg: "data not found" });
+  //     }
+
+  //     console.log("work exp found");
+
+  //     // Update the resume
+  //     await existingWorkExp.update({
+  //       companyName: companyName || existingWorkExp.companyName,
+  //       position: position || existingWorkExp.position,
+  //       responsibility: responsibility || existingWorkExp.responsibility,
+  //       startMonth: startMonth || existingWorkExp.startMonth,
+  //       startYear: startYear || existingWorkExp.startYear,
+  //       endMonth: endMonth || existingWorkExp.endMonth,
+  //       endYear: endYear || existingWorkExp.endYear,
+  //     });
+
+  //     console.log("new work exp updated");
+
+  //     // Fetch the updated work exp
+  //     const updatedWorkExp = await this.talentWorkExperienceModel.findOne({
+  //       where: {
+  //         talentId: talentId,
+  //       },
+  //     });
+
+  //     console.log("all work exp updated");
+
+  //     return res.json(updatedWorkExp);
+  //   } catch (err) {
+  //     return res.status(400).json({ error: true, msg: err });
+  //   }
+  // }
+
+  async deleteWorkExp(req, res) {
+    const { workExpID } = req.params;
+    try {
+      // Check if the skill set exists
+      const workExp = await this.talentWorkExperienceModel.findOne({
+        where: {
+          id: workExpID,
+        },
+      });
+
+      if (!workExp) {
+        return res.status(404).json({ error: true, msg: "Work not found" });
+      }
+
+      // Delete the skill set
+      await workExp.destroy();
+
+      return res.json({
+        success: true,
+        msg: "Work exp set deleted successfully",
+      });
+    } catch (err) {
+      return res.status(400).json({ error: true, msg: err.message });
+    }
+  }
+
   // <------------------------ SKILL SET ------------------------ >
 
   async addSkillSet(req, res) {
@@ -177,6 +336,67 @@ class TalentController extends BaseController {
       return res.json(skill);
     } catch (err) {
       return res.status(400).json({ error: true, msg: err });
+    }
+  }
+
+  //update work experience
+  async updateSkill(req, res) {
+    //check if it's an array, same name as Frontend
+    const { skillData } = req.body;
+    try {
+      console.log("Request to update skill");
+      console.log(req.body);
+
+      // Iterate over each provided work experience and update it
+      for (const skill of skillData) {
+        await this.talentSkillSetModel.update(
+          {
+            skill: skill.skill,
+            proficiencyLevel: skill.proficiencyLevel,
+          },
+          //pull workexp ID instead of talentId
+          {
+            where: { id: skill.id },
+          }
+        );
+
+        console.log("skills updated");
+      }
+
+      console.log("All skills updated");
+
+      return res.status(200).json({
+        success: true,
+        message: "skills updated successfully",
+      });
+    } catch (err) {
+      console.error("Error updating skills:", err);
+      return res.status(400).json({ error: true, msg: err });
+    }
+  }
+
+  async deleteSkill(req, res) {
+    const { skillId } = req.params;
+    try {
+      // Check if the skill set exists
+      const skillSet = await this.talentSkillSetModel.findOne({
+        where: {
+          id: skillId,
+        },
+      });
+
+      if (!skillSet) {
+        return res
+          .status(404)
+          .json({ error: true, msg: "Skill set not found" });
+      }
+
+      // Delete the skill set
+      await skillSet.destroy();
+
+      return res.json({ success: true, msg: "Skill set deleted successfully" });
+    } catch (err) {
+      return res.status(400).json({ error: true, msg: err.message });
     }
   }
 
@@ -224,6 +444,73 @@ class TalentController extends BaseController {
     }
   }
 
+  async updateEdu(req, res) {
+    //check if it's an array, same name as Frontend
+    const { eduData } = req.body;
+    try {
+      console.log("Request to update work experience");
+      console.log(req.body);
+
+      // Iterate over each provided work experience and update it
+      for (const edu of eduData) {
+        await this.talentEducationModel.update(
+          {
+            institution: edu.institution,
+            degree: edu.degree,
+            fieldOfStudy: edu.fieldOfStudy,
+            graduationMonth: edu.graduationMonth,
+            graduationYear: edu.graduationYear,
+          },
+          //pull workexp ID instead of talentId
+          {
+            where: { id: edu.id },
+          }
+        );
+
+        console.log(`Education updated`);
+      }
+
+      console.log("All edu updated");
+
+      return res.status(200).json({
+        success: true,
+        message: "Edu updated successfully",
+      });
+    } catch (err) {
+      console.error("Error updating edu:", err);
+      return res.status(400).json({ error: true, msg: err });
+    }
+  }
+
+  async deleteEdu(req, res) {
+    const { educationID } = req.params;
+    console.log("EDUCATION ID", educationID);
+    try {
+      // Check if the education entry exists
+      const eduSet = await this.talentEducationModel.findOne({
+        where: {
+          id: educationID,
+        },
+      });
+
+      if (!eduSet) {
+        return res
+          .status(404)
+          .json({ error: true, msg: "Education set not found" });
+      }
+
+      // Delete the education entry
+      await eduSet.destroy();
+
+      return res.json({
+        success: true,
+        msg: "Education set deleted successfully",
+      });
+    } catch (err) {
+      return res.status(400).json({ error: true, msg: err.message });
+    }
+  }
+
   // <------------------------ BENEFIT ------------------------ >
 
   async getBenefit(req, res) {
@@ -234,7 +521,7 @@ class TalentController extends BaseController {
       });
 
       //show benefits only
-      const benefit = talent.benefits;
+      const benefits = talent.benefits;
       return res.json(talent);
     } catch (err) {
       return res.status(400).json({ error: true, msg: err });
@@ -243,18 +530,18 @@ class TalentController extends BaseController {
 
   async addBenefit(req, res) {
     const { talentId } = req.params;
-    const { selectedBenefitId } = req.body;
+    const { selectedBenefitIds } = req.body;
     try {
       // Check if the talent exists
+      console.log("did data went through?", req.body);
       const talent = await this.model.findByPk(talentId);
       if (!talent) {
         return res.status(404).json({ error: true, msg: "Talent not found" });
       }
-
       // Create a new benefit and associate it with the talent
       const addNewBenefit = await this.benefitModel.findAll({
         where: {
-          benefitId: selectedBenefitId,
+          id: selectedBenefitIds,
         },
       });
       await talent.setBenefits(addNewBenefit);
