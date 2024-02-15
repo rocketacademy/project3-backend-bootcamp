@@ -7,7 +7,7 @@ class LikesRouter {
   }
   routes() {
 
-    router.get("/count", this.controller.getCount)
+    router.get("/count/:listingId", this.controller.getCount)
     router.get("/list/:userId", this.controller.getLikesList)
     router.delete("/delete/:listingId/:userId", this.controller.deleteOne)
     router.post("/", this.controller.createOne)

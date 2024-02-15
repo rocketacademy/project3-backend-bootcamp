@@ -55,10 +55,11 @@ const listingsController = new ListingsController(
   category,
   listing_image,
   user,
-  review
+  review,
+  like
 );
 const listingImagesController = new ListingImagesController(listing_image);
-const likesController = new LikesController(like);
+const likesController = new LikesController(like,listing,listing_image, user);
 const reviewsController = new ReviewsController(review);
 
 // INIT ROUTERS

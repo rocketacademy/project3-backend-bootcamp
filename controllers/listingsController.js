@@ -2,12 +2,13 @@
 const { Sequelize } = require("../models");
 
 class ListingsController {
-  constructor(model, categoryModel, listingImageModel, userModel, reviewModel) {
+  constructor(model, categoryModel, listingImageModel, userModel, reviewModel, likeModel) {
     this.model = model;
     this.categoryModel = categoryModel;
     this.listingImageModel = listingImageModel;
     this.userModel = userModel;
     this.reviewModel = reviewModel;
+    this.likeModel = likeModel
   }
 
   getAll = async (req, res) => {
@@ -101,6 +102,7 @@ class ListingsController {
         include: [
           { model: this.listingImageModel, attributes: ["url"], limit: 1 },
           { model: this.categoryModel, attributes: ["id", "name"] },
+          // { model: this.likeModel, attributes: ["id"] },
           {
             model: this.userModel,
             as: "seller",
