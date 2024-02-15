@@ -4,7 +4,6 @@ const BaseController = require("./baseController");
 class UsersController extends BaseController {
   constructor(model) {
     super(model);
-
   }
 
   async createOne(req, res) {
@@ -48,6 +47,7 @@ class UsersController extends BaseController {
       return res.status(400).json({ error: true, msg: err });
     }
   }
+
   async getByUsernameExistingUser(req, res) {
     const { userId, username } = req.params;
     try {
@@ -66,32 +66,32 @@ class UsersController extends BaseController {
     }
   }
 
-  async getProfileByUsername(req,res){
-    const {username} = req.params
+  async getProfileByUsername(req, res) {
+    const { username } = req.params;
     try {
       const output = await this.model.findOne({
-        where:{
-          username
-        }
-      })
-      return res.status(200).json(output)
-    }catch(err){
-      return res.status(400).send("Failed, check ur code dummy")
+        where: {
+          username,
+        },
+      });
+      return res.status(200).json(output);
+    } catch (err) {
+      return res.status(400).send("Failed, check ur code dummy");
     }
   }
 
-  async getByUsernameNewUser(req,res){
-    const {username} = req.params
-    try{
+  async getByUsernameNewUser(req, res) {
+    const { username } = req.params;
+    try {
       const output = await this.model.findAll({
-        where:{
-          username
-        }
-      })
-      const isUsernameTaken = output.length > 0
-      return res.status(200).send(isUsernameTaken)
-    }catch(err){
-      return res.status(400).json({error:true, msg:err})
+        where: {
+          username,
+        },
+      });
+      const isUsernameTaken = output.length > 0;
+      return res.status(200).send(isUsernameTaken);
+    } catch (err) {
+      return res.status(400).json({ error: true, msg: err });
     }
   }
 
@@ -132,7 +132,6 @@ class UsersController extends BaseController {
       return res.status(400).json({ success: false, msg: err });
     }
   }
-
 }
 
 module.exports = UsersController;
