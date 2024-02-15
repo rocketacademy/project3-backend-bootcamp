@@ -60,6 +60,7 @@ class TalentRouter {
 
     router.post(
       "/:talentId/skill",
+      this.checkJwt,
       this.talentController.addSkillSet.bind(this.talentController)
     );
     router.get(
@@ -69,11 +70,13 @@ class TalentRouter {
 
     router.put(
       "/:talentId/skill",
+      this.checkJwt,
       this.talentController.updateSkill.bind(this.talentController)
     );
 
     router.delete(
       "/:talentId/skill/:skillId",
+      this.checkJwt,
       this.talentController.deleteSkill.bind(this.talentController)
     );
 
