@@ -1,3 +1,4 @@
+const talent = require("../db/models/talent");
 const BaseController = require("./BaseController");
 
 class TalentController extends BaseController {
@@ -610,6 +611,34 @@ class TalentController extends BaseController {
     } catch (err) {
       console.log(err);
       return res.status(400).json({ error: true, msg: err });
+    }
+  }
+
+  async getApplications(req, res) {
+    const { talentId } = req.params;
+    try {
+      console.log("talent id:", talentId);
+      const applications = await this.applicationModel.findAll({
+        where: {
+          talentId: talentId,
+        },
+        include: [
+          {
+            model: this.jobListingModel,
+            include: [
+              {
+                model: this.employerModel,
+                attributes: ["companyName"],
+              },
+            ],
+          },
+        ],
+      });
+      console.log(applications);
+      // Respond with the applications data
+      return res.json(applications);
+    } catch (err) {
+      return res.status(400).json({ error: true, msg: err.message });
     }
   }
 }
