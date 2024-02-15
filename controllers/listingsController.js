@@ -2,11 +2,12 @@
 const { Sequelize } = require("../models");
 
 class ListingsController {
-  constructor(model, categoryModel, listingImageModel, userModel) {
+  constructor(model, categoryModel, listingImageModel, userModel, reviewModel) {
     this.model = model;
     this.categoryModel = categoryModel;
     this.listingImageModel = listingImageModel;
     this.userModel = userModel;
+    this.reviewModel = reviewModel;
   }
 
   getAll = async (req, res) => {
@@ -53,6 +54,7 @@ class ListingsController {
       const listing = await this.model.findByPk(listingId, {
         include: [
           { model: this.listingImageModel, attributes: ["url"] },
+          { model: this.reviewModel },
           { model: this.categoryModel, attributes: ["id", "name"] },
           {
             model: this.userModel,
@@ -190,7 +192,7 @@ class ListingsController {
         order: [["updatedAt", "DESC"]],
         offset: offset,
         limit: limit,
-        attributes: ["title", "id"]
+        attributes: ["title", "id"],
       });
 
       results.users = await this.userModel.findAll({
@@ -202,7 +204,7 @@ class ListingsController {
         order: [["updatedAt", "DESC"]],
         offset: offset,
         limit: limit,
-        attributes:["username", "profilePicture"]
+        attributes: ["username", "profilePicture"],
       });
 
       const countListings = await this.model.count({
