@@ -29,18 +29,21 @@ class ChatController extends BaseController {
         include: [
           {
             model: this.listingModel,
-            as: "listing",
             required: false,
+
+            include: [{ model: this.userModel, as: "seller" }],
           },
           { model: this.userModel },
         ],
       });
 
-      const sellerId = results[0].listing.dataValues.sellerId;
-      console.log("seller", results[0].listing.dataValues.sellerId);
+      // const data = results[0];
 
-      results.sellerId = await this.userModel.findByPk(sellerId);
-      console.log("result", results.sellerId);
+      // const sellerId = results[0].listing.dataValues.sellerId;
+      // console.log("seller", results[0].listing.dataValues.sellerId);
+
+      // results.sellerId = await this.userModel.findByPk(sellerId);
+      // console.log("result", results.sellerId);
 
       return res.send(results);
     } catch (err) {
