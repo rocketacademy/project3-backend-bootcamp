@@ -1,12 +1,14 @@
 const { Sequelize } = require("../models");
+const { Op } = require("sequelize");
 const BaseController = require("./baseController");
 
 class ChatController extends BaseController {
-  constructor(model, chatImageModel, chatroomModel, listingModel) {
+  constructor(model, chatImageModel, chatroomModel, listingModel, userModel) {
     super(model);
     this.chatImageModel = chatImageModel;
     this.chatroomModel = chatroomModel;
     this.listingModel = listingModel;
+    this.userModel = userModel;
   }
 
   //GET ALL CHATS WHERE USER IS EITHER OWNER OF LISTING OR POTENTIAL BUYER
@@ -15,23 +17,30 @@ class ChatController extends BaseController {
     console.log(userId);
 
     try {
-      const output = await this.chatroomModel.findAll({
+      let results = {};
+
+      results = await this.chatroomModel.findAll({
         where: {
-          potentialBuyerId: 1,
+          [Op.or]: [
+            { potentialBuyerId: userId },
+            { "$listing.seller_id$": userId },
+          ],
         },
         include: [
           {
             model: this.listingModel,
-            where: {
-              sellerId: userId,
-            },
+            required: false,
+
+            include: [{ model: this.userModel, as: "seller" }],
           },
+          { model: this.userModel },
         ],
       });
 
-      return res.send(output);
+      return res.send(results);
     } catch (err) {
-      return res.status(400).json({ error: true, msg: err });
+      console.error(err); // Log the error for debugging purposes
+      return res.status(400).json({ error: true, msg: err.message });
     }
   }
 
@@ -41,14 +50,11 @@ class ChatController extends BaseController {
     console.log(`chat ${chatroomId}`);
     try {
       const chatroomMessages = await this.model.findAll({
+        order: [["createdAt", "ASC"]],
         where: {
           chatroomId: chatroomId,
         },
-        include: [
-          {
-            model: this.chatImageModel,
-          },
-        ],
+        include: [{ model: this.chatImageModel }, { model: this.userModel }],
       });
 
       return res.send(chatroomMessages);
