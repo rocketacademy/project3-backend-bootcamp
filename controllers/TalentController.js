@@ -278,6 +278,32 @@ class TalentController extends BaseController {
   //   }
   // }
 
+  async deleteWorkExp(req, res) {
+    const { workExpID } = req.params;
+    try {
+      // Check if the skill set exists
+      const workExp = await this.talentWorkExperienceModel.findOne({
+        where: {
+          id: workExpID,
+        },
+      });
+
+      if (!workExp) {
+        return res.status(404).json({ error: true, msg: "Work not found" });
+      }
+
+      // Delete the skill set
+      await workExp.destroy();
+
+      return res.json({
+        success: true,
+        msg: "Work exp set deleted successfully",
+      });
+    } catch (err) {
+      return res.status(400).json({ error: true, msg: err.message });
+    }
+  }
+
   // <------------------------ SKILL SET ------------------------ >
 
   async addSkillSet(req, res) {
@@ -346,6 +372,31 @@ class TalentController extends BaseController {
     } catch (err) {
       console.error("Error updating skills:", err);
       return res.status(400).json({ error: true, msg: err });
+    }
+  }
+
+  async deleteSkill(req, res) {
+    const { skillId } = req.params;
+    try {
+      // Check if the skill set exists
+      const skillSet = await this.talentSkillSetModel.findOne({
+        where: {
+          id: skillId,
+        },
+      });
+
+      if (!skillSet) {
+        return res
+          .status(404)
+          .json({ error: true, msg: "Skill set not found" });
+      }
+
+      // Delete the skill set
+      await skillSet.destroy();
+
+      return res.json({ success: true, msg: "Skill set deleted successfully" });
+    } catch (err) {
+      return res.status(400).json({ error: true, msg: err.message });
     }
   }
 
@@ -428,6 +479,35 @@ class TalentController extends BaseController {
     } catch (err) {
       console.error("Error updating edu:", err);
       return res.status(400).json({ error: true, msg: err });
+    }
+  }
+
+  async deleteEdu(req, res) {
+    const { educationID } = req.params;
+    console.log("EDUCATION ID", educationID);
+    try {
+      // Check if the education entry exists
+      const eduSet = await this.talentEducationModel.findOne({
+        where: {
+          id: educationID,
+        },
+      });
+
+      if (!eduSet) {
+        return res
+          .status(404)
+          .json({ error: true, msg: "Education set not found" });
+      }
+
+      // Delete the education entry
+      await eduSet.destroy();
+
+      return res.json({
+        success: true,
+        msg: "Education set deleted successfully",
+      });
+    } catch (err) {
+      return res.status(400).json({ error: true, msg: err.message });
     }
   }
 

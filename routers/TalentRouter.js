@@ -45,9 +45,15 @@ class TalentRouter {
       "/:talentId/workexperience",
       this.talentController.getWorkExperiences.bind(this.talentController)
     );
+
     router.put(
       "/:talentId/workexperience",
       this.talentController.updateWorkExp.bind(this.talentController)
+    );
+
+    router.delete(
+      "/:talentId/workexperience/:workExpID",
+      this.talentController.deleteWorkExp.bind(this.talentController)
     );
 
     // <------------------------ SKILL SET ------------------------ >
@@ -66,6 +72,11 @@ class TalentRouter {
       this.talentController.updateSkill.bind(this.talentController)
     );
 
+    router.delete(
+      "/:talentId/skill/:skillId",
+      this.talentController.deleteSkill.bind(this.talentController)
+    );
+
     // <------------------------ EDUCATION ------------------------ >
 
     router.post(
@@ -79,6 +90,11 @@ class TalentRouter {
     router.put(
       "/:talentId/education",
       this.talentController.updateEdu.bind(this.talentController)
+    );
+
+    router.delete(
+      "/:talentId/education/:educationID",
+      this.talentController.deleteEdu.bind(this.talentController)
     );
 
     // <------------------------ BENEFIT ------------------------ >
