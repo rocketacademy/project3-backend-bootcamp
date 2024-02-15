@@ -1,11 +1,66 @@
 const { Sequelize } = require("../models");
+const { Op } = require("sequelize");
 const BaseController = require("./baseController");
 
 class ChatController extends BaseController {
-  constructor(model, chatImageModel, chatroomModel) {
+  constructor(model, chatImageModel, chatroomModel, listingModel, userModel) {
     super(model);
     this.chatImageModel = chatImageModel;
     this.chatroomModel = chatroomModel;
+    this.listingModel = listingModel;
+    this.userModel = userModel;
+  }
+
+  //GET ALL CHATS WHERE USER IS EITHER OWNER OF LISTING OR POTENTIAL BUYER
+  async getAll(req, res) {
+    const { userId } = req.params;
+    console.log(userId);
+
+    try {
+      let results = {};
+
+      results = await this.chatroomModel.findAll({
+        where: {
+          [Op.or]: [
+            { potentialBuyerId: userId },
+            { "$listing.seller_id$": userId },
+          ],
+        },
+        include: [
+          {
+            model: this.listingModel,
+            required: false,
+
+            include: [{ model: this.userModel, as: "seller" }],
+          },
+          { model: this.userModel },
+        ],
+      });
+
+      return res.send(results);
+    } catch (err) {
+      console.error(err); // Log the error for debugging purposes
+      return res.status(400).json({ error: true, msg: err.message });
+    }
+  }
+
+  //Retrieve past messages for specific chatroom Id
+  async getMessages(req, res) {
+    const { chatroomId } = req.params;
+    console.log(`chat ${chatroomId}`);
+    try {
+      const chatroomMessages = await this.model.findAll({
+        order: [["createdAt", "ASC"]],
+        where: {
+          chatroomId: chatroomId,
+        },
+        include: [{ model: this.chatImageModel }, { model: this.userModel }],
+      });
+
+      return res.send(chatroomMessages);
+    } catch (err) {
+      return res.status(400).json({ error: true, msg: err });
+    }
   }
 
   //Posts message content
@@ -60,17 +115,3 @@ class ChatController extends BaseController {
 }
 
 module.exports = ChatController;
-
-//GET ALL CHATS WHERE USER IS EITHER OWNER OF LISTING OR POTENTIAL BUYER
-// async getAll(req, res) {
-//   const { userId } = req.body;
-//   try {
-//     const output = await this.model.findAll({
-//       where: { potential_buyer_id: userId },
-//     });
-//     console.log("HELLO WORLD");
-//     return res.send("HELLO WORLD");
-//   } catch (err) {
-//     return res.status(400).json({ error: true, msg: err });
-//   }
-// }

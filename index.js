@@ -83,10 +83,25 @@ app.use("/categories", categoriesRouter);
 app.use("/listings", listingsRouter);
 app.use("/listing-images", listingImagesRouter);
 app.use("/chat", chatRouter);
-app.use("/likes", likesRouter);
-app.use("/reviews", reviewRouter);
+
 
 // Start the server
-app.listen(PORT, () => {
+const server = app.listen(PORT, () => {
   console.log(`Express app listening on port ${PORT}!`);
+});
+
+//SOCKET
+const io = require("socket.io")(server, {
+  cors: {
+    origin: true,
+    methods: ["GET", "PUT", "POST", "DELETE"],
+  },
+});
+
+io.on("connection", (socket) => {
+  console.log(`New connection made, the socket id is: ${socket.id}`);
+
+  socket.on("send_message", (data) => {
+    socket.broadcast.emit("receive_message", data);
+  });
 });
