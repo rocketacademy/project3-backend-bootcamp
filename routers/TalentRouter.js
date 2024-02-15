@@ -112,8 +112,17 @@ class TalentRouter {
     // <------------------- JOB LISTINGS ------------------- >
 
     router.get(
-      "/joblistings",
+      "/:talentId/joblistings",
+      this.checkJwt,
       this.talentController.getEmAndJobListing.bind(this.talentController)
+    );
+
+    // <------------------- APPLICATION ------------------- >
+
+    router.post(
+      "/:talentId/applications",
+      this.checkJwt,
+      this.talentController.addApplication.bind(this.talentController)
     );
 
     return router; // Return the router instance

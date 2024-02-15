@@ -9,7 +9,8 @@ class TalentController extends BaseController {
     talentEducationModel,
     benefitModel,
     employerModel,
-    jobListing
+    jobListing,
+    application
   ) {
     super(model);
     this.talentResumeModel = talentResumeModel;
@@ -19,6 +20,7 @@ class TalentController extends BaseController {
     this.benefitModel = benefitModel;
     this.employerModel = employerModel;
     this.jobListingModel = jobListing;
+    this.applicationModel = application;
   }
 
   // Create talent
@@ -562,7 +564,6 @@ class TalentController extends BaseController {
     try {
       // Include associated employer data when querying for job listings
       console.log("hello, get employer and job listing.");
-      console.log(this.jobListingModel);
       const jobListing = await this.jobListingModel.findAll({
         include: [
           {
@@ -578,10 +579,34 @@ class TalentController extends BaseController {
           },
         ],
       });
-
-      console.log(jobListing);
       // Respond with the job listings including associated employer data
       return res.json(jobListing);
+    } catch (err) {
+      return res.status(400).json({ error: true, msg: err });
+    }
+  }
+
+  // <-------------------- APPLICATION  ---------------------- >
+
+  async addApplication(req, res) {
+    const { talentId } = req.params;
+    const { applicationStatus, jobListingId } = req.body;
+    console.log("ADD APPLICATION");
+    console.log(applicationStatus);
+    console.log(talentId);
+    console.log(jobListingId);
+    try {
+      console.log("passing through");
+
+      //tag to talent ID
+      const newApplication = await this.applicationModel.create({
+        jobListingId: jobListingId,
+        talentId: talentId,
+        applicationStatus: applicationStatus,
+      });
+      console.log("job get posted.");
+      // Respond with the new work experience
+      return res.json(newApplication);
     } catch (err) {
       console.log(err);
       return res.status(400).json({ error: true, msg: err });

@@ -10,6 +10,7 @@ module.exports = (sequelize, DataTypes) => {
       this.hasMany(models.talentWorkExperience, { foreignKey: "talentId" });
       this.hasMany(models.talentSkillSet, { foreignKey: "talentId" });
       this.hasMany(models.talentEducation, { foreignKey: "talentId" });
+      this.hasMany(models.application, { foreignKey: "talentId" });
       this.belongsToMany(models.benefit, { through: "talent_benefits" });
     }
   }

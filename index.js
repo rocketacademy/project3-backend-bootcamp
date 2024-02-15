@@ -26,9 +26,8 @@ const {
   talentSkillSet,
   talentEducation,
   jobListing,
+  application,
 } = db;
-console.log("index tal", talent);
-console.log("index", jobListing);
 
 //import controllers
 const TalentController = require("./controllers/TalentController");
@@ -58,7 +57,8 @@ const talentController = new TalentController(
   talentEducation,
   benefit,
   employer,
-  jobListing
+  jobListing,
+  application
 );
 const benefitController = new BenefitController(benefit, employer);
 const employerController = new EmployerController(

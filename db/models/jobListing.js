@@ -5,6 +5,7 @@ module.exports = (sequelize, DataTypes) => {
   class JobListing extends Model {
     static associate(models) {
       this.belongsTo(models.employer, { foreignKey: "employerId" });
+      this.hasMany(models.application, { foreignKey: "jobListingId" });
       this.belongsToMany(models.benefit, { through: "job_listing_benefits" });
     }
   }
