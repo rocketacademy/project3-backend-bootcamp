@@ -13,6 +13,7 @@ const ListingImagesRouter = require("./routers/listingImagesRouter");
 const ChatRouter = require("./routers/chatRouter");
 const LikeRouter = require("./routers/likeRouter");
 const ReviewRouter = require("./routers/reviewRouter");
+const OrderRouter = require("./routers/orderRouter");
 
 // IMPORT CONTROLLER
 const UsersController = require("./controllers/userController");
@@ -22,6 +23,7 @@ const ListingImagesController = require("./controllers/listingImagesController")
 const ChatController = require("./controllers/chatController");
 const LikeController = require("./controllers/likeController");
 const ReviewController = require("./controllers/reviewController");
+const OrderController = require("./controllers/orderController");
 
 // IMPORT DB
 const db = require("./models/index");
@@ -58,6 +60,7 @@ const listingsController = new ListingsController(
 const listingImagesController = new ListingImagesController(listing_image);
 const likeController = new LikeController(like);
 const reviewController = new ReviewController(review);
+const orderController = new OrderController(order);
 
 // INIT ROUTERS
 const usersRouter = new UsersRouter(usersController).routes();
@@ -69,6 +72,7 @@ const listingImagesRouter = new ListingImagesRouter(
 const chatRouter = new ChatRouter(chatController).routes();
 const likeRouter = new LikeRouter(likeController).routes();
 const reviewRouter = new ReviewRouter(reviewController).routes();
+const orderRouter = new OrderRouter(orderController).routes();
 
 // Middleware
 app.use(cors());
@@ -82,6 +86,7 @@ app.use("/listing-images", listingImagesRouter);
 app.use("/chat", chatRouter);
 app.use("/like", likeRouter);
 app.use("/review", reviewRouter);
+app.use("/order", orderRouter);
 
 // Start the server
 const server = app.listen(PORT, () => {
