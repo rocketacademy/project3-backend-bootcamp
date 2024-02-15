@@ -109,6 +109,7 @@ class TalentRouter {
 
     router.post(
       "/:talentId/benefits",
+      this.checkJwt,
       this.talentController.addBenefit.bind(this.talentController)
     );
 
