@@ -83,6 +83,10 @@ app.use("/categories", categoriesRouter);
 app.use("/listings", listingsRouter);
 app.use("/listing-images", listingImagesRouter);
 app.use("/chat", chatRouter);
+app.use("/likes", likesRouter);
+app.use("/reviews", reviewRouter);
+
+
 
 
 // Start the server
