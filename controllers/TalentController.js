@@ -1,3 +1,4 @@
+const talent = require("../db/models/talent");
 const BaseController = require("./BaseController");
 
 class TalentController extends BaseController {
@@ -7,7 +8,10 @@ class TalentController extends BaseController {
     talentWorkExperienceModel,
     talentSkillSetModel,
     talentEducationModel,
-    benefitModel
+    benefitModel,
+    employerModel,
+    jobListing,
+    application
   ) {
     super(model);
     this.talentResumeModel = talentResumeModel;
@@ -15,6 +19,9 @@ class TalentController extends BaseController {
     this.talentSkillSetModel = talentSkillSetModel;
     this.talentEducationModel = talentEducationModel;
     this.benefitModel = benefitModel;
+    this.employerModel = employerModel;
+    this.jobListingModel = jobListing;
+    this.applicationModel = application;
   }
 
   // Create talent
@@ -57,6 +64,32 @@ class TalentController extends BaseController {
       return res.json(output);
     } catch (err) {
       return res.status(400).json({ error: true, msg: err });
+    }
+  }
+
+  async editTalentName(req, res) {
+    const { talentId } = req.params;
+    const { userFirstName, userLastName } = req.body;
+    try {
+      console.log("EDITTT NAME");
+      console.log("NAME", userFirstName);
+      const updatedTalent = await this.model.update(
+        {
+          firstName: userFirstName,
+          lastName: userLastName,
+        },
+        {
+          where: {
+            id: talentId,
+          },
+        }
+      );
+      return res.json(updatedTalent);
+    } catch (err) {
+      console.error("Error updating talent:", err);
+      return res
+        .status(400)
+        .json({ error: true, msg: "Failed to update talent" });
     }
   }
 
@@ -549,6 +582,161 @@ class TalentController extends BaseController {
       return res.json(addNewBenefit);
     } catch (err) {
       return res.status(400).json({ error: true, msg: err });
+    }
+  }
+
+  // <------------------------ JOB LISTINGS  ------------------------ >
+
+  async getEmAndJobListing(req, res) {
+    try {
+      // Include associated employer data when querying for job listings
+      console.log("hello, get employer and job listing.");
+      const jobListing = await this.jobListingModel.findAll({
+        include: [
+          {
+            model: this.employerModel,
+            attributes: ["companyName", "description"],
+          },
+          {
+            model: this.benefitModel,
+            attributes: ["id", "category"], //benefits modal
+            through: {
+              attributes: ["jobListingId"], //joint modal
+            },
+          },
+        ],
+      });
+      // Respond with the job listings including associated employer data
+      return res.json(jobListing);
+    } catch (err) {
+      return res.status(400).json({ error: true, msg: err });
+    }
+  }
+
+  // <-------------------- APPLICATION  ---------------------- >
+
+  async addApplication(req, res) {
+    const { talentId } = req.params;
+    const { applicationStatus, jobListingId } = req.body;
+    console.log("ADD APPLICATION");
+    console.log(applicationStatus);
+    console.log(talentId);
+    console.log(jobListingId);
+    try {
+      console.log("passing through");
+
+      //tag to talent ID
+      const newApplication = await this.applicationModel.create({
+        jobListingId: jobListingId,
+        talentId: talentId,
+        applicationStatus: applicationStatus,
+      });
+      console.log("job get posted.");
+      // Respond with the new work experience
+      return res.json(newApplication);
+    } catch (err) {
+      console.log(err);
+      return res.status(400).json({ error: true, msg: err });
+    }
+  }
+
+  async getApplications(req, res) {
+    const { talentId } = req.params;
+    try {
+      console.log("talent id:", talentId);
+      const applications = await this.applicationModel.findAll({
+        where: {
+          talentId: talentId,
+        },
+        include: [
+          {
+            model: this.jobListingModel,
+            include: [
+              {
+                model: this.employerModel,
+                attributes: ["companyName"],
+              },
+            ],
+          },
+        ],
+      });
+      console.log(applications);
+      // Respond with the applications data
+      return res.json(applications);
+    } catch (err) {
+      return res.status(400).json({ error: true, msg: err.message });
+    }
+  }
+
+  async getAllApplications(req, res) {
+    const { talentId } = req.params;
+    try {
+      // find all job listings - ok
+      // console.log("HHHHHEEEELLLLLOOOOOO WOOORRLLLDDD!!!!!");
+      // console.log("non applications");
+      // console.log("talent id:", talentId);
+
+      const allJobListings = await this.jobListingModel.findAll({
+        include: [
+          {
+            model: this.employerModel,
+            attributes: ["companyName", "description"],
+          },
+          {
+            model: this.benefitModel,
+            attributes: ["id", "category"], //benefits modal
+            through: {
+              attributes: ["jobListingId"], //joint modal
+            },
+          },
+        ],
+      });
+
+      // console.log("all job listingss", allJobListings);
+
+      // find the applications that the user applied - ok
+
+      const applications = await this.applicationModel.findAll({
+        where: {
+          talentId: talentId,
+        },
+        include: [
+          {
+            model: this.jobListingModel,
+            include: [
+              {
+                model: this.employerModel,
+                attributes: ["companyName"],
+              },
+            ],
+          },
+        ],
+      });
+
+      console.log(applications);
+
+      // console.log("APPLIED JOBSSSSS", applications);
+
+      // filter by job listing that they applied to by the joblisting ID in application model
+      // extract applied job listing ids - ok
+
+      const appliedJobListingIds = applications.map(
+        (application) => application.jobListing.id
+      );
+
+      // console.log("appliedJobListingIds", appliedJobListingIds);
+
+      // filter applications with the job listing ids
+      // dont want ids that matches with applied job listing ids
+      const unappliedJobs = allJobListings.filter(
+        (jobListing) => !appliedJobListingIds.includes(jobListing.id)
+      );
+
+      // console.log(unappliedJobs);
+      // Respond with the non - applications data
+      return res.json(unappliedJobs);
+    } catch (err) {
+      return res.status(400).json({ error: true, msg: err.message });
     }
   }
 }

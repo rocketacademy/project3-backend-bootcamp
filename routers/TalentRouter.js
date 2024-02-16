@@ -20,6 +20,12 @@ class TalentRouter {
       this.talentController.updateTalent.bind(this.talentController)
     );
 
+    router.put(
+      "/:talentId",
+      this.checkJwt,
+      this.talentController.editTalentName.bind(this.talentController)
+    );
+
     // <------------------------ RESUME ------------------------ >
 
     router.post(
@@ -39,6 +45,7 @@ class TalentRouter {
 
     router.post(
       "/:talentId/workexperience",
+      this.checkJwt,
       this.talentController.addWorkExperience.bind(this.talentController)
     );
     router.get(
@@ -48,11 +55,13 @@ class TalentRouter {
 
     router.put(
       "/:talentId/workexperience",
+      this.checkJwt,
       this.talentController.updateWorkExp.bind(this.talentController)
     );
 
     router.delete(
       "/:talentId/workexperience/:workExpID",
+      this.checkJwt,
       this.talentController.deleteWorkExp.bind(this.talentController)
     );
 
@@ -60,6 +69,7 @@ class TalentRouter {
 
     router.post(
       "/:talentId/skill",
+      this.checkJwt,
       this.talentController.addSkillSet.bind(this.talentController)
     );
     router.get(
@@ -69,11 +79,13 @@ class TalentRouter {
 
     router.put(
       "/:talentId/skill",
+      this.checkJwt,
       this.talentController.updateSkill.bind(this.talentController)
     );
 
     router.delete(
       "/:talentId/skill/:skillId",
+      this.checkJwt,
       this.talentController.deleteSkill.bind(this.talentController)
     );
 
@@ -81,6 +93,7 @@ class TalentRouter {
 
     router.post(
       "/:talentId/education",
+      this.checkJwt,
       this.talentController.addEducation.bind(this.talentController)
     );
     router.get(
@@ -89,11 +102,13 @@ class TalentRouter {
     );
     router.put(
       "/:talentId/education",
+      this.checkJwt,
       this.talentController.updateEdu.bind(this.talentController)
     );
 
     router.delete(
       "/:talentId/education/:educationID",
+      this.checkJwt,
       this.talentController.deleteEdu.bind(this.talentController)
     );
 
@@ -106,7 +121,34 @@ class TalentRouter {
 
     router.post(
       "/:talentId/benefits",
+      this.checkJwt,
       this.talentController.addBenefit.bind(this.talentController)
+    );
+
+    // <------------------- JOB LISTINGS ------------------- >
+
+    router.get(
+      "/:talentId/joblistings",
+      this.checkJwt,
+      this.talentController.getEmAndJobListing.bind(this.talentController)
+    );
+
+    router.get(
+      "/:talentId/alljoblistings",
+      this.talentController.getAllApplications.bind(this.talentController)
+    );
+
+    // <------------------- APPLICATION ------------------- >
+
+    router.post(
+      "/:talentId/applications",
+      this.checkJwt,
+      this.talentController.addApplication.bind(this.talentController)
+    );
+
+    router.get(
+      "/:talentId/applications",
+      this.talentController.getApplications.bind(this.talentController)
     );
 
     return router; // Return the router instance
