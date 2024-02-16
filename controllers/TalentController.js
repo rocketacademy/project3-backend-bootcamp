@@ -67,6 +67,32 @@ class TalentController extends BaseController {
     }
   }
 
+  async editTalentName(req, res) {
+    const { talentId } = req.params;
+    const { userFirstName, userLastName } = req.body;
+    try {
+      console.log("EDITTT NAME");
+      console.log("NAME", userFirstName);
+      const updatedTalent = await this.model.update(
+        {
+          firstName: userFirstName,
+          lastName: userLastName,
+        },
+        {
+          where: {
+            id: talentId,
+          },
+        }
+      );
+      return res.json(updatedTalent);
+    } catch (err) {
+      console.error("Error updating talent:", err);
+      return res
+        .status(400)
+        .json({ error: true, msg: "Failed to update talent" });
+    }
+  }
+
   // <------------------------ RESUME ------------------------ >
 
   async addResume(req, res) {

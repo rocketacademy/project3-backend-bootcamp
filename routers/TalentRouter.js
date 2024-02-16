@@ -20,6 +20,12 @@ class TalentRouter {
       this.talentController.updateTalent.bind(this.talentController)
     );
 
+    router.put(
+      "/:talentId",
+      this.checkJwt,
+      this.talentController.editTalentName.bind(this.talentController)
+    );
+
     // <------------------------ RESUME ------------------------ >
 
     router.post(
