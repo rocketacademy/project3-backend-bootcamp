@@ -127,6 +127,11 @@ class TalentRouter {
       this.talentController.getEmAndJobListing.bind(this.talentController)
     );
 
+    router.get(
+      "/:talentId/alljoblistings",
+      this.talentController.getAllApplications.bind(this.talentController)
+    );
+
     // <------------------- APPLICATION ------------------- >
 
     router.post(

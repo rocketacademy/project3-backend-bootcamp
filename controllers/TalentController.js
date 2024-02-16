@@ -641,6 +641,78 @@ class TalentController extends BaseController {
       return res.status(400).json({ error: true, msg: err.message });
     }
   }
+
+  async getAllApplications(req, res) {
+    const { talentId } = req.params;
+    try {
+      // find all job listings - ok
+      // console.log("HHHHHEEEELLLLLOOOOOO WOOORRLLLDDD!!!!!");
+      // console.log("non applications");
+      // console.log("talent id:", talentId);
+
+      const allJobListings = await this.jobListingModel.findAll({
+        include: [
+          {
+            model: this.employerModel,
+            attributes: ["companyName", "description"],
+          },
+          {
+            model: this.benefitModel,
+            attributes: ["id", "category"], //benefits modal
+            through: {
+              attributes: ["jobListingId"], //joint modal
+            },
+          },
+        ],
+      });
+
+      // console.log("all job listingss", allJobListings);
+
+      // find the applications that the user applied - ok
+
+      const applications = await this.applicationModel.findAll({
+        where: {
+          talentId: talentId,
+        },
+        include: [
+          {
+            model: this.jobListingModel,
+            include: [
+              {
+                model: this.employerModel,
+                attributes: ["companyName"],
+              },
+            ],
+          },
+        ],
+      });
+
+      console.log(applications);
+
+      // console.log("APPLIED JOBSSSSS", applications);
+
+      // filter by job listing that they applied to by the joblisting ID in application model
+      // extract applied job listing ids - ok
+
+      const appliedJobListingIds = applications.map(
+        (application) => application.jobListing.id
+      );
+
+      // console.log("appliedJobListingIds", appliedJobListingIds);
+
+      // filter applications with the job listing ids
+      // dont want ids that matches with applied job listing ids
+      const unappliedJobs = allJobListings.filter(
+        (jobListing) => !appliedJobListingIds.includes(jobListing.id)
+      );
+
+      // console.log(unappliedJobs);
+      // Respond with the non - applications data
+      return res.json(unappliedJobs);
+    } catch (err) {
+      return res.status(400).json({ error: true, msg: err.message });
+    }
+  }
 }
 
 // get all user info under base controller
