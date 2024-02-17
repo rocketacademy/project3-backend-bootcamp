@@ -1,10 +1,11 @@
 const BaseController = require("./BaseController");
 
 class EmployerController extends BaseController {
-  constructor(model, jobListingModel, benefitModel) {
+  constructor(model, jobListingModel, benefitModel, applicationModel) {
     super(model);
     this.jobListingModel = jobListingModel;
     this.benefitModel = benefitModel;
+    this.applicationModel = applicationModel;
   }
 
   // Create employer
@@ -124,6 +125,7 @@ class EmployerController extends BaseController {
   }
 
   async getJobListing(req, res) {
+    console.log("getJobListing is being called");
     const { employerId } = req.params;
     try {
       //tag to talent ID
@@ -138,7 +140,39 @@ class EmployerController extends BaseController {
       return res.status(400).json({ error: true, msg: err });
     }
   }
+
+  async getOneJobListingApps(req, res) {
+    console.log("req.params in getOneJobListing:", req.params);
+    const { employerId, jobListingId } = req.params;
+
+    try {
+      //tag to talent ID
+      const jobListing = await this.jobListingModel.findByPk(jobListingId);
+
+      const appsForJobListing = await jobListing.getApplications();
+      console.log("i am apps for job listing", appsForJobListing);
+
+      console.log("jobListing", jobListing);
+      console.log("applications for job listing", appsForJobListing);
+      const response = {
+        applications: appsForJobListing,
+        jobListing: jobListing,
+      };
+
+      return res.json(response);
+    } catch (err) {
+      console.log("err", err);
+      return res.status(400).json({ error: true, msg: err });
+    }
+  }
+  //return res.json(jobListing);
+  //get all applications relating to the job listing.
+  //-> get the id of all applications that have a specific job listing id
+  //use stuff from the documentation
 }
+
+//Employer Dashboard should get all job listings posted by the employer.
+//Clicking on a job listing should bring the employer to a page where they can reject or accept applications associated with the job listing.
 
 // get all user info under base controller
 // delete is not required - user can't delete profile
