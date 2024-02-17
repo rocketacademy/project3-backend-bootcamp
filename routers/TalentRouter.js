@@ -151,6 +151,11 @@ class TalentRouter {
       this.talentController.getApplications.bind(this.talentController)
     );
 
+    router.put(
+      "/:talentId/applications",
+      this.talentController.putApplicationStatus.bind(this.talentController)
+    );
+
     return router; // Return the router instance
   }
 }

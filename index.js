@@ -64,7 +64,8 @@ const benefitController = new BenefitController(benefit, employer);
 const employerController = new EmployerController(
   employer,
   jobListing,
-  benefit
+  benefit,
+  application
 );
 
 //initialise router
