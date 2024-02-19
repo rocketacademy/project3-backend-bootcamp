@@ -746,12 +746,11 @@ class TalentController extends BaseController {
     const { talentId } = req.params;
     const { applicationStatus, jobListingId, applicationId } = req.body;
     console.log(applicationStatus);
+
     // console.log(talentId);
     // console.log(jobListingId);
     try {
       console.log("passing through");
-
-      //tag to talent ID
       const newApplicationStatus = await this.applicationModel.update(
         { applicationStatus: applicationStatus },
         {
@@ -762,7 +761,6 @@ class TalentController extends BaseController {
       );
 
       console.log("Application status changed.");
-      // Respond with the new work experience
       return res.json(newApplicationStatus);
     } catch (err) {
       console.log(err);
