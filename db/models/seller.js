@@ -8,7 +8,25 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      // define association here
+      this.hasMany(models.basket, { foreignKey: "seller_id" });
+      this.hasMany(models.feed, { foreignKey: "seller_id" });
+      this.hasMany(models.sellerLike, { foreignKey: "seller_id" });
+      this.hasMany(models.sellerReview, { foreignKey: "seller_id" });
+      this.hasMany(models.message, { foreignKey: "sender_seller_id" });
+      this.hasMany(models.chat, { foreignKey: "seller_id" });
+      this.belongsTo(models.category, { foreignKey: "category_id" });
+      this.belongsToMany(models.user, {
+        through: models.sellerLike,
+      });
+      this.belongsToMany(models.user, {
+        through: models.sellerReview,
+      });
+      this.belongsToMany(models.user, {
+        through: models.chat,
+      });
+      this.belongsToMany(models.user, {
+        through: models.message,
+      });
     }
   }
   seller.init(
@@ -18,7 +36,13 @@ module.exports = (sequelize, DataTypes) => {
       address: DataTypes.TEXT,
       location: DataTypes.GEOMETRY,
       photo: DataTypes.TEXT,
-      categoryId: DataTypes.INTEGER,
+      categoryId: {
+        type: DataTypes.INTEGER,
+        references: {
+          model: "category",
+          key: "id",
+        },
+      },
     },
     {
       sequelize,

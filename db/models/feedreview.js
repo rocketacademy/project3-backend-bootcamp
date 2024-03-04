@@ -8,13 +8,26 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      // define association here
+      this.belongsTo(models.user, { foreignKey: "user_id" });
+      this.belongsTo(models.feed, { foreignKey: "feed_id" });
     }
   }
   feedReview.init(
     {
-      feedId: DataTypes.INTEGER,
-      userId: DataTypes.INTEGER,
+      feedId: {
+        type: DataTypes.INTEGER,
+        references: {
+          model: "feed",
+          key: "id",
+        },
+      },
+      userId: {
+        type: DataTypes.INTEGER,
+        references: {
+          model: "user",
+          key: "id",
+        },
+      },
       content: DataTypes.TEXT,
     },
     {
