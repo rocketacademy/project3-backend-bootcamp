@@ -46,7 +46,8 @@ const categoryController = new CategoryController(
   category,
   seller,
   sellerLike,
-  sellerReview
+  sellerReview,
+  basket
 );
 const orderController = new OrderController(order, orderedItem);
 const notificationController = new NotificationController(notification);
