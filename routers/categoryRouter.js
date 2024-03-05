@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 
-class UserRouter {
+class CategoryRouter {
   constructor(controller) {
     this.controller = controller;
   }
@@ -10,4 +10,4 @@ class UserRouter {
     return router;
   }
 }
-module.exports = UserRouter;
+module.exports = CategoryRouter;
