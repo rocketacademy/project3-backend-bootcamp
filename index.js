@@ -15,7 +15,7 @@ const BasketRouter = require("./routers/basketRouter.js");
 
 //importing controllers
 const UserController = require("./controllers/userController.js");
-const CategoryController = require("./controllers/sellerController.js");
+const CategoryController = require("./controllers/categoryController.js");
 const OrderController = require("./controllers/orderController.js");
 const NotificationController = require("./controllers/notificationController.js");
 const FeedController = require("./controllers/feedController.js");
