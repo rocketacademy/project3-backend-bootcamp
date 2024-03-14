@@ -20,45 +20,35 @@ class CategoryController extends BaseController {
 
   async getSellersByCategory(req, res) {
     try {
-      const { sequelize, Sequelize } = db;
+      const { Sequelize } = db;
       const categoryId = req.params.categoryId;
       const userLatitude = 22.317330117054336;
       const userLongitude = 114.18860305272894;
 
-      const sellerswithBaskets = await this.sellerModel.findAll({
+      const sellers = await this.sellerModel.findAll({
+        attributes: {
+          include: [
+            [
+              Sequelize.literal(
+                `ST_DistanceSphere(
+                location,
+                ST_SetSRID(ST_MakePoint(${userLongitude}, ${userLatitude}), 4326)::geometry
+              )`
+              ),
+              "distance",
+            ],
+          ],
+        },
         where: { categoryId: categoryId },
-        include: [{ model: this.basketModel }],
-      });
-      // Filter sellers by distance using a raw query
-      const sellersFilteredByDistance = await sequelize.query(
-        `
-      SELECT "sellers".*, 
-      "baskets"."title" AS "title",
-      "baskets"."original_price" AS "originalPrice",
-      "baskets"."discounted_price" AS "discountedPrice",
-      "baskets"."photo" AS "photo",
-      "baskets"."stock" AS "stock",
-      ST_DistanceSphere(
-        location,
-        ST_SetSRID(ST_MakePoint(:longitude, :latitude), 4326)::geometry
-      ) AS distance
-      FROM "sellers" 
-      INNER JOIN "baskets" ON "sellers"."id" = "baskets"."seller_id"
-      WHERE "sellers"."category_id" = :categoryId
-      
-      `,
-        {
-          replacements: {
-            categoryId,
-            latitude: userLatitude,
-            longitude: userLongitude,
+        include: [
+          {
+            model: this.basketModel,
+            as: "baskets",
+            required: true,
           },
-          type: Sequelize.QueryTypes.SELECT,
-          model: this.sellerModel,
-          mapToModel: true,
-        }
-      );
-      return res.json(sellersFilteredByDistance);
+        ],
+      });
+      return res.json(sellers);
     } catch (error) {
       return res.status(400).json({ error: true, message: error.message });
     }
