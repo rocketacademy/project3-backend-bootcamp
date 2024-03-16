@@ -10,10 +10,12 @@ class UsersController extends BaseController {
     const { userEmail, firstName, lastName } = req.body;
 
     try {
-      const user = await this.userModel.create({
-        firstName: firstName,
-        lastName: lastName,
-        email: userEmail,
+      const [user, created] = await this.userModel.findOrCreate({
+        where: {
+          email: userEmail,
+        },
+        first_name: firstName,
+        last_name: lastName,
       });
 
       return res.status(200).json({
