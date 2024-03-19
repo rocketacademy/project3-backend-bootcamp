@@ -12,6 +12,7 @@ module.exports = (sequelize, DataTypes) => {
       this.belongsToMany(models.user, { through: "likes" });
       this.belongsToMany(models.user, { through: models.comment });
       this.hasMany(models.comment);
+      this.belongsToMany(models.category, { through: "category_posts" });
     }
   }
   post.init(
