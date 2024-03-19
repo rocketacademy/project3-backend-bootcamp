@@ -30,10 +30,6 @@ app.use(express.json());
 // Enable and use usersRouter
 app.use("/users", usersRouter.routes());
 
-app.get("/", (req, res) => {
-  res.send("Hello, World!");
-});
-
 app.listen(PORT, () => {
   console.log(`Express app listening on port ${PORT}!`);
 });

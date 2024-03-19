@@ -3,14 +3,13 @@ const BaseController = require("./baseController");
 class UsersController extends BaseController {
   constructor(model) {
     super(model);
-    this.userModel = model;
   }
 
   async insertUser(req, res) {
     const { userEmail, firstName, lastName } = req.body;
 
     try {
-      const [user, created] = await this.userModel.findOrCreate({
+      const [user, created] = await this.model.findOrCreate({
         where: {
           email: userEmail,
         },
