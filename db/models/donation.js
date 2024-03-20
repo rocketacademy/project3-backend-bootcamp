@@ -16,9 +16,27 @@ module.exports = (sequelize, DataTypes) => {
   }
   donation.init(
     {
-      donor_id: DataTypes.INTEGER,
-      book_id: DataTypes.INTEGER,
-      bene_id: DataTypes.INTEGER,
+      donor_id: {
+        type: DataTypes.INTEGER,
+        references: {
+          model: "user",
+          key: "id",
+        },
+      },
+      book_id: {
+        type: DataTypes.INTEGER,
+        references: {
+          model: "book",
+          key: "id",
+        },
+      },
+      bene_id: {
+        type: DataTypes.INTEGER,
+        references: {
+          model: "user",
+          key: "id",
+        },
+      },
     },
     {
       sequelize,
