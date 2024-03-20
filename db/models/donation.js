@@ -10,6 +10,7 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       this.belongsTo(models.user, { as: "bene" });
       this.belongsTo(models.user, { as: "donor" });
+      this.hasMany(models.request);
     }
   }
   donation.init(
