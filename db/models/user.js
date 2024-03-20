@@ -9,6 +9,8 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       this.belongsToMany(models.category, { through: "user_categories" });
+      this.hasMany(models.request);
+      this.hasMany(models.donation);
     }
   }
   user.init(
