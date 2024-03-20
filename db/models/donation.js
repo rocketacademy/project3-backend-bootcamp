@@ -11,6 +11,7 @@ module.exports = (sequelize, DataTypes) => {
       this.belongsTo(models.user, { as: "bene" });
       this.belongsTo(models.user, { as: "donor" });
       this.hasMany(models.request);
+      this.belongsTo(models.book);
     }
   }
   donation.init(
